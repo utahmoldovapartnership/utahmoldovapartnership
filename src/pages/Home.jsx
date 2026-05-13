@@ -130,7 +130,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-16 md:py-20">
           <div className="font-serif font-medium italic text-white text-[34px] sm:text-[44px] md:text-[52px] leading-[1.05] tracking-[-1px] max-w-[820px]">
             “These meetings helped us understand where to be{' '}
-            <em className="not-italic font-serif font-medium text-yellow italic">focused</em>
+            <em className="italic font-serif font-medium text-yellow">focused</em>
             {' '}and what it will take to reach our potential.”
           </div>
           <div className="mt-8 pt-6 border-t border-white/20 flex items-center gap-4">

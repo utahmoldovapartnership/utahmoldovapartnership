@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { TbChevronDown, TbCheck } from 'react-icons/tb'
+import { useLanguage } from '../contexts/LanguageContext.jsx'
 
 const LANGUAGES = [
   { code: 'EN', label: 'English' },
@@ -9,7 +10,7 @@ const LANGUAGES = [
 
 export default function LanguageSwitcher({ variant = 'desktop' }) {
   const [open, setOpen] = useState(false)
-  const [active, setActive] = useState('EN')
+  const { lang: active, setLang: setActive } = useLanguage()
   const ref = useRef(null)
 
   useEffect(() => {
@@ -29,7 +30,7 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
 
   if (variant === 'mobile') {
     return (
-      <div className="border-b border-border bg-white">
+      <div data-no-translate className="border-b border-border bg-white">
         <div className="px-6 py-3 text-[12px] uppercase tracking-widest text-muted font-sans">
           Language
         </div>
@@ -57,7 +58,7 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
   }
 
   return (
-    <div ref={ref} className="relative h-14 flex items-center">
+    <div ref={ref} data-no-translate className="relative h-14 flex items-center">
       <button
         type="button"
         aria-haspopup="listbox"
