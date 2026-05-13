@@ -8,7 +8,7 @@ export default function StatsBar({ items }) {
             className={[
               'py-6 px-3 text-center border-border',
               i !== items.length - 1 ? 'md:border-r' : '',
-              i % 2 === 0 ? 'border-r md:border-r' : '',
+              i % 2 === 0 && i !== items.length - 1 ? 'border-r' : '',
               i < items.length - 2 ? 'border-b md:border-b-0' : '',
             ].join(' ')}
           >
