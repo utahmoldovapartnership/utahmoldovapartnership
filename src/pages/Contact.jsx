@@ -64,7 +64,7 @@ export default function Contact() {
       <section className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <SectionKicker color="red">Choose your path</SectionKicker>
-          <h2 className="font-serif font-black text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
+          <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
             Who are you
             <br />
             reaching out as?
@@ -89,7 +89,7 @@ export default function Contact() {
                 >
                   {p.tag}
                 </span>
-                <h3 className="font-serif font-bold text-[22px] text-ink leading-[1.15] mb-2">
+                <h3 className="font-serif font-medium text-[22px] text-ink leading-[1.15] mb-2">
                   {p.title}
                 </h3>
                 <p className="text-[14px] text-muted leading-[1.65] font-sans mb-4">
@@ -97,7 +97,7 @@ export default function Contact() {
                 </p>
                 <a
                   href={`mailto:${orgInfo.email}?subject=${encodeURIComponent(p.subject)}`}
-                  className="inline-flex items-center gap-2 border-b border-ink pb-1 text-[13px] uppercase tracking-wider text-ink font-sans font-medium"
+                  className="inline-flex items-center gap-2 border-b border-ink pb-1 text-[12px] uppercase tracking-wider text-ink font-sans font-medium"
                 >
                   {p.cta} <TbArrowRight size={12} />
                 </a>
@@ -112,7 +112,7 @@ export default function Contact() {
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
           <div className="md:col-span-2 p-7 md:p-10 border-b md:border-b-0 md:border-r border-border">
             <SectionKicker color="blue">Send a message</SectionKicker>
-            <h3 className="font-serif font-black text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
+            <h3 className="font-serif font-medium text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
               Tell us about your project
             </h3>
             <p className="text-[15px] text-muted leading-[1.65] font-sans mb-6 max-w-[460px]">
@@ -185,7 +185,7 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="-mt-px w-full bg-red text-white py-4 font-sans font-medium text-[14px] uppercase tracking-[0.08em] inline-flex items-center justify-center gap-2"
+                className="-mt-px w-full bg-red text-white py-4 font-sans font-medium text-[12px] uppercase tracking-[0.08em] inline-flex items-center justify-center gap-2"
               >
                 {sent ? 'Opening your email client…' : 'Send message'} <TbArrowRight size={14} />
               </button>
@@ -197,7 +197,7 @@ export default function Contact() {
           </div>
 
           <aside className="p-7 md:p-10">
-            <h3 className="font-serif font-black text-[22px] md:text-[26px] leading-[1.0] tracking-[-0.5px] text-ink mb-4">
+            <h3 className="font-serif font-medium text-[22px] md:text-[26px] leading-[1.0] tracking-[-0.5px] text-ink mb-4">
               Reach us
               <br />
               directly
@@ -265,7 +265,7 @@ export default function Contact() {
       <section id="faq" className="bg-white scroll-mt-20">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <SectionKicker color="red">Frequently Asked Questions</SectionKicker>
-          <h2 className="font-serif font-black text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
+          <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
             Before you write in
           </h2>
           <div className="border border-border">
@@ -294,7 +294,7 @@ export default function Contact() {
                   i !== arr.length - 1 ? 'border-b border-border' : '',
                 ].join(' ')}
               >
-                <h3 className="font-serif font-bold text-[20px] text-ink leading-[1.2] md:col-span-1">
+                <h3 className="font-serif font-medium text-[20px] text-ink leading-[1.2] md:col-span-1">
                   {f.q}
                 </h3>
                 <p className="text-[15px] text-muted leading-[1.7] font-sans md:col-span-2">

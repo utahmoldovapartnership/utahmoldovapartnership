@@ -37,14 +37,12 @@ export default function Interns() {
         kickerColor="yellow"
         title={
           <>
-            Work inside a
-            <br />
-            real company.
+            Work inside a real company.
             <br />
             Deliver <em className="italic text-yellow">results.</em>
           </>
         }
-        subtext="Spend a summer in Chișinău embedded with a local business — doing strategy, marketing, research, and operations work that actually matters."
+        subtext="Spend a summer in Chișinău embedded with a local business, doing strategy, marketing, research, and operations work that actually matters."
         primary={{ label: 'Apply Now', href: '#apply', variant: 'yellow' }}
         secondary={{ label: 'Read the Timeline', href: '#timeline' }}
         backgroundImage="https://static.wixstatic.com/media/a6cdd8_d6163bc3110a467eba5acc96ecd9ae17~mv2.jpg/v1/crop/x_0,y_151,w_1600,h_899/fill/w_1600,h_899,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Our%20Team%20in%20Chisinau%20.jpg"
@@ -59,7 +57,7 @@ export default function Interns() {
       <section id="timeline" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <SectionKicker color="red">What you'll do</SectionKicker>
-          <h2 className="font-serif font-black text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
+          <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
             Real work.
             <br />
             Real impact.
@@ -91,7 +89,7 @@ export default function Interns() {
                   </div>
                 </div>
                 <div className="flex-1 py-6 pl-6">
-                  <h3 className="font-serif font-bold text-[20px] text-ink mb-2">
+                  <h3 className="font-serif font-medium text-[20px] text-ink mb-2">
                     {step.title}
                   </h3>
                   <p className="text-[15px] text-muted leading-[1.65] font-sans">
@@ -109,7 +107,7 @@ export default function Interns() {
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
             <SectionKicker color="blue">Project deliverables</SectionKicker>
-            <h2 className="font-serif font-black text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-5">
+            <h2 className="font-serif font-medium text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-5">
               The kind of work
               <br />
               you'll ship
@@ -133,7 +131,7 @@ export default function Interns() {
           </div>
           <div>
             <SectionKicker color="red">Who it's for</SectionKicker>
-            <h2 className="font-serif font-black text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-5">
+            <h2 className="font-serif font-medium text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-5">
               Driven students
               <br />
               and recent grads
@@ -166,7 +164,7 @@ export default function Interns() {
       <section className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <SectionKicker color="red">A summer in Chișinău</SectionKicker>
-          <h2 className="font-serif font-black text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
+          <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
             More than
             <br />
             an internship
@@ -185,7 +183,7 @@ export default function Interns() {
           <SectionKicker color="blue">How to apply</SectionKicker>
           <div className="border border-border">
             <div className="p-8 md:p-9 border-b border-border">
-              <h3 className="font-serif font-black text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
+              <h3 className="font-serif font-medium text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
                 Apply for the
                 <br />
                 summer program
@@ -239,7 +237,7 @@ export default function Interns() {
                 </div>
                 <button
                   type="submit"
-                  className="-mt-px w-full bg-red text-white py-3 font-sans font-medium text-[14px] uppercase tracking-[0.08em] inline-flex items-center justify-center gap-2"
+                  className="-mt-px w-full bg-red text-white py-3 font-sans font-medium text-[12px] uppercase tracking-[0.08em] inline-flex items-center justify-center gap-2"
                 >
                   Send Application <TbArrowRight size={14} />
                 </button>
@@ -259,9 +257,9 @@ export default function Interns() {
       {/* Closing quote */}
       <section className="bg-red">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-16 md:py-20">
-          <div className="font-serif font-black italic text-white text-[28px] sm:text-[36px] md:text-[44px] leading-[1.1] tracking-[-0.5px] max-w-[820px]">
+          <div className="font-serif font-medium italic text-white text-[28px] sm:text-[36px] md:text-[44px] leading-[1.1] tracking-[-0.5px] max-w-[820px]">
             “Sometimes you need to do the things you don't want to do, but{' '}
-            <em className="not-italic font-serif font-black text-yellow italic">need to do</em>
+            <em className="not-italic font-serif font-medium text-yellow italic">need to do</em>
             {' '}because the moment requires it.”
           </div>
           <div className="mt-8 pt-6 border-t border-white/20 flex items-center gap-4">
