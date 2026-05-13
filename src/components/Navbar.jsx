@@ -5,8 +5,8 @@ import LanguageSwitcher from './LanguageSwitcher.jsx'
 
 const links = [
   { to: '/', label: 'Home', end: true },
-  { to: '/interns', label: 'For Interns' },
   { to: '/contact', label: 'Contact' },
+  { to: '/interns', label: 'For Interns' },
 ]
 
 export default function Navbar() {
