@@ -171,7 +171,7 @@ export const contactPaths = [
   },
   {
     tag: 'For Prospective Interns',
-    tagColor: 'blue',
+    tagColor: 'yellow',
     title: 'Apply to the program',
     text: 'Send your resume and a short cover letter. We review applications on a rolling basis for the summer cohort in Chișinău.',
     cta: 'Send application',

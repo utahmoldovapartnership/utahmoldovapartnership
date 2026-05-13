@@ -19,6 +19,8 @@ export default function Hero({
   const overlay =
     overlayDirection === 'horizontal'
       ? 'linear-gradient(90deg, rgba(13,13,13,1) 0%, rgba(13,13,13,1) 25%, rgba(13,13,13,0.7) 45%, rgba(13,13,13,0.15) 75%, rgba(13,13,13,0.0) 100%)'
+      : overlayDirection === 'vertical-strong'
+      ? 'linear-gradient(180deg, rgba(13,13,13,0.50) 0%, rgba(13,13,13,0.65) 55%, rgba(13,13,13,0.90) 100%)'
       : 'linear-gradient(180deg, rgba(13,13,13,0.20) 0%, rgba(13,13,13,0.40) 55%, rgba(13,13,13,0.75) 100%)'
   const imageBoxStyle = imageAlignRight
     ? {
@@ -53,28 +55,30 @@ export default function Hero({
         </>
       )}
       <div className="relative mx-auto max-w-[1180px] px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20">
-        <div
-          className={[
-            'mb-6 flex items-center gap-[12px] text-[12px] font-sans font-medium uppercase tracking-[0.18em]',
-            kickerColor === 'yellow'
-              ? 'text-yellow'
-              : kickerColor === 'white'
-              ? 'text-white'
-              : 'text-red',
-          ].join(' ')}
-        >
-          <span
+        {kicker && (
+          <div
             className={[
-              'inline-block w-6 h-px',
+              'mb-6 flex items-center gap-[12px] text-[12px] font-sans font-medium uppercase tracking-[0.18em]',
               kickerColor === 'yellow'
-                ? 'bg-yellow'
+                ? 'text-yellow'
                 : kickerColor === 'white'
-                ? 'bg-white'
-                : 'bg-red',
+                ? 'text-white'
+                : 'text-red',
             ].join(' ')}
-          />
-          <span>{kicker}</span>
-        </div>
+          >
+            <span
+              className={[
+                'inline-block w-6 h-px',
+                kickerColor === 'yellow'
+                  ? 'bg-yellow'
+                  : kickerColor === 'white'
+                  ? 'bg-white'
+                  : 'bg-red',
+              ].join(' ')}
+            />
+            <span>{kicker}</span>
+          </div>
+        )}
         <h1 className="font-serif font-medium italic text-white text-[44px] sm:text-[56px] md:text-[72px] leading-[1.1] tracking-[-1px] max-w-[820px]">
           {title}
         </h1>

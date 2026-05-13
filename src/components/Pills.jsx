@@ -4,7 +4,7 @@ export default function Pills({ items }) {
       {items.map((label) => (
         <div
           key={label}
-          className="border border-border px-[18px] py-[9px] text-[12px] text-[#374151] font-sans -mr-px -mb-px bg-white"
+          className="border border-border px-[18px] py-[9px] text-[14px] text-[#374151] font-sans -mr-px -mb-px bg-white"
         >
           {label}
         </div>

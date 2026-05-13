@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { TbArrowRight, TbCheck, TbMail, TbWorld } from 'react-icons/tb'
+import { TbArrowRight, TbBrandWhatsapp, TbCheck, TbMail, TbWorld } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
 import SectionKicker from '../components/SectionKicker.jsx'
 import { contactPaths, orgInfo } from '../data/siteContent.js'
 
 const tagColorMap = {
-  red: 'bg-red-light text-red',
-  blue: 'bg-blue-light text-blue',
+  red: 'bg-red text-white',
+  blue: 'bg-blue text-white',
+  yellow: 'bg-yellow text-ink',
 }
 
 export default function Contact() {
@@ -45,17 +46,18 @@ export default function Contact() {
   return (
     <>
       <Hero
-        kicker="Contact"
         title={
           <>
             Let’s build
             <br />
-            something <em className="italic text-red">together</em>
+            something <em className="italic text-white">together</em>
           </>
         }
         subtext="Whether you run a business in Moldova, want to intern with us, or want to support the partnership — start here. We read every message."
         primary={{ label: 'Email the program', href: `mailto:${orgInfo.email}` }}
-        secondary={{ label: 'See the program', href: '/' }}
+        secondary={{ label: 'See FAQ', href: '#faq' }}
+        backgroundImage="https://images.pexels.com/photos/11185859/pexels-photo-11185859.jpeg?auto=compress&cs=tinysrgb&w=2400"
+        overlayDirection="vertical-strong"
       />
 
       {/* Audience paths */}
@@ -67,7 +69,7 @@ export default function Contact() {
             <br />
             reaching out as?
           </h2>
-          <p className="text-[13px] text-muted leading-[1.7] max-w-[520px] mb-9 font-sans">
+          <p className="text-[15px] text-muted leading-[1.7] max-w-[520px] mb-9 font-sans">
             Pick the path that fits you best. Each one goes to the same team — it just helps us route your message faster.
           </p>
 
@@ -83,19 +85,19 @@ export default function Contact() {
                 ].join(' ')}
               >
                 <span
-                  className={`inline-block text-[10px] uppercase tracking-[0.08em] font-medium px-2 py-[3px] mb-3 ${tagColorMap[p.tagColor]}`}
+                  className={`inline-block text-[12px] uppercase tracking-[0.08em] font-medium px-2 py-[3px] mb-3 ${tagColorMap[p.tagColor]}`}
                 >
                   {p.tag}
                 </span>
                 <h3 className="font-serif font-bold text-[22px] text-ink leading-[1.15] mb-2">
                   {p.title}
                 </h3>
-                <p className="text-[12px] text-muted leading-[1.65] font-sans mb-4">
+                <p className="text-[14px] text-muted leading-[1.65] font-sans mb-4">
                   {p.text}
                 </p>
                 <a
                   href={`mailto:${orgInfo.email}?subject=${encodeURIComponent(p.subject)}`}
-                  className="inline-flex items-center gap-2 border-b border-ink pb-1 text-[11px] uppercase tracking-wider text-ink font-sans font-medium"
+                  className="inline-flex items-center gap-2 border-b border-ink pb-1 text-[13px] uppercase tracking-wider text-ink font-sans font-medium"
                 >
                   {p.cta} <TbArrowRight size={12} />
                 </a>
@@ -111,11 +113,9 @@ export default function Contact() {
           <div className="md:col-span-2 p-7 md:p-10 border-b md:border-b-0 md:border-r border-border">
             <SectionKicker color="blue">Send a message</SectionKicker>
             <h3 className="font-serif font-black text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
-              Tell us about
-              <br />
-              your project
+              Tell us about your project
             </h3>
-            <p className="text-[13px] text-muted leading-[1.65] font-sans mb-6 max-w-[460px]">
+            <p className="text-[15px] text-muted leading-[1.65] font-sans mb-6 max-w-[460px]">
               Short and direct is fine. We will reply by email within a few business days.
             </p>
 
@@ -127,7 +127,7 @@ export default function Contact() {
                   placeholder="Your name"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="flex-1 border border-border md:border-r-0 px-4 py-3 text-[13px] text-ink font-sans bg-white focus:border-red"
+                  className="flex-1 border border-border md:border-r-0 px-4 py-3 text-[15px] text-ink font-sans bg-white focus:border-red"
                 />
                 <input
                   required
@@ -135,7 +135,7 @@ export default function Contact() {
                   placeholder="Email address"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="flex-1 border border-border -mt-px md:mt-0 md:border-l-0 px-4 py-3 text-[13px] text-ink font-sans bg-white focus:border-red"
+                  className="flex-1 border border-border -mt-px md:mt-0 md:border-l-0 px-4 py-3 text-[15px] text-ink font-sans bg-white focus:border-red"
                 />
               </div>
 
@@ -144,11 +144,11 @@ export default function Contact() {
                 placeholder="Company or organization (optional)"
                 value={form.company}
                 onChange={(e) => setForm({ ...form, company: e.target.value })}
-                className="-mt-px border border-border px-4 py-3 text-[13px] text-ink font-sans bg-white focus:border-red"
+                className="-mt-px border border-border px-4 py-3 text-[15px] text-ink font-sans bg-white focus:border-red"
               />
 
-              <div className="-mt-px border border-border px-4 py-3 text-[12px] text-muted font-sans bg-white flex flex-wrap gap-x-6 gap-y-2 items-center">
-                <span className="text-[10px] uppercase tracking-[0.12em] text-ink font-medium">
+              <div className="-mt-px border border-border px-4 py-3 text-[14px] text-muted font-sans bg-white flex flex-wrap gap-x-6 gap-y-2 items-center">
+                <span className="text-[12px] uppercase tracking-[0.12em] text-ink font-medium">
                   I am
                 </span>
                 {[
@@ -159,7 +159,7 @@ export default function Contact() {
                 ].map((opt) => (
                   <label
                     key={opt.id}
-                    className="inline-flex items-center gap-2 cursor-pointer text-[12px] text-ink"
+                    className="inline-flex items-center gap-2 cursor-pointer text-[14px] text-ink"
                   >
                     <input
                       type="radio"
@@ -180,24 +180,23 @@ export default function Contact() {
                 placeholder="Tell us a bit about your business, project, or question."
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="-mt-px border border-border px-4 py-3 text-[13px] text-ink font-sans bg-white focus:border-red resize-none"
+                className="-mt-px border border-border px-4 py-3 text-[15px] text-ink font-sans bg-white focus:border-red resize-none"
               />
 
               <button
                 type="submit"
-                className="-mt-px w-full bg-red text-white py-4 font-sans font-medium text-[12px] uppercase tracking-[0.08em] inline-flex items-center justify-center gap-2"
+                className="-mt-px w-full bg-red text-white py-4 font-sans font-medium text-[14px] uppercase tracking-[0.08em] inline-flex items-center justify-center gap-2"
               >
                 {sent ? 'Opening your email client…' : 'Send message'} <TbArrowRight size={14} />
               </button>
 
-              <p className="text-[11px] text-[#9ca3af] mt-3 font-sans inline-flex items-center gap-2">
+              <p className="text-[13px] text-[#9ca3af] mt-3 font-sans inline-flex items-center gap-2">
                 <TbCheck size={12} /> We use your email only to reply. No newsletters.
               </p>
             </form>
           </div>
 
           <aside className="p-7 md:p-10">
-            <SectionKicker color="red">Direct</SectionKicker>
             <h3 className="font-serif font-black text-[22px] md:text-[26px] leading-[1.0] tracking-[-0.5px] text-ink mb-4">
               Reach us
               <br />
@@ -213,47 +212,47 @@ export default function Contact() {
                   <TbMail size={14} color="#fff" />
                 </span>
                 <span>
-                  <span className="block text-[10px] uppercase tracking-[0.12em] text-muted font-sans">Email</span>
-                  <span className="block text-[13px] text-ink font-sans break-all">
+                  <span className="block text-[12px] uppercase tracking-[0.12em] text-muted font-sans">Email</span>
+                  <span className="block text-[15px] text-ink font-sans break-all">
                     {orgInfo.email}
                   </span>
-                </span>
-              </a>
-              <a
-                href={`https://${orgInfo.website}`}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-start gap-3 py-4 border-b border-border"
-              >
-                <span className="w-8 h-8 bg-blue flex items-center justify-center flex-shrink-0">
-                  <TbWorld size={14} color="#fff" />
-                </span>
-                <span>
-                  <span className="block text-[10px] uppercase tracking-[0.12em] text-muted font-sans">Website</span>
-                  <span className="block text-[13px] text-ink font-sans">{orgInfo.website}</span>
                 </span>
               </a>
               <a
                 href={`https://${orgInfo.partnerSite}`}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-start gap-3 py-4"
+                className="flex items-start gap-3 py-4 border-b border-border"
               >
                 <span className="w-8 h-8 bg-yellow flex items-center justify-center flex-shrink-0">
                   <TbWorld size={14} color="#0d0d0d" />
                 </span>
                 <span>
-                  <span className="block text-[10px] uppercase tracking-[0.12em] text-muted font-sans">Local Partner</span>
-                  <span className="block text-[13px] text-ink font-sans">{orgInfo.partnerSite}</span>
+                  <span className="block text-[12px] uppercase tracking-[0.12em] text-muted font-sans">Local Partner</span>
+                  <span className="block text-[15px] text-ink font-sans">{orgInfo.partnerSite}</span>
+                </span>
+              </a>
+              <a
+                href="https://wa.me/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-start gap-3 py-4"
+              >
+                <span className="w-8 h-8 bg-[#25D366] flex items-center justify-center flex-shrink-0">
+                  <TbBrandWhatsapp size={14} color="#fff" />
+                </span>
+                <span>
+                  <span className="block text-[12px] uppercase tracking-[0.12em] text-muted font-sans">WhatsApp</span>
+                  <span className="block text-[15px] text-ink font-sans">+373 000 000 000</span>
                 </span>
               </a>
             </div>
 
             <div className="mt-6 border-t border-border pt-6">
-              <div className="text-[10px] uppercase tracking-[0.12em] text-muted font-sans mb-2">
+              <div className="text-[12px] uppercase tracking-[0.12em] text-muted font-sans mb-2">
                 Where we work
               </div>
-              <div className="text-[13px] text-ink font-sans leading-[1.7]">
+              <div className="text-[15px] text-ink font-sans leading-[1.7]">
                 Chișinău, Moldova<br />
                 Salt Lake City, Utah
               </div>
@@ -263,13 +262,11 @@ export default function Contact() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-white">
+      <section id="faq" className="bg-white scroll-mt-20">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
-          <SectionKicker color="red">Quick answers</SectionKicker>
+          <SectionKicker color="red">Frequently Asked Questions</SectionKicker>
           <h2 className="font-serif font-black text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
-            Before you
-            <br />
-            write in
+            Before you write in
           </h2>
           <div className="border border-border">
             {[
@@ -297,10 +294,10 @@ export default function Contact() {
                   i !== arr.length - 1 ? 'border-b border-border' : '',
                 ].join(' ')}
               >
-                <h3 className="font-serif font-bold text-[18px] text-ink leading-[1.2] md:col-span-1">
+                <h3 className="font-serif font-bold text-[20px] text-ink leading-[1.2] md:col-span-1">
                   {f.q}
                 </h3>
-                <p className="text-[13px] text-muted leading-[1.7] font-sans md:col-span-2">
+                <p className="text-[15px] text-muted leading-[1.7] font-sans md:col-span-2">
                   {f.a}
                 </p>
               </div>

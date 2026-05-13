@@ -64,7 +64,7 @@ export default function Interns() {
             <br />
             Real impact.
           </h2>
-          <p className="text-[13px] text-muted leading-[1.7] max-w-[520px] mb-9 font-sans">
+          <p className="text-[15px] text-muted leading-[1.7] max-w-[520px] mb-9 font-sans">
             You won't be making coffee. Each intern leads a consulting project from discovery through final presentation.
           </p>
 
@@ -78,12 +78,12 @@ export default function Interns() {
                 ].join(' ')}
               >
                 <div className="w-[110px] md:w-[140px] flex-shrink-0 border-r border-border py-6 pr-5">
-                  <div className="font-serif font-black text-[28px] text-border leading-none">
+                  <div className="font-serif font-black text-[28px] text-[#9ca3af] leading-none">
                     {step.step}
                   </div>
                   <div
                     className={[
-                      'mt-1 text-[10px] uppercase tracking-[0.1em] font-sans font-medium',
+                      'mt-1 text-[12px] uppercase tracking-[0.1em] font-sans font-medium',
                       step.phaseColor === 'blue' ? 'text-blue' : 'text-red',
                     ].join(' ')}
                   >
@@ -91,10 +91,10 @@ export default function Interns() {
                   </div>
                 </div>
                 <div className="flex-1 py-6 pl-6">
-                  <h3 className="font-serif font-bold text-[18px] text-ink mb-2">
+                  <h3 className="font-serif font-bold text-[20px] text-ink mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-[13px] text-muted leading-[1.65] font-sans">
+                  <p className="text-[15px] text-muted leading-[1.65] font-sans">
                     {step.text}
                   </p>
                 </div>
@@ -119,7 +119,7 @@ export default function Interns() {
                 <li
                   key={d}
                   className={[
-                    'flex items-center gap-3 px-4 py-3 text-[13px] text-ink font-sans',
+                    'flex items-center gap-3 px-4 py-3 text-[15px] text-ink font-sans',
                     i !== internDeliverables.length - 1 ? 'border-b border-border' : '',
                   ].join(' ')}
                 >
@@ -143,7 +143,7 @@ export default function Interns() {
                 <li
                   key={d}
                   className={[
-                    'flex items-center gap-3 px-4 py-3 text-[13px] text-ink font-sans',
+                    'flex items-center gap-3 px-4 py-3 text-[15px] text-ink font-sans',
                     i !== internWhoFor.length - 1 ? 'border-b border-border' : '',
                   ].join(' ')}
                 >
@@ -155,7 +155,7 @@ export default function Interns() {
               ))}
             </ul>
 
-            <p className="mt-6 text-[13px] text-muted leading-[1.7] font-sans">
+            <p className="mt-6 text-[15px] text-muted leading-[1.7] font-sans">
               Not sure if you qualify? Reach out anyway. We have placed students from a wide range of backgrounds and the right fit matters more than a specific major.
             </p>
           </div>
@@ -190,7 +190,7 @@ export default function Interns() {
                 <br />
                 summer program
               </h3>
-              <p className="text-[13px] text-muted leading-[1.65] max-w-[480px] font-sans">
+              <p className="text-[15px] text-muted leading-[1.65] max-w-[480px] font-sans">
                 Driven students and recent grads in business, marketing, finance, IT, or related fields who want to do meaningful work abroad.
               </p>
             </div>
@@ -201,7 +201,7 @@ export default function Interns() {
                   <div
                     key={c.label}
                     className={[
-                      'flex items-center gap-3 px-4 py-3 text-[12px] text-[#374151] font-sans border-border',
+                      'flex items-center gap-3 px-4 py-3 text-[14px] text-[#374151] font-sans border-border',
                       i % 2 === 0 ? 'md:border-r' : '',
                       i < 2 ? 'border-b md:border-b' : '',
                       i === internChecklist.length - 1 ? 'border-b-0' : 'border-b md:border-b-0',
@@ -226,7 +226,7 @@ export default function Interns() {
                     placeholder="Your name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="flex-1 border border-border md:border-r-0 px-4 py-3 text-[13px] text-ink font-sans bg-white focus:border-red"
+                    className="flex-1 border border-border md:border-r-0 px-4 py-3 text-[15px] text-ink font-sans bg-white focus:border-red"
                   />
                   <input
                     required
@@ -234,18 +234,18 @@ export default function Interns() {
                     placeholder="Email address"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="flex-1 border border-border -mt-px md:mt-0 md:border-l-0 px-4 py-3 text-[13px] text-ink font-sans bg-white focus:border-red"
+                    className="flex-1 border border-border -mt-px md:mt-0 md:border-l-0 px-4 py-3 text-[15px] text-ink font-sans bg-white focus:border-red"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="-mt-px w-full bg-red text-white py-3 font-sans font-medium text-[12px] uppercase tracking-[0.08em] inline-flex items-center justify-center gap-2"
+                  className="-mt-px w-full bg-red text-white py-3 font-sans font-medium text-[14px] uppercase tracking-[0.08em] inline-flex items-center justify-center gap-2"
                 >
                   Send Application <TbArrowRight size={14} />
                 </button>
               </form>
 
-              <p className="text-[11px] text-[#9ca3af] mt-3 font-sans">
+              <p className="text-[13px] text-[#9ca3af] mt-3 font-sans">
                 Or email:{' '}
                 <a className="text-ink hover:text-red" href={`mailto:${orgInfo.email}`}>
                   {orgInfo.email}
@@ -257,19 +257,19 @@ export default function Interns() {
       </section>
 
       {/* Closing quote */}
-      <section className="bg-ink">
+      <section className="bg-red">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-16 md:py-20">
           <div className="font-serif font-black italic text-white text-[28px] sm:text-[36px] md:text-[44px] leading-[1.1] tracking-[-0.5px] max-w-[820px]">
             “Sometimes you need to do the things you don't want to do, but{' '}
             <em className="not-italic font-serif font-black text-yellow italic">need to do</em>
             {' '}because the moment requires it.”
           </div>
-          <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-4">
-            <span className="text-[10px] uppercase tracking-[0.12em] text-yellow font-sans font-medium">
+          <div className="mt-8 pt-6 border-t border-white/20 flex items-center gap-4">
+            <span className="text-[12px] uppercase tracking-[0.12em] text-yellow font-sans font-medium">
               Host Company
             </span>
-            <span className="w-px h-4 bg-white/20" />
-            <span className="text-[12px] text-muted font-sans">Macco — Chișinău, Moldova</span>
+            <span className="w-px h-4 bg-white/30" />
+            <span className="text-[14px] text-white/85 font-sans">Macco — Chișinău, Moldova</span>
           </div>
         </div>
       </section>

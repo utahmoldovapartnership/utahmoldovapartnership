@@ -30,7 +30,7 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
   if (variant === 'mobile') {
     return (
       <div className="border-b border-border bg-white">
-        <div className="px-6 py-3 text-[10px] uppercase tracking-widest text-muted font-sans">
+        <div className="px-6 py-3 text-[12px] uppercase tracking-widest text-muted font-sans">
           Language
         </div>
         <div className="grid grid-cols-3 border-t border-border">
@@ -42,7 +42,7 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
                 type="button"
                 onClick={() => setActive(lang.code)}
                 className={[
-                  'py-3 text-[11px] uppercase tracking-widest font-medium',
+                  'py-3 text-[13px] uppercase tracking-widest font-medium',
                   i !== LANGUAGES.length - 1 ? 'border-r border-border' : '',
                   isActive ? 'bg-ink text-white' : 'text-ink',
                 ].join(' ')}
@@ -94,10 +94,10 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
                   ].join(' ')}
                 >
                   <span className="flex items-center gap-3">
-                    <span className="w-[26px] text-[10px] tracking-widest text-muted">
+                    <span className="w-[26px] text-[12px] tracking-widest text-muted">
                       {lang.code}
                     </span>
-                    <span className="normal-case tracking-normal text-[12px] font-medium">
+                    <span className="normal-case tracking-normal text-[14px] font-medium">
                       {lang.label}
                     </span>
                   </span>

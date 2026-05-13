@@ -72,7 +72,7 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 [
-                  'block px-6 py-4 text-[12px] uppercase tracking-widest border-b border-border',
+                  'block px-6 py-4 text-[13px] uppercase tracking-widest border-b border-border',
                   isActive ? 'text-red' : 'text-muted',
                 ].join(' ')
               }
