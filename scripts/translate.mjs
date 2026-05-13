@@ -4,18 +4,55 @@ import { pathToFileURL } from 'node:url'
 
 const ROOT = process.cwd()
 const SITE_CONTENT = path.join(ROOT, 'src/data/siteContent.js')
+const SCAN_DIRS = [
+  path.join(ROOT, 'src/pages'),
+  path.join(ROOT, 'src/components'),
+]
 const OUT_FILE = path.join(ROOT, 'src/locales/translations.json')
 const TARGETS = ['ru', 'ro']
 const EMAIL = 'utahmoldovapartnership@gmail.com'
 const SLEEP_MS = 120
 
+const KEEP_AS_IS = new Set([
+  'UMBP',
+  'Facebook',
+  'Instagram',
+  'Twitter',
+  'LinkedIn',
+  'WhatsApp',
+  'Chișinău',
+  'Moldova',
+  'Bottega',
+  'Tucano',
+  'Tekwill',
+  'AmCham',
+  'Le Parole',
+  'Covali',
+  'UNDP',
+  'Hinckley Institute',
+  'Code to Success',
+  'David Eccles School of Business',
+  'Startup Moldova',
+  'Ivory Center',
+  'Clark Ivory',
+  'Walter Plumb III',
+  'Est.',
+  '©',
+])
+
+function isTranslatable(value) {
+  if (typeof value !== 'string') return false
+  const trimmed = value.trim()
+  if (trimmed.length < 2) return false
+  if (!/[A-Za-z]/.test(trimmed)) return false
+  if (KEEP_AS_IS.has(trimmed)) return false
+  return true
+}
+
 function collectStrings(value, out = new Set()) {
   if (value == null) return out
   if (typeof value === 'string') {
-    const trimmed = value.trim()
-    if (trimmed.length > 1 && /[A-Za-z]/.test(trimmed)) {
-      out.add(trimmed)
-    }
+    if (isTranslatable(value)) out.add(value.trim())
     return out
   }
   if (Array.isArray(value)) {
@@ -27,6 +64,38 @@ function collectStrings(value, out = new Set()) {
     return out
   }
   return out
+}
+
+async function walk(dir, files = []) {
+  const entries = await fs.readdir(dir, { withFileTypes: true })
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name)
+    if (entry.isDirectory()) await walk(full, files)
+    else if (/\.(jsx?|tsx?)$/.test(entry.name)) files.push(full)
+  }
+  return files
+}
+
+const JSX_TEXT_RE = />([^<>{}\n]+?)</g
+const JSX_PROP_RE =
+  /\b(label|title|kicker|subtext|placeholder|aria-label|caption|tag|company|cta|text|name|alt|description)\s*=\s*["']([^"']{3,})["']/g
+
+function extractFromSource(source, out) {
+  let m
+  while ((m = JSX_TEXT_RE.exec(source))) {
+    const raw = m[1]
+    const cleaned = raw
+      .replace(/\s+/g, ' ')
+      .replace(/\{['"][^'"]+['"]\}/g, '')
+      .trim()
+    if (!isTranslatable(cleaned)) continue
+    out.add(cleaned)
+  }
+  JSX_PROP_RE.lastIndex = 0
+  while ((m = JSX_PROP_RE.exec(source))) {
+    const raw = m[2].trim()
+    if (isTranslatable(raw)) out.add(raw)
+  }
 }
 
 async function translateViaMyMemory(text, target) {
@@ -92,6 +161,15 @@ async function main() {
   const mod = await import(pathToFileURL(SITE_CONTENT).href)
   const strings = new Set()
   for (const v of Object.values(mod)) collectStrings(v, strings)
+
+  for (const dir of SCAN_DIRS) {
+    const files = await walk(dir)
+    for (const file of files) {
+      const src = await fs.readFile(file, 'utf8')
+      extractFromSource(src, strings)
+    }
+  }
+
   const list = Array.from(strings).sort()
   console.log(`Found ${list.length} strings to translate.`)
 

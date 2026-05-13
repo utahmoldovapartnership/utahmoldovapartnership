@@ -8,6 +8,36 @@ const LANG_MAP = { EN: 'en', RU: 'ru', RO: 'ro' }
 const CACHE_KEY = 'umbp.translations.v1'
 const CONCURRENCY = 3
 
+const KEEP_AS_IS = new Set([
+  'UMBP',
+  'Facebook',
+  'Instagram',
+  'Twitter',
+  'LinkedIn',
+  'WhatsApp',
+  'Chișinău',
+  'Moldova',
+  'Bottega',
+  'Tucano',
+  'Tekwill',
+  'AmCham',
+  'Le Parole',
+  'Covali',
+  'UNDP',
+  'Hinckley Institute',
+  'Code to Success',
+  'David Eccles School of Business',
+  'Startup Moldova',
+  'Ivory Center',
+  'Clark Ivory',
+  'Walter Plumb III',
+  '©',
+  '—',
+  '—',
+  '·',
+  'Est.',
+])
+
 function loadCache() {
   let stored = {}
   try {
@@ -54,7 +84,10 @@ function collectTextNodes(root) {
       if (!value) return NodeFilter.FILTER_REJECT
       const trimmed = value.trim()
       if (!trimmed) return NodeFilter.FILTER_REJECT
-      if (/^[\d\s.,:%+\-/]+$/.test(trimmed)) return NodeFilter.FILTER_REJECT
+      if (trimmed.length < 2) return NodeFilter.FILTER_REJECT
+      if (/^[\d\s.,:%+\-/©®™—–·•@#]+$/.test(trimmed))
+        return NodeFilter.FILTER_REJECT
+      if (KEEP_AS_IS.has(trimmed)) return NodeFilter.FILTER_REJECT
       return NodeFilter.FILTER_ACCEPT
     },
   })
