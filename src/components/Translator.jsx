@@ -1,17 +1,25 @@
 import { useEffect, useRef } from 'react'
 import { useLanguage } from '../contexts/LanguageContext.jsx'
+import { orgInfo } from '../data/siteContent.js'
+import staticTranslations from '../locales/translations.json'
 
 const LANG_MAP = { EN: 'en', RU: 'ru', RO: 'ro' }
 
 const CACHE_KEY = 'umbp.translations.v1'
-const CONCURRENCY = 5
+const CONCURRENCY = 3
 
 function loadCache() {
+  let stored = {}
   try {
-    return JSON.parse(window.localStorage.getItem(CACHE_KEY) || '{}')
+    stored = JSON.parse(window.localStorage.getItem(CACHE_KEY) || '{}')
   } catch {
-    return {}
+    stored = {}
   }
+  const merged = { ...stored }
+  for (const lang of Object.keys(staticTranslations || {})) {
+    merged[lang] = { ...(staticTranslations[lang] || {}), ...(stored[lang] || {}) }
+  }
+  return merged
 }
 
 function saveCache(cache) {
@@ -55,19 +63,56 @@ function collectTextNodes(root) {
   return out
 }
 
-async function translateOne(text, target) {
+async function translateViaMyMemory(text, target) {
   const params = new URLSearchParams({
     q: text,
     langpair: `en|${target}`,
+    de: orgInfo.email,
   })
   const url = `https://api.mymemory.translated.net/get?${params.toString()}`
+  const res = await fetch(url)
+  if (res.status === 429) {
+    const err = new Error('rate-limited')
+    err.code = 429
+    throw err
+  }
+  if (!res.ok) throw new Error(`mymemory ${res.status}`)
+  const data = await res.json()
+  if (data?.responseStatus === 429 || data?.quotaFinished === true) {
+    const err = new Error('rate-limited')
+    err.code = 429
+    throw err
+  }
+  const out = data?.responseData?.translatedText
+  if (typeof out === 'string' && out.trim()) return out
+  throw new Error('mymemory empty response')
+}
+
+async function translateViaLingva(text, target) {
+  const encoded = encodeURIComponent(text)
+  const url = `https://lingva.ml/api/v1/en/${target}/${encoded}`
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`lingva ${res.status}`)
+  const data = await res.json()
+  const out = data?.translation
+  if (typeof out === 'string' && out.trim()) return out
+  throw new Error('lingva empty response')
+}
+
+let myMemoryDisabledUntil = 0
+
+async function translateOne(text, target) {
+  if (Date.now() > myMemoryDisabledUntil) {
+    try {
+      return await translateViaMyMemory(text, target)
+    } catch (err) {
+      if (err.code === 429) {
+        myMemoryDisabledUntil = Date.now() + 60 * 60 * 1000
+      }
+    }
+  }
   try {
-    const res = await fetch(url)
-    if (!res.ok) return null
-    const data = await res.json()
-    const out = data?.responseData?.translatedText
-    if (typeof out === 'string' && out.trim()) return out
-    return null
+    return await translateViaLingva(text, target)
   } catch {
     return null
   }

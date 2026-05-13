@@ -4,6 +4,7 @@ import AccentStripe from './components/AccentStripe.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Translator from './components/Translator.jsx'
+import TranslationExporter from './components/TranslationExporter.jsx'
 import { LanguageProvider } from './contexts/LanguageContext.jsx'
 import Home from './pages/Home.jsx'
 import Interns from './pages/Interns.jsx'
@@ -34,6 +35,7 @@ export default function App() {
         </main>
         <Footer />
         <Translator />
+        <TranslationExporter />
       </div>
     </LanguageProvider>
   )
