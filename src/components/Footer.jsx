@@ -35,24 +35,11 @@ function FLink({ to, href, children }) {
 export default function Footer() {
   const columns = [
     {
-      title: 'Program',
+      title: 'Guide',
       items: [
         <FLink key="home" to="/">Home</FLink>,
-        <FLink key="interns" to="/interns">For Interns</FLink>,
         <FLink key="contact" to="/contact">Contact</FLink>,
-      ],
-    },
-    {
-      title: 'Contact',
-      items: [
-        <FLink key="email" href={`mailto:${orgInfo.email}`}>
-          <TbMail size={16} />
-          {orgInfo.email}
-        </FLink>,
-        <FLink key="whatsapp" href="#">
-          <TbBrandWhatsapp size={16} />
-          WhatsApp
-        </FLink>,
+        <FLink key="interns" to="/interns">For Interns</FLink>,
       ],
     },
     {
@@ -73,6 +60,19 @@ export default function Footer() {
         <FLink key="li" href="https://www.linkedin.com/company/the-utah-moldova-partnership/about/">
           <TbBrandLinkedin size={16} />
           LinkedIn
+        </FLink>,
+      ],
+    },
+    {
+      title: 'Contact',
+      items: [
+        <FLink key="email" href={`mailto:${orgInfo.email}`}>
+          <TbMail size={16} />
+          {orgInfo.email}
+        </FLink>,
+        <FLink key="whatsapp" href="#">
+          <TbBrandWhatsapp size={16} />
+          WhatsApp
         </FLink>,
       ],
     },

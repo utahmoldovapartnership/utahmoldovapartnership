@@ -19,7 +19,7 @@ export const stats = [
 ]
 
 export const internStats = [
-  { num: '50', label: 'Interns' },
+  { num: '~8', label: 'Per cohort' },
   { num: '57+', label: 'Companies' },
   { num: '9+', label: 'Years' },
   { num: 'Chișinău', label: 'Location', small: true },
@@ -32,7 +32,7 @@ export const services = [
     tagColor: 'red',
     number: '01',
     title: 'Consulting &\nStrategy',
-    text: 'Market entry research, competitive analysis, and strategic planning for SMEs ready to grow.',
+    text: 'Market entry research, competitive analysis, and strategic planning for small businesses ready to grow.',
   },
   {
     tag: 'Marketing',
@@ -91,73 +91,138 @@ export const businessSteps = [
   },
   {
     label: 'Step 02',
-    title: 'Scoping call with the program team',
+    title: 'Meet with the program team',
     text: 'We meet to understand goals, constraints, and the kind of work that would actually move the needle for you.',
   },
   {
     label: 'Step 03',
-    title: 'Match with a consulting team',
-    text: 'You are paired with an intern team based in Chișinău, supported by program coordinators and senior advisors.',
+    title: 'Work with the intern team',
+    text: 'A small team in Chișinău reaches out, learns what you need, and scopes the work with you directly.',
   },
   {
     label: 'Step 04',
     title: 'Receive a real deliverable',
-    text: 'Strategy deck, marketing plan, market research, financial model, or digital tool — yours to keep.',
+    text: 'Strategy deck, marketing plan, market research, financial model, or digital tool. Yours to keep.',
   },
 ]
 
-export const internTimeline = [
+export const internWhatYouDo = {
+  intro:
+    'You are not assigned to one company or one big project. A small team in Chișinău finds Moldovan businesses, figures out what they need, and delivers real consulting work across the summer.',
+  items: [
+    {
+      tag: 'Find',
+      tagColor: 'red',
+      title: 'Seek out businesses',
+      text: 'You proactively meet companies, learn what they are trying to accomplish, and scope projects together. New relationships keep forming all season.',
+    },
+    {
+      tag: 'Deliver',
+      tagColor: 'blue',
+      title: 'Ship what they need',
+      text: 'Strategy decks, marketing plans, websites, financial models, research, and more. You may lead solo, pair with another intern, or work with the full team.',
+    },
+    {
+      tag: 'Lead',
+      tagColor: 'red',
+      title: 'Own your work',
+      text: 'A program director helps the team stay on track, but interns find the companies and do the consulting. There is no fixed playbook waiting for you.',
+    },
+    {
+      tag: 'Explore',
+      tagColor: 'blue',
+      title: 'Live abroad',
+      text: 'Work in Chișinău during the week. Use weekends to travel. Many interns visit Romania, Ukraine, and other destinations in the region.',
+    },
+  ],
+}
+
+/** Interns page carousel — synced from ../Photos via `npm run photos` */
+export { internCohortPhotos } from './cohortPhotos.generated.js'
+
+export const internWhoFor = {
+  paragraphs: [
+    'This program is for students who want real responsibility abroad, not a structured corporate rotation. You find the work, build relationships with businesses, and figure things out as a team.',
+    'We care most about initiative, curiosity, and follow-through. Backgrounds vary. What matters is that you show up ready to lead, collaborate, and keep moving when there is no one telling you what to do next.',
+  ],
+  bullets: [
+    'Self-motivated and proactive by nature',
+    'Undergraduate or graduate students',
+    'Comfortable finding the work, not waiting for it',
+    'Interested in living and working abroad for a summer',
+  ],
+}
+
+export const internSkillsSection = {
+  kicker: 'Skills & strengths',
+  title: 'Bring what you know',
+  intro:
+    'You do not need to check every box. Most interns arrive strong in a few areas and grow in others over the summer. We match you to projects where you can contribute and learn from the rest of the team.',
+  items: [
+    'Strategy, management, or market research',
+    'Marketing, branding, or social media',
+    'Web development and digital tools',
+    'Finance, accounting, or pricing',
+    'Supply chain and operations',
+    'Clear communication in writing and conversation',
+    'Sharing your work with business owners',
+  ],
+}
+
+export const internApplySteps = [
+  'Prepare your resume and a short cover letter.',
+  'Tell us why you want the program and what you would bring to the team.',
+  'Send both as attachments by email. We review applications on a rolling basis.',
+]
+
+export const faqBusiness = [
   {
-    step: '01',
-    phase: 'Arrival',
-    phaseColor: 'red',
-    title: 'Meet your host company',
-    text: 'Orientation in Chișinău with the Ivory Center. Meet your host company and define your project scope together.',
+    q: 'Do you charge for consulting?',
+    a: 'No. Every engagement is free for the Moldovan business. We are funded by our partners and donors.',
   },
   {
-    step: '02',
-    phase: 'Weeks 1–3',
-    phaseColor: 'blue',
-    title: 'Discovery & research',
-    text: 'Market research, customer interviews, competitive analysis, or operational audits — depending on what the business needs.',
+    q: 'Do I need to be a big company to qualify?',
+    a: 'No. Most of the businesses we have worked with are small or growing — start-ups, retailers, and service companies.',
   },
   {
-    step: '03',
-    phase: 'Weeks 4–8',
-    phaseColor: 'red',
-    title: 'Build the deliverable',
-    text: 'Strategy deck, marketing plan, financial model, or digital tool. Weekly check-ins with the program coordinator.',
+    q: 'Where does the work happen?',
+    a: 'Intern teams are based in Chișinău and meet with businesses in person throughout the summer. There is no long-term embed with a single company.',
   },
   {
-    step: '04',
-    phase: 'Final Week',
-    phaseColor: 'blue',
-    title: 'Present to leadership',
-    text: 'Present findings directly to company leadership. Your work stays with them after you leave.',
+    q: 'What kind of deliverables do we receive?',
+    a: 'Typical outputs include strategy decks, marketing plans, market research, financial models, or digital tools — yours to keep after the engagement.',
+  },
+  {
+    q: 'How do we get started?',
+    a: 'Send a short email describing your company, what you do, and where you feel stuck. Our team will reply with next steps for a brief intro call.',
   },
 ]
 
-export const internChecklist = [
-  { label: 'Resume & cover letter', color: 'red' },
-  { label: 'Program interview', color: 'blue' },
-  { label: 'Host company match', color: 'red' },
-  { label: 'Pre-departure orientation', color: 'blue' },
-]
-
-export const internDeliverables = [
-  'Market entry research and competitor mapping',
-  'Brand positioning and social media strategy',
-  'Customer interviews and survey analysis',
-  'Operational audits and process redesign',
-  'Website creation and e-commerce launches',
-  'Financial models and pricing frameworks',
-]
-
-export const internWhoFor = [
-  'Undergraduate or graduate students',
-  'Business, marketing, finance, IT, design',
-  'Comfortable working independently abroad',
-  'Curious about emerging-market business',
+export const faqInterns = [
+  {
+    q: 'Who is the program for?',
+    a: 'Proactive undergraduate and graduate students with skills in business, marketing, finance, web development, supply chain, accounting, strategy, research, and related fields. You need to be comfortable taking initiative abroad.',
+  },
+  {
+    q: 'When should I apply?',
+    a: 'Applications are welcome year-round. Send us an email anytime to get started. Interviews for the summer cohort are typically held between October and December.',
+  },
+  {
+    q: 'What does the application require?',
+    a: 'A resume and short cover letter. After an initial review, selected candidates complete a program interview. We look for self-starters who will find and drive the work themselves.',
+  },
+  {
+    q: 'What will I work on?',
+    a: 'You work with many different companies at once, not one big assignment. Projects vary: research, strategy, websites, marketing plans, financial models, and more. You may lead solo, pair with another intern, or work with the whole team.',
+  },
+  {
+    q: 'Where is the program based?',
+    a: 'Chișinău, Moldova, with orientation at the Ivory Center. A program director helps the team stay on track, but interns find the companies and do the consulting work.',
+  },
+  {
+    q: 'What is life like outside of work?',
+    a: 'You live and work abroad in Chișinău all summer. Weekends are yours. Many interns travel to neighboring countries such as Romania and Ukraine while they are in the region.',
+  },
 ]
 
 export const contactPaths = [
@@ -165,15 +230,15 @@ export const contactPaths = [
     tag: 'For Moldovan Businesses',
     tagColor: 'red',
     title: 'Get free consulting',
-    text: 'Tell us about your company, what you sell, and where you feel stuck. Our team will reply with next steps for a scoping call.',
-    cta: 'Email the program',
+    text: 'Tell us about your company, what you sell, and where you feel stuck. Our team will reply with next steps for a brief intro call.',
+    cta: 'Email Us',
     subject: 'Free Consulting Inquiry',
   },
   {
     tag: 'For Prospective Interns',
     tagColor: 'yellow',
     title: 'Apply to the program',
-    text: 'Send your resume and a short cover letter. We review applications on a rolling basis for the summer cohort in Chișinău.',
+    text: 'Send your resume and a short cover letter. We review applications on a rolling basis for the summer cohort. Strong fits are proactive students ready to work abroad in Chișinău and make the most of the summer.',
     cta: 'Send application',
     subject: 'Intern Application',
   },

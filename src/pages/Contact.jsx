@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import { TbArrowRight, TbBrandWhatsapp, TbCheck, TbMail, TbWorld } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
-import SectionKicker from '../components/SectionKicker.jsx'
-import { contactPaths, orgInfo } from '../data/siteContent.js'
-
-const tagColorMap = {
-  red: 'bg-red text-white',
-  blue: 'bg-blue text-white',
-  yellow: 'bg-yellow text-ink',
-}
+import {
+  SlidingUnderlineIndicator,
+  useSlidingUnderline,
+} from '../components/SlidingUnderline.jsx'
+import { faqBusiness, faqInterns, orgInfo } from '../data/siteContent.js'
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -19,6 +16,19 @@ export default function Contact() {
     message: '',
   })
   const [sent, setSent] = useState(false)
+  const [faqTab, setFaqTab] = useState('business')
+
+  const faqTabs = [
+    { id: 'business', label: 'For Businesses' },
+    { id: 'interns', label: 'For Interns' },
+  ]
+  const activeFaqs = faqTab === 'business' ? faqBusiness : faqInterns
+  const faqActiveIndex = faqTab === 'business' ? 0 : 1
+  const {
+    containerRef: faqTabsRef,
+    setItemRef: setFaqTabRef,
+    indicator: faqIndicator,
+  } = useSlidingUnderline(faqActiveIndex)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -53,69 +63,22 @@ export default function Contact() {
             something <em className="italic text-white">together</em>
           </>
         }
-        subtext="Whether you run a business in Moldova, want to intern with us, or want to support the partnership — start here. We read every message."
-        primary={{ label: 'Email the program', href: `mailto:${orgInfo.email}` }}
+        subtext="Whether you run a business in Moldova, want to intern with us, or want to support the partnership, start here. We read every message."
+        primary={{ label: 'Email Us', href: `mailto:${orgInfo.email}` }}
         secondary={{ label: 'See FAQ', href: '#faq' }}
         backgroundImage="https://images.pexels.com/photos/11185859/pexels-photo-11185859.jpeg?auto=compress&cs=tinysrgb&w=2400"
         overlayDirection="vertical-strong"
       />
 
-      {/* Audience paths */}
-      <section className="border-b border-border bg-white">
-        <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
-          <SectionKicker color="red">Choose your path</SectionKicker>
-          <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
-            Who are you
-            <br />
-            reaching out as?
-          </h2>
-          <p className="text-[15px] text-muted leading-[1.7] max-w-[520px] mb-9 font-sans">
-            Pick the path that fits you best. Each one goes to the same team — it just helps us route your message faster.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 border border-border">
-            {contactPaths.map((p, i) => (
-              <div
-                key={p.title}
-                className={[
-                  'p-7 border-border',
-                  i % 2 === 0 ? 'md:border-r' : '',
-                  i < 2 ? 'border-b' : '',
-                  i === contactPaths.length - 1 ? 'border-b-0' : '',
-                ].join(' ')}
-              >
-                <span
-                  className={`inline-block text-[12px] uppercase tracking-[0.08em] font-medium px-2 py-[3px] mb-3 ${tagColorMap[p.tagColor]}`}
-                >
-                  {p.tag}
-                </span>
-                <h3 className="font-serif font-medium text-[22px] text-ink leading-[1.15] mb-2">
-                  {p.title}
-                </h3>
-                <p className="text-[14px] text-muted leading-[1.65] font-sans mb-4">
-                  {p.text}
-                </p>
-                <a
-                  href={`mailto:${orgInfo.email}?subject=${encodeURIComponent(p.subject)}`}
-                  className="inline-flex items-center gap-2 border-b border-ink pb-1 text-[12px] uppercase tracking-wider text-ink font-sans font-medium"
-                >
-                  {p.cta} <TbArrowRight size={12} />
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Form + Direct contact */}
       <section className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
           <div className="md:col-span-2 p-7 md:p-10 border-b md:border-b-0 md:border-r border-border">
-            <SectionKicker color="blue">Send a message</SectionKicker>
             <h3 className="font-serif font-medium text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
               Tell us about your project
             </h3>
-            <p className="text-[15px] text-muted leading-[1.65] font-sans mb-6 max-w-[460px]">
+            <p className="text-[15px] text-muted leading-[1.65] font-sans mb-6 max-w-[640px]">
               Short and direct is fine. We will reply by email within a few business days.
             </p>
 
@@ -147,31 +110,50 @@ export default function Contact() {
                 className="-mt-px border border-border px-4 py-3 text-[15px] text-ink font-sans bg-white focus:border-red"
               />
 
-              <div className="-mt-px border border-border px-4 py-3 text-[14px] text-muted font-sans bg-white flex flex-wrap gap-x-6 gap-y-2 items-center">
-                <span className="text-[12px] uppercase tracking-[0.12em] text-ink font-medium">
-                  I am
-                </span>
-                {[
-                  { id: 'business', label: 'A business in Moldova' },
-                  { id: 'intern', label: 'A prospective intern' },
-                  { id: 'partner', label: 'A partner or donor' },
-                  { id: 'general', label: 'Something else' },
-                ].map((opt) => (
-                  <label
-                    key={opt.id}
-                    className="inline-flex items-center gap-2 cursor-pointer text-[14px] text-ink"
-                  >
-                    <input
-                      type="radio"
-                      name="audience"
-                      value={opt.id}
-                      checked={form.audience === opt.id}
-                      onChange={(e) => setForm({ ...form, audience: e.target.value })}
-                      className="appearance-none w-4 h-4 border border-border bg-white checked:bg-red checked:border-red"
-                    />
-                    {opt.label}
-                  </label>
-                ))}
+              <div
+                role="radiogroup"
+                aria-labelledby="audience-label"
+                className="-mt-px border border-border bg-white text-[14px] text-muted font-sans"
+              >
+                <p
+                  id="audience-label"
+                  className="px-4 pt-4 pb-3 text-[12px] uppercase tracking-[0.12em] text-ink font-medium font-sans border-b border-border"
+                >
+                  What best describes you? This helps us route your message.
+                </p>
+                <div className="grid grid-cols-2 gap-x-6 gap-y-3 p-4">
+                  {[
+                    [
+                      { id: 'business', label: 'A business in Moldova' },
+                      { id: 'intern', label: 'A prospective intern' },
+                    ],
+                    [
+                      { id: 'partner', label: 'A partner or donor' },
+                      { id: 'general', label: 'Something else' },
+                    ],
+                  ].map((column, colIdx) => (
+                    <div key={colIdx} className="flex flex-col gap-3">
+                      {column.map((opt) => (
+                        <label
+                          key={opt.id}
+                          className="flex items-center gap-2 cursor-pointer text-[14px] text-ink"
+                        >
+                          <input
+                            type="radio"
+                            name="audience"
+                            value={opt.id}
+                            checked={form.audience === opt.id}
+                            onChange={(e) =>
+                              setForm({ ...form, audience: e.target.value })
+                            }
+                            className="appearance-none w-4 h-4 flex-shrink-0 border border-border bg-white checked:bg-red checked:border-red"
+                          />
+                          {opt.label}
+                        </label>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <textarea
@@ -198,9 +180,7 @@ export default function Contact() {
 
           <aside className="p-7 md:p-10">
             <h3 className="font-serif font-medium text-[22px] md:text-[26px] leading-[1.0] tracking-[-0.5px] text-ink mb-4">
-              Reach us
-              <br />
-              directly
+              Reach us directly
             </h3>
 
             <div className="border-t border-border">
@@ -264,29 +244,38 @@ export default function Contact() {
       {/* FAQ */}
       <section id="faq" className="bg-white scroll-mt-20">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
-          <SectionKicker color="red">Frequently Asked Questions</SectionKicker>
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
-            Before you write in
+            Frequently Asked Questions
           </h2>
+          <div
+            ref={faqTabsRef}
+            role="tablist"
+            aria-label="FAQ categories"
+            className="relative flex items-stretch border-b border-border mb-6"
+          >
+            {faqTabs.map((tab, i) => {
+              const isActive = faqTab === tab.id
+              return (
+                <button
+                  key={tab.id}
+                  ref={setFaqTabRef(i)}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setFaqTab(tab.id)}
+                  className={[
+                    'h-14 px-3 text-[11px] font-medium uppercase tracking-widest font-sans',
+                    isActive ? 'text-red' : 'text-muted hover:text-ink',
+                  ].join(' ')}
+                >
+                  {tab.label}
+                </button>
+              )
+            })}
+            <SlidingUnderlineIndicator {...faqIndicator} />
+          </div>
           <div className="border border-border">
-            {[
-              {
-                q: 'Do you charge for consulting?',
-                a: 'No. Every engagement is free for the Moldovan business. We are funded by our partners and donors.',
-              },
-              {
-                q: 'Do I need to be a big company to qualify?',
-                a: 'No. Most of the businesses we have worked with are small or growing — start-ups, SMEs, retailers, and service companies.',
-              },
-              {
-                q: 'Where does the work happen?',
-                a: 'Teams are based in Chișinău and meet with host companies in person and remotely throughout the program.',
-              },
-              {
-                q: 'When should interns apply?',
-                a: 'We review applications on a rolling basis for the summer cohort. Earlier is better, especially if you need to plan travel.',
-              },
-            ].map((f, i, arr) => (
+            {activeFaqs.map((f, i, arr) => (
               <div
                 key={f.q}
                 className={[

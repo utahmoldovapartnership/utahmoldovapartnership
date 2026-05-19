@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { TbArrowRight, TbCheck } from 'react-icons/tb'
+import { TbArrowRight } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
 import StatsBar from '../components/StatsBar.jsx'
 import SectionKicker from '../components/SectionKicker.jsx'
@@ -25,7 +25,7 @@ export default function Home() {
             helps your business grow.
           </>
         }
-        subtext="Free consulting for Moldovan businesses. American interns come to Moldova and work directly with local companies on marketing, strategy, market research, and operations."
+        subtext="Free consulting for Moldovan businesses. Each summer a small team of American interns comes to Chișinău, finds companies that need help, and delivers work across strategy, marketing, web development, finance, and more."
         primary={{ label: 'Get Free Consulting', href: '/contact', variant: 'red' }}
         secondary={{ label: 'Learn More', href: '#services' }}
         backgroundImage="https://images.pexels.com/photos/17994722/pexels-photo-17994722.jpeg?auto=compress&cs=tinysrgb&w=2400"
@@ -42,8 +42,10 @@ export default function Home() {
             <br />
             Moldovan businesses
           </h2>
-          <p className="text-[15px] text-muted leading-[1.7] max-w-[520px] mb-9 font-sans">
-            Our teams have worked with start-ups, SMEs, law firms, retailers, and café chains. Every engagement is free and tailored to what the business actually needs.
+          <p className="text-[15px] text-muted leading-[1.7] max-w-[720px] mb-9 font-sans">
+            Our teams have worked with start-ups, small businesses, law firms, retailers, and café chains.
+            <br />
+            Every engagement is free and tailored to what the business actually needs.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 border border-border">
@@ -80,7 +82,6 @@ export default function Home() {
       <section className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
-            <SectionKicker color="blue">For small businesses</SectionKicker>
             <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-4">
               How we work
               <br />
@@ -146,7 +147,6 @@ export default function Home() {
       {/* On the ground photos */}
       <section className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
-          <SectionKicker color="red">On the ground</SectionKicker>
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
             Inside the partnership
           </h2>
@@ -165,7 +165,7 @@ export default function Home() {
               {
                 src: 'https://static.wixstatic.com/media/a6cdd8_ccaa73b418174397addda597243136db~mv2.jpg/v1/crop/x_52,y_37,w_1631,h_1077/fill/w_696,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/7A011441-216C-442C-8D25-3D18AD2FD40D_JPG.jpg',
                 alt: 'UMBP team on the ground in Moldova',
-                caption: 'On the ground with a host company.',
+                caption: 'On the ground with a local business.',
               },
             ].map((photo) => (
               <figure key={photo.src} className="border border-border bg-white">
@@ -197,23 +197,23 @@ export default function Home() {
           </div>
           <div className="text-[16px] text-muted leading-[1.8] font-sans space-y-4 max-w-[520px]">
             <p>
-              The Utah Moldova Business Partnership was founded in {orgInfo.founded} by {orgInfo.founders.join(' and ')}. They saw enormous potential in the Republic of Moldova for economic development — if entrepreneurs were given the right resources, ideas, and connections.
+              The Utah Moldova Business Partnership was founded in {orgInfo.founded} by {orgInfo.founders.join(' and ')}. They saw enormous potential in the Republic of Moldova for economic development, if entrepreneurs were given the right resources, ideas, and connections.
             </p>
             <p>
-              Each year we sponsor teams of interns to find Moldovan businesses ready for the next step. In 2018 the partnership expanded to include Code to Success programming courses, and the program has grown in size and impact every year since.
+              Each year we sponsor a small team of interns in Chișinău to proactively find and support Moldovan businesses ready for the next step. In 2018 the partnership expanded to include Code to Success programming courses, and the program has grown in size and impact every year since.
             </p>
-            <ul className="pt-2 space-y-2">
+            <ul className="pt-2 space-y-3">
               {[
-                'Free consulting — no fees, no equity',
+                'Free consulting. No fees. No equity.',
                 'Real deliverables you keep after the engagement',
                 'Local team supported by U.S. partners',
                 'Focused on small and growing businesses',
               ].map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <span className="w-4 h-4 bg-red flex items-center justify-center flex-shrink-0">
-                    <TbCheck size={10} color="#fff" />
+                <li key={item} className="flex items-start gap-3">
+                  <span className="w-2 h-2 bg-red flex-shrink-0 mt-[7px]" aria-hidden />
+                  <span className="text-[15px] text-ink font-sans leading-[1.65]">
+                    {item}
                   </span>
-                  <span className="text-[15px] text-ink font-sans">{item}</span>
                 </li>
               ))}
             </ul>
@@ -224,11 +224,10 @@ export default function Home() {
       {/* Supporters */}
       <section className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
-          <SectionKicker color="red">Our supporters</SectionKicker>
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
             Partners & institutions
           </h2>
-          <p className="text-[15px] text-muted leading-[1.7] max-w-[520px] mb-9 font-sans">
+          <p className="text-[15px] text-muted leading-[1.7] max-w-none mb-9 font-sans">
             UMBP exists thanks to a coalition of universities, foundations, and partner organizations on both sides of the Atlantic.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 border border-border">
@@ -313,7 +312,7 @@ export default function Home() {
                   href={`mailto:${orgInfo.email}?subject=Free%20Consulting%20Inquiry`}
                   className="inline-flex items-center justify-center gap-2 bg-red text-white px-6 py-4 font-sans font-medium text-[12px] uppercase tracking-wider"
                 >
-                  Email the program <TbArrowRight size={14} />
+                  Email Us <TbArrowRight size={14} />
                 </a>
                 <Link
                   to="/contact"

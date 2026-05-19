@@ -1,7 +1,11 @@
 import { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { TbMenu2, TbX } from 'react-icons/tb'
 import LanguageSwitcher from './LanguageSwitcher.jsx'
+import {
+  SlidingUnderlineIndicator,
+  useSlidingUnderline,
+} from './SlidingUnderline.jsx'
 
 const links = [
   { to: '/', label: 'Home', end: true },
@@ -9,15 +13,23 @@ const links = [
   { to: '/interns', label: 'For Interns' },
 ]
 
+function navActiveIndex(pathname) {
+  if (pathname === '/') return 0
+  if (pathname.startsWith('/contact')) return 1
+  if (pathname.startsWith('/interns')) return 2
+  return -1
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const location = useLocation()
+  const activeIndex = navActiveIndex(location.pathname)
+  const { containerRef, setItemRef, indicator } = useSlidingUnderline(activeIndex)
 
   const linkClass = ({ isActive }) =>
     [
-      'flex items-center h-14 px-3 text-[11px] font-medium uppercase tracking-widest border-b-2',
-      isActive
-        ? 'text-red border-red'
-        : 'text-muted border-transparent hover:text-ink',
+      'flex items-center h-14 px-3 text-[11px] font-medium uppercase tracking-widest',
+      isActive ? 'text-red' : 'text-muted hover:text-ink',
     ].join(' ')
 
   return (
@@ -44,11 +56,20 @@ export default function Navbar() {
         <div className="hidden md:flex items-stretch h-14">
           <LanguageSwitcher />
           <span className="w-px h-4 bg-border self-center mx-1" aria-hidden />
-          {links.map((l) => (
-            <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
-              {l.label}
-            </NavLink>
-          ))}
+          <div ref={containerRef} className="relative flex items-stretch h-14">
+            {links.map((l, i) => (
+              <NavLink
+                key={l.to}
+                to={l.to}
+                end={l.end}
+                ref={setItemRef(i)}
+                className={linkClass}
+              >
+                {l.label}
+              </NavLink>
+            ))}
+            <SlidingUnderlineIndicator {...indicator} />
+          </div>
         </div>
 
         <button

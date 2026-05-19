@@ -4,8 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "photos": "node scripts/sync-cohort-photos.mjs",
+    "dev": "npm run photos && vite",
+    "build": "npm run photos && vite build",
     "preview": "vite preview",
     "translate": "node scripts/translate.mjs"
   },
