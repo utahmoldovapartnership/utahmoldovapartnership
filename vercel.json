@@ -1,5 +1,8 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/((?!photos/|assets/|apply-summer-program\\.jpg|utah-moldova-logo\\.png).*)",
+      "destination": "/index.html"
+    }
   ]
 }
