@@ -143,8 +143,8 @@ export default function Interns() {
             <div className="border-b md:border-b-0 md:border-r border-border min-h-[280px] md:min-h-0">
               <img
                 src="/apply-summer-program.jpg"
-                alt="Aerial view of Chișinău at golden hour"
-                className="w-full h-64 md:h-full md:min-h-[420px] object-cover object-center"
+                alt="UMBP intern cohort on the steps in Chișinău"
+                className="w-full h-64 md:h-full md:min-h-[420px] object-cover object-[center_35%]"
                 loading="lazy"
               />
             </div>

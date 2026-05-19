@@ -46,12 +46,6 @@ select:focus {
   will-change: transform;
 }
 
-.animate-marquee-slow {
-  animation: marquee 60s linear infinite;
-  will-change: transform;
-}
-
-.marquee-pause:hover .animate-marquee,
-.marquee-pause:hover .animate-marquee-slow {
+.marquee-pause:hover .animate-marquee {
   animation-play-state: paused;
 }
