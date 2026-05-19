@@ -2,7 +2,6 @@ import { TbArrowRight, TbCheck } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
 import StatsBar from '../components/StatsBar.jsx'
 import SectionKicker from '../components/SectionKicker.jsx'
-import PhotoPlaceholder from '../components/PhotoPlaceholder.jsx'
 import InternPhotoMarquee from '../components/InternPhotoMarquee.jsx'
 import {
   internStats,
@@ -141,11 +140,12 @@ export default function Interns() {
       <section id="apply" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 border border-border">
-            <div className="border-b md:border-b-0 md:border-r border-border">
-              <PhotoPlaceholder
-                label="Summer program"
-                caption="Replace with a photo for the apply section."
-                height="h-64 md:min-h-[420px] md:h-full"
+            <div className="border-b md:border-b-0 md:border-r border-border min-h-[280px] md:min-h-0">
+              <img
+                src="/apply-summer-program.jpg"
+                alt="Aerial view of Chișinău at golden hour"
+                className="w-full h-64 md:h-full md:min-h-[420px] object-cover object-center"
+                loading="lazy"
               />
             </div>
             <div className="p-8 md:p-10">

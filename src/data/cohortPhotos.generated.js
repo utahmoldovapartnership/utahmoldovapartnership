@@ -15,11 +15,39 @@ export const internCohortPhotos = [
     "alt": "UMBP intern cohort"
   },
   {
+    "src": "/photos/DSCF8791.jpg",
+    "alt": "UMBP intern cohort"
+  },
+  {
+    "src": "/photos/DSCF8807.jpg",
+    "alt": "UMBP intern cohort"
+  },
+  {
     "src": "/photos/DSCF8812.jpg",
     "alt": "UMBP intern cohort"
   },
   {
     "src": "/photos/DSCF8829.jpg",
     "alt": "UMBP intern cohort"
+  },
+  {
+    "src": "/photos/DSCF8906.jpg",
+    "alt": "UMBP intern cohort"
+  },
+  {
+    "src": "/photos/DSCF8970.jpg",
+    "alt": "UMBP intern cohort"
+  },
+  {
+    "src": "/photos/DSCF9045.jpg",
+    "alt": "UMBP intern cohort"
+  },
+  {
+    "src": "/photos/DSCF9097.jpg",
+    "alt": "UMBP intern cohort"
+  },
+  {
+    "src": "/photos/IMG_3015.jpeg",
+    "alt": "UMBP cohort — IMG 3015"
   }
 ]
