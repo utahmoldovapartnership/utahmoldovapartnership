@@ -45,7 +45,7 @@ export default function Interns() {
       <StatsBar items={internStats} />
 
       {/* What you'll do */}
-      <section id="what-you-do" className="border-b border-border bg-white">
+      <section id="what-you-do" className="bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <SectionKicker color="red">What you'll do</SectionKicker>
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
