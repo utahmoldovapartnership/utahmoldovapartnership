@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { TbArrowRight, TbBrandWhatsapp, TbCheck, TbMail, TbWorld } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
+import { pageHeroImages } from '../data/heroImages.js'
 import ScrollFade from '../components/ScrollFade.jsx'
 import {
   SlidingUnderlineIndicator,
@@ -67,10 +68,9 @@ export default function Contact() {
         subtext="Whether you run a business in Moldova, want to intern with us, or want to support the partnership, start here. We read every message."
         primary={{ label: 'Email Us', href: `mailto:${orgInfo.email}` }}
         secondary={{ label: 'See FAQ', href: '#faq' }}
-        backgroundImage="https://images.pexels.com/photos/11185859/pexels-photo-11185859.jpeg?auto=compress&cs=tinysrgb&w=2400"
+        image={pageHeroImages.contact}
         overlayDirection="vertical-strong"
       />
-
 
       {/* Form + Direct contact */}
       <ScrollFade as="section" className="border-b border-border bg-white">

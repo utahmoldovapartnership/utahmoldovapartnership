@@ -11,9 +11,9 @@ export const orgInfo = {
 }
 
 export const stats = [
-  { num: '9+', label: 'Years' },
+  { num: '9+', label: 'Years Operating' },
   { num: '57+', label: 'Companies' },
-  { num: '50', label: 'Interns' },
+  { num: '50+', label: 'Total Interns' },
   { num: '50', label: 'Diplomas' },
   { num: '10', label: 'Seminars' },
 ]
@@ -21,7 +21,7 @@ export const stats = [
 export const internStats = [
   { num: 'Chișinău', label: 'Location', small: true },
   { num: '8', label: 'Interns per summer' },
-  { num: '9+', label: 'Years operating' },
+  { num: '9+', label: 'Years Operating' },
   { num: 'Summer', label: 'Timing', small: true },
 ]
 
@@ -106,8 +106,8 @@ export const meetInterns = {
       id: 'henry',
       name: 'Henry',
       image: '/interns/henry.jpg',
-      focus: 'Finance & accounting',
-      bio: 'Brings a sharp eye for finance, pricing, and building financial models owners can use.',
+      focus: 'Supply chain & management',
+      bio: 'Focuses on how work moves through a business, from suppliers and inventory to the teams keeping day-to-day operations running.',
     },
     {
       id: 'katya',
@@ -146,6 +146,67 @@ export const meetInterns = {
     },
   ],
 }
+
+/** Past intern quotes — one per current intern in meetInterns. theme: red | blue | ink */
+export const internTestimonials = [
+  {
+    theme: 'red',
+    text: 'An owner asked us to fix one bottleneck. A few weeks later the whole back office was running smoother than when we showed up.',
+    emphasis: 'running smoother',
+    name: 'Braxton',
+    detail: 'Strategy & operations',
+  },
+  {
+    theme: 'blue',
+    text: 'Chișinău gave me room to test ideas fast. My favorite projects were the ones where branding started clicking for the owner.',
+    emphasis: 'clicking for the owner',
+    name: 'Libby',
+    detail: 'Marketing & branding',
+  },
+  {
+    theme: 'ink',
+    text: 'We mapped how orders moved from supplier to shelf. The owner said it was the first time the whole chain made sense on one page.',
+    emphasis: 'made sense',
+    name: 'Henry',
+    detail: 'Supply chain & management',
+  },
+  {
+    theme: 'red',
+    text: 'Research here means walking neighborhoods, talking to owners, and writing things people recognize from their own city.',
+    emphasis: 'their own city',
+    name: 'Katya',
+    detail: 'Market research',
+  },
+  {
+    theme: 'blue',
+    text: 'My role was to keep the team moving and supported. The best part was watching interns step up and lead client meetings on their own.',
+    emphasis: 'lead client meetings',
+    name: 'Ethan',
+    tag: 'Program director',
+    detail: 'Management consulting',
+  },
+  {
+    theme: 'ink',
+    text: "Some days you jump into work you would never pick for yourself, and those often turn into the days you are most proud of.",
+    emphasis: 'most proud of',
+    name: 'Meg',
+    detail: 'Marketing & communications',
+  },
+  {
+    theme: 'red',
+    text: "Our team kept building on each other's ideas until the client had a plan we were all excited to hand off.",
+    emphasis: 'excited to hand off',
+    name: 'Halle',
+    detail: 'Strategy & research',
+  },
+  {
+    theme: 'blue',
+    text: 'I launched countless websites in one summer. In school that would have been three people and two semesters.',
+    emphasis: 'countless websites',
+    name: 'Weston',
+    detail: 'Web development',
+  },
+]
 
 export const businessSteps = [
   {
@@ -196,7 +257,7 @@ export const internWhatYouDo = {
       tag: 'Explore',
       tagColor: 'blue',
       title: 'Live abroad',
-      text: 'Work in Chișinău during the week. Use weekends to travel. Many interns visit Romania, Ukraine, and other destinations in the region.',
+      text: 'Work in Chișinău during the week. Use weekends to travel. Many interns visit Romania and other destinations in the region.',
     },
   ],
 }
@@ -285,7 +346,7 @@ export const faqInterns = [
   },
   {
     q: 'What is life like outside of work?',
-    a: 'You live and work abroad in Chișinău all summer. Weekends are yours. Many interns travel to neighboring countries such as Romania and Ukraine while they are in the region.',
+    a: 'You live and work abroad in Chișinău all summer. Weekends are yours. Many interns travel to neighboring countries such as Romania while they are in the region.',
   },
 ]
 

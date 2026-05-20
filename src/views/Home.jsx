@@ -1,5 +1,7 @@
 import { TbArrowRight } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
+import OptimizedImage from '../components/OptimizedImage.jsx'
+import { pageHeroImages } from '../data/heroImages.js'
 import StatsBar from '../components/StatsBar.jsx'
 import SectionKicker from '../components/SectionKicker.jsx'
 import LogoMarquee from '../components/LogoMarquee.jsx'
@@ -30,7 +32,7 @@ export default function Home() {
         subtext="Free consulting for Moldovan businesses. Each summer a small team of American interns comes to Chișinău, finds companies that need help, and delivers work across strategy, marketing, web development, finance, and more."
         primary={{ label: 'Get Free Consulting', href: '/contact', variant: 'red' }}
         secondary={{ label: 'Learn More', href: '#services' }}
-        backgroundImage="https://images.pexels.com/photos/17994722/pexels-photo-17994722.jpeg?auto=compress&cs=tinysrgb&w=2400"
+        image={pageHeroImages.home}
       />
 
       <StatsBar items={stats} />
@@ -176,11 +178,12 @@ export default function Home() {
                 key={photo.src}
                 className="group border border-border bg-white transition-[filter,transform] duration-300 hover:drop-shadow-[0_6px_20px_rgba(13,13,13,0.1)]"
               >
-                <div className="overflow-hidden bg-[#f3f4f6]">
-                  <img
+                <div className="overflow-hidden bg-white">
+                  <OptimizedImage
                     src={photo.src}
                     alt={photo.alt}
-                    loading="lazy"
+                    width={696}
+                    height={460}
                     className="block w-full h-56 object-cover object-center transition-transform duration-300 group-hover:scale-[1.03]"
                   />
                 </div>

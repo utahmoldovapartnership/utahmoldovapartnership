@@ -3,8 +3,9 @@ import '../styles/global.css'
 import Navbar from '../components/Navbar.jsx'
 import Footer from '../components/Footer.jsx'
 
-const { title, description } = Astro.props
+const { title, description, heroImage } = Astro.props
 const currentPath = Astro.url.pathname
+
 ---
 
 <!doctype html>
@@ -22,13 +23,56 @@ const currentPath = Astro.url.pathname
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,700;1,9..144,900&family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    {
+      heroImage && (
+        <>
+          <link rel="preconnect" href={heroImage.preconnect} crossorigin />
+          <link
+            rel="preload"
+            as="image"
+            href={heroImage.src}
+            fetchpriority="high"
+            imagesrcset={heroImage.srcSet}
+            imagesizes={heroImage.sizes}
+          />
+        </>
+      )
+    }
   </head>
   <body>
-    <div class="fixed top-0 left-0 right-0 z-[60] flex h-1">
-      <span class="flex-1 bg-blue"></span>
-      <span class="flex-1 bg-yellow"></span>
-      <span class="flex-1 bg-red"></span>
+    <div
+      id="umbp-flag-strip"
+      class="flag-strip flag-strip--instant fixed top-0 left-0 right-0 z-[60] flex h-1"
+      aria-hidden="true"
+    >
+      <span class="flag-strip__band flag-strip__band--blue bg-blue"></span>
+      <span class="flag-strip__band flag-strip__band--yellow bg-yellow"></span>
+      <span class="flag-strip__band flag-strip__band--red bg-red"></span>
     </div>
+    <script is:inline>
+      ;(function primeSession() {
+        function pageKey() {
+          var p = window.location.pathname
+          if (p === '/' || p === '') return '/'
+          return p.replace(/\/$/, '') || '/'
+        }
+        var seenKey = 'umbp:seen:' + pageKey()
+        if (sessionStorage.getItem(seenKey) === '1') {
+          document.documentElement.classList.add('umbp-visited')
+        }
+        window.addEventListener(
+          'pagehide',
+          function () {
+            sessionStorage.setItem(seenKey, '1')
+          },
+          { once: true },
+        )
+        var strip = document.getElementById('umbp-flag-strip')
+        if (!strip) return
+        var last = sessionStorage.getItem('umbp:flagMode')
+        if (last && last !== 'three') strip.classList.add('flag-strip--' + last)
+      })()
+    </script>
     <div class="min-h-screen bg-white text-ink font-sans pt-1">
       <Navbar client:load currentPath={currentPath} />
       <main>
@@ -36,5 +80,110 @@ const currentPath = Astro.url.pathname
       </main>
       <Footer client:load />
     </div>
+    <script is:inline>
+      ;(function initFlagStrip() {
+        const strip = document.getElementById('umbp-flag-strip')
+        if (!strip) return
+
+        const MODES = ['solo-blue', 'solo-yellow', 'solo-red']
+        const path = window.location.pathname
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+        function getTargetMode() {
+          if (path === '/' || path === '') {
+            return sessionStorage.getItem('umbp:visited') ? 'solo-blue' : 'three'
+          }
+          if (path.startsWith('/interns')) return 'solo-yellow'
+          if (path.startsWith('/contact')) return 'solo-red'
+          return 'three'
+        }
+
+        function clearModes() {
+          strip.classList.remove(...MODES.map((m) => `flag-strip--${m}`))
+        }
+
+        function applyMode(mode) {
+          clearModes()
+          if (mode !== 'three') strip.classList.add(`flag-strip--${mode}`)
+        }
+
+        function setInstant(on) {
+          strip.classList.toggle('flag-strip--instant', on)
+        }
+
+        function forceReflow() {
+          void strip.offsetWidth
+        }
+
+        function waitFrames(count) {
+          return new Promise((resolve) => {
+            let n = 0
+            const step = () => {
+              n += 1
+              if (n >= count) resolve()
+              else requestAnimationFrame(step)
+            }
+            requestAnimationFrame(step)
+          })
+        }
+
+        async function transitionTo(targetMode) {
+          setInstant(false)
+          await waitFrames(2)
+          applyMode(targetMode)
+        }
+
+        const target = getTargetMode()
+        const last = sessionStorage.getItem('umbp:flagMode')
+
+        if (reduced) {
+          setInstant(true)
+          applyMode(target)
+          setInstant(false)
+          sessionStorage.setItem('umbp:visited', '1')
+          sessionStorage.setItem('umbp:flagMode', target)
+          return
+        }
+
+        async function playFirstHomeIntro() {
+          setInstant(true)
+          applyMode('solo-red')
+          setInstant(false)
+          await waitFrames(2)
+          applyMode('three')
+        }
+
+        async function run() {
+          if (!sessionStorage.getItem('umbp:visited') && target === 'three') {
+            setInstant(false)
+            await playFirstHomeIntro()
+            sessionStorage.setItem('umbp:visited', '1')
+            sessionStorage.setItem('umbp:flagMode', 'three')
+            return
+          }
+
+          sessionStorage.setItem('umbp:visited', '1')
+
+          const startMode = last || 'three'
+
+          if (startMode !== target) {
+            setInstant(true)
+            applyMode(startMode)
+            forceReflow()
+            setInstant(false)
+            forceReflow()
+            await transitionTo(target)
+          } else {
+            setInstant(true)
+            applyMode(target)
+            setInstant(false)
+          }
+
+          sessionStorage.setItem('umbp:flagMode', target)
+        }
+
+        run()
+      })()
+    </script>
   </body>
 </html>

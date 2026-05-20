@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
+import { hasSeenPage } from '../utils/pageAnimations.js'
 
 /**
  * Fades content in on scroll (or on mount when revealOnMount is true).
+ * Runs once per page per session; revisiting a page skips animations.
  */
 export default function ScrollFade({
   as: Tag = 'div',
@@ -10,9 +12,13 @@ export default function ScrollFade({
   revealOnMount = false,
 }) {
   const ref = useRef(null)
-  const [visible, setVisible] = useState(false)
+  const skipAnimations =
+    typeof window !== 'undefined' && hasSeenPage(window.location.pathname)
+  const [visible, setVisible] = useState(skipAnimations)
 
   useEffect(() => {
+    if (skipAnimations) return undefined
+
     if (revealOnMount) {
       const id = requestAnimationFrame(() => {
         requestAnimationFrame(() => setVisible(true))
@@ -35,7 +41,7 @@ export default function ScrollFade({
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [revealOnMount])
+  }, [revealOnMount, skipAnimations])
 
   return (
     <Tag

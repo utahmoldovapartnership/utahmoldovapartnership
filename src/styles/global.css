@@ -36,6 +36,62 @@ select:focus {
   outline: none;
 }
 
+@property --flag-edge {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 45px;
+}
+
+.flag-strip {
+  --flag-edge: 45px;
+  transition: --flag-edge 1.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flag-strip__band {
+  flex: 1 1 33.333%;
+  min-width: 0;
+  overflow: hidden;
+  transition: flex 1.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flag-strip--instant,
+.flag-strip--instant .flag-strip__band {
+  transition: none !important;
+}
+
+.flag-strip--solo-blue .flag-strip__band--blue {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.flag-strip--solo-blue .flag-strip__band--yellow,
+.flag-strip--solo-blue .flag-strip__band--red {
+  flex: 0 0 var(--flag-edge);
+  min-width: var(--flag-edge);
+}
+
+.flag-strip--solo-yellow .flag-strip__band--yellow {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.flag-strip--solo-yellow .flag-strip__band--blue,
+.flag-strip--solo-yellow .flag-strip__band--red {
+  flex: 0 0 var(--flag-edge);
+  min-width: var(--flag-edge);
+}
+
+.flag-strip--solo-red .flag-strip__band--red {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.flag-strip--solo-red .flag-strip__band--blue,
+.flag-strip--solo-red .flag-strip__band--yellow {
+  flex: 0 0 var(--flag-edge);
+  min-width: var(--flag-edge);
+}
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -56,6 +112,12 @@ select:focus {
   animation-play-state: paused;
 }
 
+html.umbp-visited .scroll-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
 .scroll-reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -73,6 +135,10 @@ select:focus {
   .scroll-reveal {
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+
+  .flag-strip__band {
     transition: none;
   }
 

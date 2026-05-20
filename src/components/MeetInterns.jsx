@@ -1,9 +1,45 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { TbX } from 'react-icons/tb'
 import ScrollFade from './ScrollFade.jsx'
+import OptimizedImage from './OptimizedImage.jsx'
 
 export default function MeetInterns({ intro, members }) {
   const [selected, setSelected] = useState(null)
+  const gridRef = useRef(null)
+
+  useLayoutEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return undefined
+
+    const syncFocusHeights = () => {
+      const nodes = grid.querySelectorAll('[data-intern-focus]')
+      if (!nodes.length) return
+
+      nodes.forEach((node) => {
+        node.style.minHeight = ''
+      })
+
+      let max = 0
+      nodes.forEach((node) => {
+        max = Math.max(max, node.offsetHeight)
+      })
+
+      nodes.forEach((node) => {
+        node.style.minHeight = `${max}px`
+      })
+    }
+
+    syncFocusHeights()
+
+    const observer = new ResizeObserver(syncFocusHeights)
+    observer.observe(grid)
+    window.addEventListener('resize', syncFocusHeights)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', syncFocusHeights)
+    }
+  }, [members])
 
   useEffect(() => {
     if (!selected) return undefined
@@ -39,25 +75,36 @@ export default function MeetInterns({ intro, members }) {
             )}
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-5">
+          <div
+            ref={gridRef}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-5 items-stretch"
+          >
             {members.map((intern) => (
               <button
                 key={intern.id}
                 type="button"
                 onClick={() => setSelected(intern)}
-                className="group text-left border border-border bg-white transition-[filter,transform] duration-300 hover:drop-shadow-[0_6px_20px_rgba(13,13,13,0.1)] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red"
+                className="group flex h-full flex-col text-left border border-border bg-white transition-[filter,transform] duration-300 hover:drop-shadow-[0_6px_20px_rgba(13,13,13,0.1)] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red"
               >
-                <div className="aspect-square overflow-hidden bg-[#f3f4f6]">
-                  <img
+                <div className="aspect-square shrink-0 overflow-hidden bg-white">
+                  <OptimizedImage
                     src={intern.image}
                     alt={intern.name}
-                    loading="lazy"
+                    width={400}
+                    height={400}
                     className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="px-3 py-3 border-t border-border">
-                  <div className="font-serif font-medium text-[16px] text-ink">{intern.name}</div>
-                  <div className="text-[12px] text-muted font-sans mt-0.5">{intern.focus}</div>
+                <div className="flex flex-1 flex-col px-3 py-3 border-t border-border">
+                  <div className="font-serif font-medium text-[16px] text-ink leading-[1.2]">
+                    {intern.name}
+                  </div>
+                  <div
+                    data-intern-focus
+                    className="text-[12px] text-muted font-sans mt-0.5 leading-[1.35]"
+                  >
+                    {intern.focus}
+                  </div>
                 </div>
               </button>
             ))}
@@ -86,9 +133,12 @@ export default function MeetInterns({ intro, members }) {
               <TbX size={18} />
             </button>
 
-            <img
+            <OptimizedImage
               src={selected.image}
               alt={selected.name}
+              width={520}
+              height={520}
+              loading="eager"
               className="w-full aspect-square object-cover object-center"
             />
 

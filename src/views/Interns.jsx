@@ -1,8 +1,11 @@
 import { TbArrowRight, TbCheck } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
+import OptimizedImage from '../components/OptimizedImage.jsx'
+import { pageHeroImages } from '../data/heroImages.js'
 import StatsBar from '../components/StatsBar.jsx'
 import SectionKicker from '../components/SectionKicker.jsx'
 import InternPhotoMarquee from '../components/InternPhotoMarquee.jsx'
+import InternTestimonialCarousel from '../components/InternTestimonialCarousel.jsx'
 import ScrollFade from '../components/ScrollFade.jsx'
 import {
   internStats,
@@ -11,6 +14,7 @@ import {
   internWhoFor,
   internSkillsSection,
   internApplySteps,
+  internTestimonials,
   orgInfo,
 } from '../data/siteContent.js'
 
@@ -31,13 +35,13 @@ export default function Interns() {
           <>
             Internship abroad?
             <br />
-            <em className="italic text-yellow">Yes Please!</em>
+            <em className="italic text-yellow">Yes, please!</em>
           </>
         }
         subtext="Spend a summer working abroad in Chișinău with a small, multidisciplinary team. You will collaborate with small businesses, identify opportunities for growth, and deliver results that help them move forward."
         primary={{ label: 'Apply Now', href: '#apply', variant: 'yellow' }}
         secondary={{ label: "See what you'll do", href: '#what-you-do' }}
-        backgroundImage="https://images.unsplash.com/photo-1629045951387-6d86eb2aad3d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        image={pageHeroImages.interns}
         overlayDirection="vertical"
       />
 
@@ -135,16 +139,19 @@ export default function Interns() {
         </div>
       </ScrollFade>
 
+      <InternTestimonialCarousel quotes={internTestimonials} />
+
       {/* Apply */}
       <ScrollFade as="section" id="apply" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 border border-border">
-            <div className="border-b md:border-b-0 md:border-r border-border min-h-[280px] md:min-h-0">
-              <img
+            <div className="border-b md:border-b-0 md:border-r border-border min-h-[280px] md:min-h-0 bg-white">
+              <OptimizedImage
                 src="/apply-summer-program.jpg"
                 alt="UMBP intern cohort on the steps in Chișinău"
+                width={1200}
+                height={900}
                 className="w-full h-64 md:h-full md:min-h-[420px] object-cover object-center"
-                loading="lazy"
               />
             </div>
             <div className="p-8 md:p-10">
@@ -178,24 +185,6 @@ export default function Interns() {
               {orgInfo.email}
             </p>
             </div>
-          </div>
-        </div>
-      </ScrollFade>
-
-      {/* Closing quote */}
-      <ScrollFade as="section" className="bg-red">
-        <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-16 md:py-20">
-          <div className="font-serif font-medium italic text-white text-[28px] sm:text-[36px] md:text-[44px] leading-[1.1] tracking-[-0.5px] max-w-[820px]">
-            “Sometimes you need to do the things you don't want to do, but{' '}
-            <em className="not-italic font-serif font-medium text-yellow italic">need to do</em>
-            {' '}because the moment requires it.”
-          </div>
-          <div className="mt-8 pt-6 border-t border-white/20 flex items-center gap-4">
-            <span className="text-[12px] uppercase tracking-[0.12em] text-yellow font-sans font-medium">
-              Business partner
-            </span>
-            <span className="w-px h-4 bg-white/30" />
-            <span className="text-[14px] text-white/85 font-sans">Macco — Chișinău, Moldova</span>
           </div>
         </div>
       </ScrollFade>
