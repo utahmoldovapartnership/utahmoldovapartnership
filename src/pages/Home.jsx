@@ -173,13 +173,18 @@ export default function Home() {
                 caption: 'On the ground with a local business.',
               },
             ].map((photo) => (
-              <figure key={photo.src} className="border border-border bg-white">
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  className="block w-full h-56 object-cover"
-                />
+              <figure
+                key={photo.src}
+                className="group border border-border bg-white transition-[filter,transform] duration-300 hover:drop-shadow-[0_6px_20px_rgba(13,13,13,0.1)]"
+              >
+                <div className="overflow-hidden bg-[#f3f4f6]">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    loading="lazy"
+                    className="block w-full h-56 object-cover object-center transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
+                </div>
                 <figcaption className="border-t border-border px-4 py-3 text-[12px] text-muted font-sans">
                   {photo.caption}
                 </figcaption>
