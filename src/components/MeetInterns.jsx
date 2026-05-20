@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import useIsomorphicLayoutEffect from '../utils/useIsomorphicLayoutEffect.js'
 import { TbX } from 'react-icons/tb'
 import ScrollFade from './ScrollFade.jsx'
 import OptimizedImage from './OptimizedImage.jsx'
@@ -7,7 +8,7 @@ export default function MeetInterns({ intro, members }) {
   const [selected, setSelected] = useState(null)
   const gridRef = useRef(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const grid = gridRef.current
     if (!grid) return undefined
 

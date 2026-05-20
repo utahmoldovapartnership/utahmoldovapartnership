@@ -1,4 +1,5 @@
-import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
+import useIsomorphicLayoutEffect from '../utils/useIsomorphicLayoutEffect.js'
 
 export function SlidingUnderlineIndicator({ left, width, visible = true }) {
   return (
@@ -41,7 +42,7 @@ export function useSlidingUnderline(activeIndex) {
     })
   }, [activeIndex])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     update()
 
     const container = containerRef.current

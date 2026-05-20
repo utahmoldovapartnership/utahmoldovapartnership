@@ -11,8 +11,9 @@ export const orgInfo = {
 }
 
 export const stats = [
+  { num: '16', label: 'Current Companies' },
+  { num: '73+', label: 'Total Companies' },
   { num: '9+', label: 'Years Operating' },
-  { num: '57+', label: 'Companies' },
   { num: '50+', label: 'Total Interns' },
   { num: '50', label: 'Diplomas' },
   { num: '10', label: 'Seminars' },
