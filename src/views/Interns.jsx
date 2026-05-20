@@ -145,13 +145,13 @@ export default function Interns() {
       <ScrollFade as="section" id="apply" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 border border-border">
-            <div className="border-b md:border-b-0 md:border-r border-border min-h-[280px] md:min-h-0 bg-white">
+            <div className="group border-b md:border-b-0 md:border-r border-border min-h-[280px] md:min-h-0 bg-white overflow-hidden">
               <OptimizedImage
                 src="/apply-summer-program.jpg"
                 alt="UMBP intern cohort on the steps in Chișinău"
                 width={1200}
                 height={900}
-                className="w-full h-64 md:h-full md:min-h-[420px] object-cover object-center"
+                className="w-full h-64 md:h-full md:min-h-[420px] object-cover object-center transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </div>
             <div className="p-8 md:p-10">
