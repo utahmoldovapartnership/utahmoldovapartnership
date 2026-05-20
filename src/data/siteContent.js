@@ -19,10 +19,9 @@ export const stats = [
 ]
 
 export const internStats = [
-  { num: '~8', label: 'Per cohort' },
-  { num: '57+', label: 'Companies' },
-  { num: '9+', label: 'Years' },
   { num: 'Chișinău', label: 'Location', small: true },
+  { num: '8', label: 'Interns per summer' },
+  { num: '9+', label: 'Years operating' },
   { num: 'Summer', label: 'Timing', small: true },
 ]
 
@@ -81,6 +80,71 @@ export const testimonial = {
   emphasis: 'focused',
   company: 'Macco — Chișinău, Moldova',
   tag: 'Client Testimonial',
+}
+
+export const meetInterns = {
+  intro: [
+    'Each summer a small team of students spends the season in Chișinău finding companies,',
+    'learning what they need, and delivering real consulting work.',
+  ],
+  members: [
+    {
+      id: 'braxton',
+      name: 'Braxton',
+      image: '/interns/braxton.jpg',
+      focus: 'Strategy & operations',
+      bio: 'Background in strategy and operations, with a knack for turning ideas into practical next steps.',
+    },
+    {
+      id: 'libby',
+      name: 'Libby',
+      image: '/interns/libby.jpg',
+      focus: 'Marketing & branding',
+      bio: 'Strong with branding, messaging, and marketing that helps businesses connect with customers.',
+    },
+    {
+      id: 'henry',
+      name: 'Henry',
+      image: '/interns/henry.jpg',
+      focus: 'Finance & accounting',
+      bio: 'Brings a sharp eye for finance, pricing, and building financial models owners can use.',
+    },
+    {
+      id: 'katya',
+      name: 'Katya',
+      image: '/interns/katya.jpg',
+      focus: 'Market research',
+      bio: 'Known for market research and translating findings into clear, useful insights.',
+    },
+    {
+      id: 'ethan',
+      name: 'Ethan',
+      image: '/interns/ethan.jpg',
+      focus: 'Management consulting',
+      bio: 'Comfortable leading management consulting work, planning, and cross-functional projects.',
+    },
+    {
+      id: 'meg',
+      name: 'Meg',
+      image: '/interns/meg.jpg',
+      focus: 'Marketing & communications',
+      bio: 'Background in marketing strategy, writing, and communication tailored to each company.',
+    },
+    {
+      id: 'halle',
+      name: 'Halle',
+      image: '/interns/halle.jpg',
+      focus: 'Strategy & research',
+      bio: 'Combines strategic thinking with hands-on research and recommendations owners can act on.',
+    },
+    {
+      id: 'weston',
+      name: 'Weston',
+      image: '/interns/weston.jpg',
+      focus: 'Web development',
+      bio: 'Builds websites and digital tools that help businesses strengthen their online presence.',
+    },
+  ],
 }
 
 export const businessSteps = [

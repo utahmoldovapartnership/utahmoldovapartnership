@@ -3,6 +3,7 @@ export default function SectionKicker({ color = 'red', children, size = 'sm' }) 
     red: { text: 'text-red', bg: 'bg-red' },
     blue: { text: 'text-blue', bg: 'bg-blue' },
     yellow: { text: 'text-yellow', bg: 'bg-yellow' },
+    white: { text: 'text-white', bg: 'bg-white' },
   }
   const c = map[color] || map.red
   const lineWidth = size === 'lg' ? 'w-6' : 'w-4'

@@ -4,10 +4,13 @@ import Hero from '../components/Hero.jsx'
 import StatsBar from '../components/StatsBar.jsx'
 import SectionKicker from '../components/SectionKicker.jsx'
 import LogoMarquee from '../components/LogoMarquee.jsx'
+import MeetInterns from '../components/MeetInterns.jsx'
+import ScrollFade from '../components/ScrollFade.jsx'
 import {
   stats,
   services,
   testimonial,
+  meetInterns,
   businessSteps,
   orgInfo,
 } from '../data/siteContent.js'
@@ -34,7 +37,7 @@ export default function Home() {
       <StatsBar items={stats} />
 
       {/* Services */}
-      <section id="services" className="border-b border-border bg-white">
+      <ScrollFade as="section" id="services" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <SectionKicker color="red">What we do</SectionKicker>
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
@@ -74,12 +77,12 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </ScrollFade>
 
       <LogoMarquee />
 
       {/* How to work with us */}
-      <section className="border-b border-border bg-white">
+      <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
             <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-4">
@@ -124,10 +127,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </ScrollFade>
 
       {/* Testimonial */}
-      <section className="bg-blue">
+      <ScrollFade as="section" className="bg-blue">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-16 md:py-20">
           <div className="font-serif font-medium italic text-white text-[34px] sm:text-[44px] md:text-[52px] leading-[1.05] tracking-[-1px] max-w-[820px]">
             “These meetings helped us understand where to be{' '}
@@ -142,13 +145,15 @@ export default function Home() {
             <span className="text-[14px] text-white/80 font-sans">{testimonial.company}</span>
           </div>
         </div>
-      </section>
+      </ScrollFade>
+
+      <MeetInterns intro={meetInterns.intro} members={meetInterns.members} />
 
       {/* On the ground photos */}
-      <section className="border-b border-border bg-white">
+      <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
-            Inside the partnership
+            Past Events & Activities
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -182,10 +187,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </ScrollFade>
 
       {/* About / Story */}
-      <section className="border-b border-border bg-white">
+      <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
             <SectionKicker color="blue">About</SectionKicker>
@@ -219,10 +224,10 @@ export default function Home() {
             </ul>
           </div>
         </div>
-      </section>
+      </ScrollFade>
 
       {/* Supporters */}
-      <section className="border-b border-border bg-white">
+      <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
             Partners & institutions
@@ -291,19 +296,19 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </ScrollFade>
 
       {/* CTA */}
-      <section className="bg-white">
+      <ScrollFade as="section" className="bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <div className="border border-border">
             <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-border">
-                <SectionKicker color="red">Ready to talk?</SectionKicker>
-                <h3 className="font-serif font-medium text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
+              <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-border bg-red">
+                <SectionKicker color="white">Ready to talk?</SectionKicker>
+                <h3 className="font-serif font-medium text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-white mb-3">
                   Get free consulting
                 </h3>
-                <p className="text-[15px] text-muted leading-[1.7] font-sans max-w-[420px]">
+                <p className="text-[15px] text-white/85 leading-[1.7] font-sans max-w-[420px]">
                   Send a short message describing your business and where you feel stuck. We will reply with next steps.
                 </p>
               </div>
@@ -324,7 +329,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </ScrollFade>
     </>
   )
 }

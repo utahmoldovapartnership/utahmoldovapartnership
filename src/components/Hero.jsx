@@ -1,4 +1,5 @@
 import SectionKicker from './SectionKicker.jsx'
+import ScrollFade from './ScrollFade.jsx'
 
 export default function Hero({
   kicker,
@@ -12,8 +13,6 @@ export default function Hero({
   imagePosition = 'center',
   backgroundSize = 'cover',
   overlayDirection = 'vertical',
-  imageWidth = '100%',
-  imageAlignRight = false,
 }) {
   const hasImage = Boolean(backgroundImage)
   const overlay =
@@ -21,32 +20,19 @@ export default function Hero({
       ? 'linear-gradient(90deg, rgba(13,13,13,1) 0%, rgba(13,13,13,1) 25%, rgba(13,13,13,0.7) 45%, rgba(13,13,13,0.15) 75%, rgba(13,13,13,0.0) 100%)'
       : overlayDirection === 'vertical-strong'
       ? 'linear-gradient(180deg, rgba(13,13,13,0.50) 0%, rgba(13,13,13,0.65) 55%, rgba(13,13,13,0.90) 100%)'
+      : overlayDirection === 'vertical-medium'
+      ? 'linear-gradient(180deg, rgba(13,13,13,0.32) 0%, rgba(13,13,13,0.48) 55%, rgba(13,13,13,0.78) 100%)'
       : 'linear-gradient(180deg, rgba(13,13,13,0.20) 0%, rgba(13,13,13,0.40) 55%, rgba(13,13,13,0.75) 100%)'
-  const imageBoxStyle = imageAlignRight
-    ? {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        width: imageWidth,
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundPosition: imagePosition,
-        backgroundSize,
-      }
-    : {
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundPosition: imagePosition,
-        backgroundSize,
-      }
+  const fullBleedStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundPosition: imagePosition,
+    backgroundSize,
+  }
   return (
     <section className="relative bg-ink border-b border-[#1f1f1f] overflow-hidden">
       {hasImage && (
         <>
-          {imageAlignRight ? (
-            <div aria-hidden style={imageBoxStyle} />
-          ) : (
-            <div aria-hidden className="absolute inset-0" style={imageBoxStyle} />
-          )}
+          <div aria-hidden className="absolute inset-0" style={fullBleedStyle} />
           <div
             aria-hidden
             className="absolute inset-0"
@@ -54,7 +40,10 @@ export default function Hero({
           />
         </>
       )}
-      <div className="relative mx-auto max-w-[1180px] px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20">
+      <ScrollFade
+        revealOnMount
+        className="relative mx-auto max-w-[1180px] px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20"
+      >
         {kicker && (
           <div
             className={[
@@ -116,7 +105,7 @@ export default function Hero({
             {imageCredit}
           </div>
         )}
-      </div>
+      </ScrollFade>
     </section>
   )
 }

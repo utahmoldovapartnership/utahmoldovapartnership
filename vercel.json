@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/((?!photos/|assets/|apply-summer-program\\.jpg|utah-moldova-logo\\.png).*)",
+      "source": "/((?!photos/|interns/|assets/|apply-summer-program\\.jpg|interns-hero\\.(jpg|png)|utah-moldova-logo\\.png).*)",
       "destination": "/index.html"
     }
   ]

@@ -1,3 +1,5 @@
+import ScrollFade from './ScrollFade.jsx'
+
 const logos = [
   {
     name: 'Covali',
@@ -25,7 +27,7 @@ const logos = [
 export default function LogoMarquee() {
   const items = [...logos, ...logos]
   return (
-    <section className="border-b border-border bg-white">
+    <ScrollFade as="section" className="border-b border-border bg-white">
       <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-10 md:py-12">
         <div className="text-center text-[11px] uppercase tracking-[0.18em] text-muted font-sans font-medium mb-6">
           Past clients
@@ -63,6 +65,6 @@ export default function LogoMarquee() {
           />
         </div>
       </div>
-    </section>
+    </ScrollFade>
   )
 }

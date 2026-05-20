@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { TbArrowRight, TbBrandWhatsapp, TbCheck, TbMail, TbWorld } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
+import ScrollFade from '../components/ScrollFade.jsx'
 import {
   SlidingUnderlineIndicator,
   useSlidingUnderline,
@@ -72,7 +73,7 @@ export default function Contact() {
 
 
       {/* Form + Direct contact */}
-      <section className="border-b border-border bg-white">
+      <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
           <div className="md:col-span-2 p-7 md:p-10 border-b md:border-b-0 md:border-r border-border">
             <h3 className="font-serif font-medium text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
@@ -239,10 +240,10 @@ export default function Contact() {
             </div>
           </aside>
         </div>
-      </section>
+      </ScrollFade>
 
       {/* FAQ */}
-      <section id="faq" className="bg-white scroll-mt-20">
+      <ScrollFade as="section" id="faq" className="bg-white scroll-mt-20">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
             Frequently Asked Questions
@@ -293,7 +294,7 @@ export default function Contact() {
             ))}
           </div>
         </div>
-      </section>
+      </ScrollFade>
     </>
   )
 }

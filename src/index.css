@@ -46,6 +46,38 @@ select:focus {
   will-change: transform;
 }
 
-.marquee-pause:hover .animate-marquee {
+.animate-marquee-photos {
+  animation: marquee 60s linear infinite;
+  will-change: transform;
+}
+
+.marquee-pause:hover .animate-marquee,
+.marquee-pause:hover .animate-marquee-photos {
   animation-play-state: paused;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-marquee,
+  .animate-marquee-photos {
+    animation: none;
+  }
 }

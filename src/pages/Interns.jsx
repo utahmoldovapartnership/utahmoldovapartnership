@@ -3,6 +3,7 @@ import Hero from '../components/Hero.jsx'
 import StatsBar from '../components/StatsBar.jsx'
 import SectionKicker from '../components/SectionKicker.jsx'
 import InternPhotoMarquee from '../components/InternPhotoMarquee.jsx'
+import ScrollFade from '../components/ScrollFade.jsx'
 import {
   internStats,
   internWhatYouDo,
@@ -33,19 +34,17 @@ export default function Interns() {
             <em className="italic text-yellow">Yes Please!</em>
           </>
         }
-        subtext="Spend a summer working abroad in Chișinău with a small, multidisciplinary team. You find Moldovan businesses, help them grow, and explore neighboring countries on weekends."
+        subtext="Spend a summer working abroad in Chișinău with a small, multidisciplinary team. You will collaborate with small businesses, identify opportunities for growth, and deliver results that help them move forward."
         primary={{ label: 'Apply Now', href: '#apply', variant: 'yellow' }}
         secondary={{ label: "See what you'll do", href: '#what-you-do' }}
-        backgroundImage="https://static.wixstatic.com/media/a6cdd8_d6163bc3110a467eba5acc96ecd9ae17~mv2.jpg/v1/crop/x_0,y_151,w_1600,h_899/fill/w_1600,h_899,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Our%20Team%20in%20Chisinau%20.jpg"
-        backgroundSize="auto 170%"
-        imagePosition="22% 68%"
-        overlayDirection="horizontal"
+        backgroundImage="https://images.unsplash.com/photo-1629045951387-6d86eb2aad3d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        overlayDirection="vertical"
       />
 
       <StatsBar items={internStats} />
 
       {/* What you'll do */}
-      <section id="what-you-do" className="bg-white">
+      <ScrollFade as="section" id="what-you-do" className="bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <SectionKicker color="red">What you'll do</SectionKicker>
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
@@ -82,12 +81,12 @@ export default function Interns() {
             ))}
           </div>
         </div>
-      </section>
+      </ScrollFade>
 
       <InternPhotoMarquee photos={internCohortPhotos} />
 
       {/* Who it's for + required skills */}
-      <section className="border-b border-border bg-white">
+      <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14">
           <div>
             <SectionKicker color="red">Who it's for</SectionKicker>
@@ -134,17 +133,17 @@ export default function Interns() {
             </ul>
           </div>
         </div>
-      </section>
+      </ScrollFade>
 
       {/* Apply */}
-      <section id="apply" className="border-b border-border bg-white">
+      <ScrollFade as="section" id="apply" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 border border-border">
             <div className="border-b md:border-b-0 md:border-r border-border min-h-[280px] md:min-h-0">
               <img
                 src="/apply-summer-program.jpg"
                 alt="UMBP intern cohort on the steps in Chișinău"
-                className="w-full h-64 md:h-full md:min-h-[420px] object-cover object-[center_35%]"
+                className="w-full h-64 md:h-full md:min-h-[420px] object-cover object-center"
                 loading="lazy"
               />
             </div>
@@ -181,10 +180,10 @@ export default function Interns() {
             </div>
           </div>
         </div>
-      </section>
+      </ScrollFade>
 
       {/* Closing quote */}
-      <section className="bg-red">
+      <ScrollFade as="section" className="bg-red">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-16 md:py-20">
           <div className="font-serif font-medium italic text-white text-[28px] sm:text-[36px] md:text-[44px] leading-[1.1] tracking-[-0.5px] max-w-[820px]">
             “Sometimes you need to do the things you don't want to do, but{' '}
@@ -199,7 +198,7 @@ export default function Interns() {
             <span className="text-[14px] text-white/85 font-sans">Macco — Chișinău, Moldova</span>
           </div>
         </div>
-      </section>
+      </ScrollFade>
     </>
   )
 }
