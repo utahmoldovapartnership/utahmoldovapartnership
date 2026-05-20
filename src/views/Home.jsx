@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { TbArrowRight } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
 import StatsBar from '../components/StatsBar.jsx'
@@ -93,13 +92,13 @@ export default function Home() {
             <p className="text-[15px] text-muted leading-[1.7] font-sans mb-6">
               From a single email to a finished deliverable. We keep it simple so business owners can stay focused on running their company.
             </p>
-            <Link
-              to="/contact"
+            <a
+              href="/contact"
               className="inline-flex items-center gap-2 bg-blue text-white px-6 py-3 font-sans font-medium text-[12px] uppercase tracking-wider"
             >
               Start a conversation
               <TbArrowRight size={14} />
-            </Link>
+            </a>
           </div>
           <div className="border border-border">
             {businessSteps.map((step, i) => (
@@ -324,12 +323,12 @@ export default function Home() {
                 >
                   Email Us <TbArrowRight size={14} />
                 </a>
-                <Link
-                  to="/contact"
+                <a
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 border border-border px-6 py-4 font-sans font-medium text-[12px] uppercase tracking-wider text-ink"
                 >
                   Go to contact page
-                </Link>
+                </a>
               </div>
             </div>
           </div>

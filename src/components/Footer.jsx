@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import {
   TbBrandInstagram,
   TbBrandX,
@@ -10,22 +9,16 @@ import {
 } from 'react-icons/tb'
 import { orgInfo } from '../data/siteContent.js'
 
-function FLink({ to, href, children }) {
+function FLink({ href, children }) {
   const cls =
     'flex items-center gap-2 hover:text-red transition-none [overflow-wrap:anywhere] min-w-0'
-  if (to) {
-    return (
-      <Link to={to} className={cls}>
-        {children}
-      </Link>
-    )
-  }
+  const external = href?.startsWith('http')
   return (
     <a
       href={href}
       className={cls}
-      target={href?.startsWith('http') ? '_blank' : undefined}
-      rel="noreferrer"
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noreferrer' : undefined}
     >
       {children}
     </a>
@@ -37,9 +30,9 @@ export default function Footer() {
     {
       title: 'Guide',
       items: [
-        <FLink key="home" to="/">Home</FLink>,
-        <FLink key="contact" to="/contact">Contact</FLink>,
-        <FLink key="interns" to="/interns">For Interns</FLink>,
+        <FLink key="home" href="/">Home</FLink>,
+        <FLink key="contact" href="/contact">Contact</FLink>,
+        <FLink key="interns" href="/interns">For Interns</FLink>,
       ],
     },
     {
@@ -82,13 +75,13 @@ export default function Footer() {
     <footer className="border-t border-border bg-white">
       <div className="mx-auto max-w-[1180px] grid grid-cols-2 md:grid-cols-4">
         <div className="p-5 md:p-8 border-r border-b md:border-b-0 md:border-r border-border">
-          <Link to="/" className="inline-flex items-center gap-2 mb-4">
+          <a href="/" className="inline-flex items-center gap-2 mb-4">
             <img
               src="/utah-moldova-logo.png"
               alt="Utah Moldova Business Partnership logo"
               className="w-10 h-10 object-contain"
             />
-          </Link>
+          </a>
           <div className="font-sans font-medium text-[11px] md:text-[12px] uppercase tracking-[0.12em] text-ink mb-3 leading-[1.4]">
             Utah Moldova
             <br />

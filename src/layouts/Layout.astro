@@ -1,0 +1,40 @@
+---
+import '../styles/global.css'
+import Navbar from '../components/Navbar.jsx'
+import Footer from '../components/Footer.jsx'
+
+const { title, description } = Astro.props
+const currentPath = Astro.url.pathname
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/utah-moldova-logo.png" />
+    <link rel="apple-touch-icon" href="/utah-moldova-logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,700;1,9..144,900&family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="fixed top-0 left-0 right-0 z-[60] flex h-1">
+      <span class="flex-1 bg-blue"></span>
+      <span class="flex-1 bg-yellow"></span>
+      <span class="flex-1 bg-red"></span>
+    </div>
+    <div class="min-h-screen bg-white text-ink font-sans pt-1">
+      <Navbar client:load currentPath={currentPath} />
+      <main>
+        <slot />
+      </main>
+      <Footer client:load />
+    </div>
+  </body>
+</html>

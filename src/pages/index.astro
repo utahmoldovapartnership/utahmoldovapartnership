@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Home from '../views/Home.jsx'
+
+const title = 'Utah Moldova Business Partnership'
+const description =
+  'A non-profit collaboration committed to benefitting the economic state of the Republic of Moldova. Free consulting, IT development, and business education for Moldovan companies.'
+---
+
+<Layout title={title} description={description}>
+  <Home client:load />
+</Layout>

@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Interns from '../views/Interns.jsx'
+
+const title = 'Summer Intern Program — Utah Moldova Business Partnership'
+const description =
+  'Spend a summer in Chișinău with UMBP: partner with Moldovan businesses, deliver real consulting, and grow through hands-on international experience.'
+---
+
+<Layout title={title} description={description}>
+  <Interns client:load />
+</Layout>

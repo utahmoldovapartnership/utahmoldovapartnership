@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Contact from '../views/Contact.jsx'
+
+const title = 'Contact — Utah Moldova Business Partnership'
+const description =
+  'Reach UMBP for free consulting in Moldova, summer intern applications, or partnership inquiries. We read every message.'
+---
+
+<Layout title={title} description={description}>
+  <Contact client:load />
+</Layout>
