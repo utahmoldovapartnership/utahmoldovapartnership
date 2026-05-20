@@ -2,12 +2,18 @@
 import Layout from '../layouts/Layout.astro'
 import Home from '../views/Home.jsx'
 import { pageHeroImages } from '../data/heroImages.js'
+import { pages } from '../data/siteSeo.js'
 
-const title = 'Utah Moldova Business Partnership'
-const description =
-  'A non-profit collaboration committed to benefitting the economic state of the Republic of Moldova. Free consulting, IT development, and business education for Moldovan companies.'
+const seo = pages.home
 ---
 
-<Layout title={title} description={description} heroImage={pageHeroImages.home}>
+<Layout
+  title={seo.title}
+  description={seo.description}
+  pagePath={seo.path}
+  ogImage={seo.ogImage}
+  heroImage={pageHeroImages.home}
+  includeWebSiteSchema={true}
+>
   <Home client:load />
 </Layout>

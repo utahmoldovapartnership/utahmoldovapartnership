@@ -2,12 +2,18 @@
 import Layout from '../layouts/Layout.astro'
 import Interns from '../views/Interns.jsx'
 import { pageHeroImages } from '../data/heroImages.js'
+import { pages } from '../data/siteSeo.js'
 
-const title = 'Summer Intern Program — Utah Moldova Business Partnership'
-const description =
-  'Spend a summer in Chișinău with UMBP: partner with Moldovan businesses, deliver real consulting, and grow through hands-on international experience.'
+const seo = pages.interns
 ---
 
-<Layout title={title} description={description} heroImage={pageHeroImages.interns}>
+<Layout
+  title={seo.title}
+  description={seo.description}
+  pagePath={seo.path}
+  ogImage={seo.ogImage}
+  breadcrumbs={seo.breadcrumbs}
+  heroImage={pageHeroImages.interns}
+>
   <Interns client:load />
 </Layout>

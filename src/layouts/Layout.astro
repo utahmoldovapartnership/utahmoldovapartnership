@@ -2,10 +2,41 @@
 import '../styles/global.css'
 import Navbar from '../components/Navbar.jsx'
 import Footer from '../components/Footer.jsx'
+import {
+  absoluteUrl,
+  breadcrumbJsonLd,
+  defaultOgImage,
+  jsonLdGraph,
+  organizationJsonLd,
+  webPageJsonLd,
+  webSiteJsonLd,
+} from '../data/siteSeo.js'
+import { orgInfo } from '../data/siteContent.js'
 
-const { title, description, heroImage } = Astro.props
+const {
+  title,
+  description,
+  heroImage,
+  ogImage,
+  ogType = 'website',
+  noindex = false,
+  breadcrumbs,
+  includeWebSiteSchema = false,
+  pagePath = Astro.url.pathname,
+} = Astro.props
+
 const currentPath = Astro.url.pathname
+const siteUrl = Astro.site?.href ?? Astro.url.origin
+const canonicalUrl = new URL(pagePath, siteUrl).href
+const ogImageUrl = absoluteUrl(ogImage ?? defaultOgImage, siteUrl)
 
+const schemaEntries = [
+  organizationJsonLd(siteUrl),
+  includeWebSiteSchema ? webSiteJsonLd(siteUrl) : null,
+  webPageJsonLd({ title, description, path: pagePath }, siteUrl),
+  breadcrumbJsonLd(breadcrumbs, siteUrl),
+]
+const structuredData = jsonLdGraph(schemaEntries)
 ---
 
 <!doctype html>
@@ -17,6 +48,24 @@ const currentPath = Astro.url.pathname
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+    )}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={orgInfo.name} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    <meta name="twitter:image" content={ogImageUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

@@ -20,7 +20,7 @@ export default function OptimizedImage({
       width={width}
       height={height}
       loading={loading}
-      fetchPriority={fetchPriority}
+      {...(fetchPriority ? { fetchpriority: fetchPriority } : {})}
       decoding={decoding}
       className={className}
       style={{ ...style, objectPosition }}
