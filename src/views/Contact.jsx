@@ -214,7 +214,7 @@ export default function Contact() {
                 </span>
               </a>
               <a
-                href="https://wa.me/"
+                href={orgInfo.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-start gap-3 py-4"
@@ -224,7 +224,7 @@ export default function Contact() {
                 </span>
                 <span>
                   <span className="block text-[12px] uppercase tracking-[0.12em] text-muted font-sans">WhatsApp</span>
-                  <span className="block text-[15px] text-ink font-sans">+373 000 000 000</span>
+                  <span className="block text-[15px] text-ink font-sans">{orgInfo.whatsapp}</span>
                 </span>
               </a>
             </div>

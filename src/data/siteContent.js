@@ -2,6 +2,8 @@ export const orgInfo = {
   name: 'Utah Moldova Business Partnership',
   shortName: 'UMBP',
   email: 'utahmoldovapartnership@gmail.com',
+  whatsapp: '+1 (801) 687-6222',
+  whatsappUrl: 'https://wa.me/18016876222',
   website: 'utahmoldovabusiness.com',
   partnerSite: 'ivorycenter.md',
   founded: 2015,

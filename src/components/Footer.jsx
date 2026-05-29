@@ -63,9 +63,9 @@ export default function Footer() {
           <TbMail size={16} />
           {orgInfo.email}
         </FLink>,
-        <FLink key="whatsapp" href="#">
+        <FLink key="whatsapp" href={orgInfo.whatsappUrl}>
           <TbBrandWhatsapp size={16} />
-          WhatsApp
+          {orgInfo.whatsapp}
         </FLink>,
       ],
     },
