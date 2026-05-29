@@ -15,7 +15,7 @@ export const orgInfo = {
 export const stats = [
   { num: '16', label: 'Current Companies' },
   { num: '73+', label: 'Total Companies' },
-  { num: '9+', label: 'Years Operating' },
+  { num: '10+', label: 'Years Operating' },
   { num: '50+', label: 'Total Interns' },
   { num: '50', label: 'Diplomas' },
   { num: '10', label: 'Seminars' },
@@ -24,7 +24,7 @@ export const stats = [
 export const internStats = [
   { num: 'Chișinău', label: 'Location', small: true },
   { num: '8', label: 'Interns per summer' },
-  { num: '9+', label: 'Years Operating' },
+  { num: '10+', label: 'Years Operating' },
   { num: 'Summer', label: 'Timing', small: true },
 ]
 
