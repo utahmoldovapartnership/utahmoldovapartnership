@@ -1,8 +1,10 @@
 /**
- * Content image with explicit dimensions for layout stability.
+ * Content image with explicit dimensions, optional responsive srcset, and lazy loading.
  */
 export default function OptimizedImage({
   src,
+  srcSet,
+  sizes,
   alt,
   width,
   height,
@@ -16,6 +18,8 @@ export default function OptimizedImage({
   return (
     <img
       src={src}
+      {...(srcSet ? { srcSet } : {})}
+      {...(sizes ? { sizes } : {})}
       alt={alt}
       width={width}
       height={height}

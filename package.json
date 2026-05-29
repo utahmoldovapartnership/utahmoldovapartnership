@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "photos": "node scripts/sync-cohort-photos.mjs",
+    "photos": "node scripts/optimize-images.mjs",
     "dev": "npm run photos && astro dev",
     "build": "npm run photos && astro build",
     "preview": "astro preview",
@@ -22,6 +22,7 @@
     "react-icons": "^5.3.0"
   },
   "devDependencies": {
+    "sharp": "^0.34.5",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14"

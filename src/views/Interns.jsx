@@ -6,6 +6,7 @@ import StatsBar from '../components/StatsBar.jsx'
 import SectionKicker from '../components/SectionKicker.jsx'
 import InternPhotoMarquee from '../components/InternPhotoMarquee.jsx'
 import ScrollFade from '../components/ScrollFade.jsx'
+import { applySummerProgramImage } from '../data/staticImages.generated.js'
 import {
   internStats,
   internWhatYouDo,
@@ -143,10 +144,12 @@ export default function Interns() {
           <div className="grid grid-cols-1 md:grid-cols-2 border border-border">
             <div className="group border-b md:border-b-0 md:border-r border-border min-h-[280px] md:min-h-0 bg-white overflow-hidden">
               <OptimizedImage
-                src="/apply-summer-program.jpg"
+                src={applySummerProgramImage?.src ?? '/apply-summer-program-1200w.webp'}
+                srcSet={applySummerProgramImage?.srcSet}
+                sizes={applySummerProgramImage?.sizes}
                 alt="UMBP intern cohort on the steps in Chișinău"
-                width={1200}
-                height={900}
+                width={applySummerProgramImage?.width ?? 1200}
+                height={applySummerProgramImage?.height ?? 900}
                 className="w-full h-64 md:h-full md:min-h-[420px] object-cover object-center transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </div>

@@ -22,9 +22,11 @@ export default function InternPhotoMarquee({ photos }) {
               >
                 <OptimizedImage
                   src={photo.src}
+                  srcSet={photo.srcSet}
+                  sizes={photo.sizes}
                   alt={photo.alt}
-                  width={560}
-                  height={560}
+                  width={photo.width ?? 560}
+                  height={photo.height ?? 560}
                   className="w-full h-full object-cover"
                 />
               </div>

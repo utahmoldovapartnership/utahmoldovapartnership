@@ -89,10 +89,12 @@ export default function MeetInterns({ intro, members }) {
               >
                 <div className="aspect-square shrink-0 overflow-hidden bg-white">
                   <OptimizedImage
-                    src={intern.image}
+                    src={intern.src ?? intern.image}
+                    srcSet={intern.srcSet}
+                    sizes={intern.sizes}
                     alt={intern.name}
-                    width={400}
-                    height={400}
+                    width={intern.width ?? 400}
+                    height={intern.height ?? 400}
                     className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.03]"
                   />
                 </div>
@@ -135,10 +137,12 @@ export default function MeetInterns({ intro, members }) {
             </button>
 
             <OptimizedImage
-              src={selected.image}
+              src={selected.src ?? selected.image}
+              srcSet={selected.srcSet}
+              sizes={selected.modalSizes ?? selected.sizes}
               alt={selected.name}
-              width={520}
-              height={520}
+              width={selected.width ?? 520}
+              height={selected.height ?? 520}
               loading="eager"
               className="w-full aspect-square object-cover object-center"
             />

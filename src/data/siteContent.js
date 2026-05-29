@@ -1,3 +1,10 @@
+import { internPhotoAssets } from './internPhotos.generated.js'
+
+function withInternPhoto(member) {
+  const photo = internPhotoAssets[member.id]
+  return photo ? { ...member, ...photo } : member
+}
+
 export const orgInfo = {
   name: 'Utah Moldova Business Partnership',
   shortName: 'UMBP',
@@ -91,62 +98,54 @@ export const meetInterns = {
     'learning what they need, and delivering real consulting work.',
   ],
   members: [
-    {
+    withInternPhoto({
       id: 'braxton',
       name: 'Braxton',
-      image: '/interns/braxton.jpg',
       focus: 'Languages & public relations',
       bio: 'Works across languages and helps businesses communicate clearly with partners, press, and the community.',
-    },
-    {
+    }),
+    withInternPhoto({
       id: 'libby',
       name: 'Libby',
-      image: '/interns/libby.jpg',
       focus: 'Marketing & branding',
       bio: 'Strong with branding, messaging, and marketing that helps businesses connect with customers.',
-    },
-    {
+    }),
+    withInternPhoto({
       id: 'henry',
       name: 'Henry',
-      image: '/interns/henry.jpg',
       focus: 'Supply chain & management',
       bio: 'Focuses on how work moves through a business, from suppliers and inventory to the teams keeping day-to-day operations running.',
-    },
-    {
+    }),
+    withInternPhoto({
       id: 'katya',
       name: 'Katya',
-      image: '/interns/katya.jpg',
       focus: 'Marketing & communications',
       bio: 'Helps companies sharpen their message, materials, and outreach so customers understand what they offer.',
-    },
-    {
+    }),
+    withInternPhoto({
       id: 'ethan',
       name: 'Ethan',
-      image: '/interns/ethan.jpg',
       focus: 'Director',
       bio: 'Leads the intern team day to day, coordinates schedules and deliverables, and keeps client work moving through the summer.',
-    },
-    {
+    }),
+    withInternPhoto({
       id: 'meg',
       name: 'Meg',
-      image: '/interns/meg.jpg',
       focus: 'Data analytics',
       bio: 'Turns business data into clear analysis—trends, comparisons, and recommendations owners can trust.',
-    },
-    {
+    }),
+    withInternPhoto({
       id: 'halle',
       name: 'Halle',
-      image: '/interns/halle.jpg',
       focus: 'Marketing & social media',
       bio: 'Builds social presence and content that helps local businesses connect with customers online.',
-    },
-    {
+    }),
+    withInternPhoto({
       id: 'weston',
       name: 'Weston',
-      image: '/interns/weston.jpg',
       focus: 'Web development',
       bio: 'Builds websites and digital tools that help businesses strengthen their online presence.',
-    },
+    }),
   ],
 }
 
