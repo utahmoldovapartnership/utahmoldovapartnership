@@ -5,7 +5,6 @@ import { pageHeroImages } from '../data/heroImages.js'
 import StatsBar from '../components/StatsBar.jsx'
 import SectionKicker from '../components/SectionKicker.jsx'
 import InternPhotoMarquee from '../components/InternPhotoMarquee.jsx'
-import InternTestimonialCarousel from '../components/InternTestimonialCarousel.jsx'
 import ScrollFade from '../components/ScrollFade.jsx'
 import {
   internStats,
@@ -14,7 +13,6 @@ import {
   internWhoFor,
   internSkillsSection,
   internApplySteps,
-  internTestimonials,
   orgInfo,
 } from '../data/siteContent.js'
 
@@ -138,8 +136,6 @@ export default function Interns() {
           </div>
         </div>
       </ScrollFade>
-
-      <InternTestimonialCarousel quotes={internTestimonials} />
 
       {/* Apply */}
       <ScrollFade as="section" id="apply" className="border-b border-border bg-white">
