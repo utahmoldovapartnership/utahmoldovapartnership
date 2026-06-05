@@ -13,8 +13,8 @@ const logos = [
   },
   {
     name: 'XY Partners',
-    src: 'https://media.licdn.com/dms/image/v2/C560BAQEPg8XVIdUs3Q/company-logo_200_200/company-logo_200_200/0/1630599677092?e=1780531200&v=beta&t=zNsrndrIBkPdey0mjiwxYxjKxmvv-s2PfMoyz1dYaH4',
-    href: 'https://www.linkedin.com/company/xypartners/',
+    src: '/logos/xy-partners.png',
+    href: 'https://xy.md/',
   },
   {
     name: 'Tucano',
