@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 
 export default defineConfig({
-  site: 'https://utahmoldovabusiness.vercel.app',
+  site: 'https://utahmoldovabusiness.com',
   trailingSlash: 'never',
   integrations: [
     react(),

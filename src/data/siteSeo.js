@@ -2,7 +2,7 @@ import { orgInfo } from './siteContent.js'
 import { pageHeroImages } from './heroImages.js'
 
 /** Canonical production URL — used for sitemap, canonical links, and Open Graph */
-export const SITE_URL = 'https://utahmoldovabusiness.vercel.app'
+export const SITE_URL = 'https://utahmoldovabusiness.com'
 
 export const defaultOgImage = '/utah-moldova-logo.png'
 

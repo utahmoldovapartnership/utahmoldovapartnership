@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { TbChevronDown, TbCheck } from 'react-icons/tb'
+import { getLang, LANG_EVENT, setLang } from '../utils/language.js'
 
 const LANGUAGES = [
   { code: 'EN', label: 'English' },
@@ -7,10 +8,9 @@ const LANGUAGES = [
   { code: 'RO', label: 'Română' },
 ]
 
-/** Language UI shell — translations not wired yet. */
 export default function LanguageSwitcher({ variant = 'desktop' }) {
   const [open, setOpen] = useState(false)
-  const [active, setActive] = useState('EN')
+  const [active, setActive] = useState(getLang)
   const ref = useRef(null)
 
   useEffect(() => {
@@ -20,13 +20,24 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
     function handleKey(e) {
       if (e.key === 'Escape') setOpen(false)
     }
+    function onLangChange(e) {
+      setActive(e.detail)
+    }
     document.addEventListener('mousedown', handleClick)
     document.addEventListener('keydown', handleKey)
+    window.addEventListener(LANG_EVENT, onLangChange)
     return () => {
       document.removeEventListener('mousedown', handleClick)
       document.removeEventListener('keydown', handleKey)
+      window.removeEventListener(LANG_EVENT, onLangChange)
     }
   }, [])
+
+  function selectLanguage(code) {
+    setLang(code)
+    setActive(code)
+    setOpen(false)
+  }
 
   if (variant === 'mobile') {
     return (
@@ -41,7 +52,7 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
               <button
                 key={lang.code}
                 type="button"
-                onClick={() => setActive(lang.code)}
+                onClick={() => selectLanguage(lang.code)}
                 className={[
                   'py-3 text-[13px] uppercase tracking-widest font-medium',
                   i !== LANGUAGES.length - 1 ? 'border-r border-border' : '',
@@ -67,11 +78,7 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
         className="h-14 px-3 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-widest text-ink border-b-2 border-transparent hover:text-red"
       >
         <span>{active}</span>
-        <TbChevronDown
-          size={12}
-          className={open ? 'rotate-180' : ''}
-          aria-hidden
-        />
+        <TbChevronDown size={12} className={open ? 'rotate-180' : ''} aria-hidden />
       </button>
 
       {open && (
@@ -85,10 +92,7 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
               <li key={lang.code} role="option" aria-selected={isActive}>
                 <button
                   type="button"
-                  onClick={() => {
-                    setActive(lang.code)
-                    setOpen(false)
-                  }}
+                  onClick={() => selectLanguage(lang.code)}
                   className={[
                     'w-full text-left px-4 py-3 text-[11px] font-medium uppercase tracking-widest font-sans border-b border-border last:border-b-0 flex items-center justify-between',
                     isActive ? 'text-red' : 'text-ink hover:text-red',

@@ -4,6 +4,7 @@ import SpeedInsights from '@vercel/speed-insights/astro'
 import '../styles/global.css'
 import Navbar from '../components/Navbar.jsx'
 import Footer from '../components/Footer.jsx'
+import I18nRoot from '../components/I18nRoot.jsx'
 import {
   absoluteUrl,
   breadcrumbJsonLd,
@@ -68,6 +69,12 @@ const structuredData = jsonLdGraph(schemaEntries)
     <meta name="twitter:title" content={title} />
     {description && <meta name="twitter:description" content={description} />}
     <meta name="twitter:image" content={ogImageUrl} />
+    <script is:inline>
+      ;(function () {
+        var lang = localStorage.getItem('umbp.lang')
+        if (lang && lang !== 'EN') document.documentElement.lang = lang.toLowerCase()
+      })()
+    </script>
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -239,5 +246,6 @@ const structuredData = jsonLdGraph(schemaEntries)
     </script>
     <Analytics />
     <SpeedInsights />
+    <I18nRoot client:load />
   </body>
 </html>
