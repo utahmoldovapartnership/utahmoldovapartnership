@@ -27,7 +27,7 @@ function isLinkActive(pathname, href, end) {
   return path === href || path.startsWith(`${href}/`)
 }
 
-export default function Navbar({ currentPath = '/', locale = 'en', nav = {} }) {
+export default function Navbar({ currentPath = '/', locale = 'en', nav = {}, orgInfo }) {
   const [open, setOpen] = useState(false)
   const activeIndex = navActiveIndex(currentPath)
   const { containerRef, setItemRef, indicator } = useSlidingUnderline(activeIndex)
@@ -42,19 +42,19 @@ export default function Navbar({ currentPath = '/', locale = 'en', nav = {} }) {
         >
           <img
             src="/utah-moldova-logo.png"
-            alt="Utah Moldova Business Partnership logo"
+            alt={nav.logoAlt ?? 'Utah Moldova Business Partnership logo'}
             className="w-[38px] h-[38px] object-contain"
           />
           <span className="hidden sm:block font-sans font-bold text-[12px] uppercase text-ink tracking-[0.08em]">
-            Utah Moldova Business Partnership
+            {orgInfo?.name ?? 'Utah Moldova Business Partnership'}
           </span>
           <span className="sm:hidden font-sans font-bold text-[12px] uppercase text-ink tracking-[0.08em]">
-            UMBP
+            {orgInfo?.shortName ?? 'UMBP'}
           </span>
         </a>
 
         <div className="hidden md:flex items-stretch h-14">
-          <LanguageSwitcher currentPath={currentPath} />
+          <LanguageSwitcher currentPath={currentPath} languageLabel={nav.language} />
           <span className="w-px h-4 bg-border self-center mx-1" aria-hidden />
           <div ref={containerRef} className="relative flex items-stretch h-14">
             {links.map((l, i) => {
@@ -79,7 +79,7 @@ export default function Navbar({ currentPath = '/', locale = 'en', nav = {} }) {
 
         <button
           type="button"
-          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-label={open ? nav.closeMenu : nav.openMenu}
           className="md:hidden h-9 w-9 flex items-center justify-center border border-border text-ink"
           onClick={() => setOpen((v) => !v)}
         >
@@ -89,7 +89,7 @@ export default function Navbar({ currentPath = '/', locale = 'en', nav = {} }) {
 
       {open && (
         <div className="md:hidden border-t border-border bg-white">
-          <LanguageSwitcher variant="mobile" currentPath={currentPath} />
+          <LanguageSwitcher variant="mobile" currentPath={currentPath} languageLabel={nav.language} />
           {links.map((l) => {
             const active = isLinkActive(currentPath, l.href, l.href === '/')
             return (

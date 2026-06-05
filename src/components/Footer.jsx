@@ -81,14 +81,12 @@ export default function Footer({ locale = 'en', ui, orgInfo }) {
           <a href={localePath(locale, '/')} className="inline-flex items-center gap-2 mb-4">
             <img
               src="/utah-moldova-logo.png"
-              alt="Utah Moldova Business Partnership logo"
+              alt={nav.logoAlt ?? 'Utah Moldova Business Partnership logo'}
               className="w-10 h-10 object-contain"
             />
           </a>
           <div className="font-sans font-medium text-[11px] md:text-[12px] uppercase tracking-[0.12em] text-ink mb-3 leading-[1.4]">
-            Utah Moldova
-            <br />
-            Business Partnership
+            {orgInfo.name}
           </div>
           <a
             href="https://maps.app.goo.gl/cwxyy8dqJRd1T3sP9"
@@ -96,11 +94,20 @@ export default function Footer({ locale = 'en', ui, orgInfo }) {
             rel="noreferrer"
             className="text-[13px] md:text-[14px] text-muted font-sans hover:text-red leading-relaxed block"
           >
-            Ivory Center
-            <br />
-            Strada Alexandru cel Bun 144
-            <br />
-            MD-2004, Chișinău, Moldova
+            {orgInfo.address?.map((line) => (
+              <span key={line}>
+                {line}
+                <br />
+              </span>
+            )) ?? (
+              <>
+                Ivory Center
+                <br />
+                Strada Alexandru cel Bun 144
+                <br />
+                MD-2004, Chișinău, Moldova
+              </>
+            )}
           </a>
           <a
             href={`https://${orgInfo.partnerSite}`}

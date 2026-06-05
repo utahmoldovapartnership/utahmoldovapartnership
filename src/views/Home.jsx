@@ -159,6 +159,7 @@ export default function Home({ locale = 'en' }) {
         title={ui.home.meetInternsTitle}
         intro={meetInterns.intro}
         members={meetInterns.members}
+        closeLabel={ui.common.close}
       />
 
       <ScrollFade as="section" className="border-b border-border bg-white">

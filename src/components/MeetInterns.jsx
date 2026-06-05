@@ -4,7 +4,7 @@ import { TbX } from 'react-icons/tb'
 import ScrollFade from './ScrollFade.jsx'
 import OptimizedImage from './OptimizedImage.jsx'
 
-export default function MeetInterns({ title = 'Meet the interns', intro, members }) {
+export default function MeetInterns({ title = 'Meet the interns', intro, members, closeLabel = 'Close' }) {
   const [selected, setSelected] = useState(null)
   const gridRef = useRef(null)
 
@@ -131,7 +131,7 @@ export default function MeetInterns({ title = 'Meet the interns', intro, members
               type="button"
               onClick={() => setSelected(null)}
               className="absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center bg-white border border-border text-ink hover:border-red hover:text-red"
-              aria-label="Close"
+              aria-label={closeLabel}
             >
               <TbX size={18} />
             </button>

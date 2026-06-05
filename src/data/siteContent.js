@@ -17,6 +17,11 @@ export const orgInfo = {
   founders: ['Clark Ivory', 'Walter Plumb III'],
   tagline:
     'A non-profit collaboration committed to benefitting the economic state of the Republic of Moldova.',
+  address: [
+    'Ivory Center',
+    'Strada Alexandru cel Bun 144',
+    'MD-2004, Chișinău, Moldova',
+  ],
 }
 
 export const stats = [

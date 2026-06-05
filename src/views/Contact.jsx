@@ -13,6 +13,7 @@ export default function Contact({ locale = 'en' }) {
   const d = getSiteData(locale)
   const { ui, orgInfo, faqBusiness, faqInterns } = d
   const c = ui.contact
+  const common = ui.common
 
   const [form, setForm] = useState({
     name: '',
@@ -254,7 +255,7 @@ export default function Contact({ locale = 'en' }) {
           <div
             ref={faqTabsRef}
             role="tablist"
-            aria-label="FAQ categories"
+            aria-label={common.faqCategories}
             className="relative flex items-stretch border-b border-border mb-6"
           >
             {faqTabs.map((tab, i) => {

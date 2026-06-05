@@ -5,6 +5,13 @@ export const uiCopy = {
     contact: 'Contact',
     interns: 'For Interns',
     language: 'Language',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    logoAlt: 'Utah Moldova Business Partnership logo',
+  },
+  common: {
+    close: 'Close',
+    faqCategories: 'FAQ categories',
   },
   footer: {
     guide: 'Guide',

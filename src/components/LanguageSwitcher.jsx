@@ -4,7 +4,11 @@ import { LOCALE_META, localeFromPath, switchLocalePath } from '../i18n/config.js
 
 const LANGUAGES = ['en', 'ro', 'ru'].map((code) => LOCALE_META[code])
 
-export default function LanguageSwitcher({ variant = 'desktop', currentPath = '/' }) {
+export default function LanguageSwitcher({
+  variant = 'desktop',
+  currentPath = '/',
+  languageLabel = 'Language',
+}) {
   const [open, setOpen] = useState(false)
   const active = localeFromPath(currentPath)
   const ref = useRef(null)
@@ -28,7 +32,7 @@ export default function LanguageSwitcher({ variant = 'desktop', currentPath = '/
     return (
       <div className="border-b border-border bg-white">
         <div className="px-6 py-3 text-[12px] uppercase tracking-widest text-muted font-sans">
-          Language
+          {languageLabel}
         </div>
         <div className="grid grid-cols-3 border-t border-border">
           {LANGUAGES.map((lang, i) => {

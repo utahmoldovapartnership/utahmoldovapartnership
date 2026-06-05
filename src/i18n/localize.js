@@ -21,6 +21,9 @@ const SKIP_KEYS = new Set([
   'modalSizes',
   'file',
   'founded',
+  'switchCode',
+  'code',
+  'path',
 ])
 
 const SKIP_VALUES = new Set([
