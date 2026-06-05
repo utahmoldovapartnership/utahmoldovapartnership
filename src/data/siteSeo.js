@@ -64,7 +64,7 @@ export function organizationJsonLd(siteUrl = SITE_URL) {
       name,
     })),
     sameAs: [
-      'https://www.instagram.com/utahmoldovabusinesspartnership/',
+      'https://www.instagram.com/utahmoldova/',
       'https://twitter.com/UtahMoldova_BP',
       'https://www.facebook.com/utahmoldovapartnership/',
       'https://www.linkedin.com/company/the-utah-moldova-partnership/about/',

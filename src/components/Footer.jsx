@@ -41,7 +41,7 @@ export default function Footer({ locale = 'en', ui, orgInfo }) {
     {
       title: footer.follow ?? 'Follow',
       items: [
-        <FLink key="ig" href="https://www.instagram.com/utahmoldovabusinesspartnership/">
+        <FLink key="ig" href="https://www.instagram.com/utahmoldova/">
           <TbBrandInstagram size={16} />
           Instagram
         </FLink>,
