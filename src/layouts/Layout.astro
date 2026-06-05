@@ -4,7 +4,8 @@ import SpeedInsights from '@vercel/speed-insights/astro'
 import '../styles/global.css'
 import Navbar from '../components/Navbar.jsx'
 import Footer from '../components/Footer.jsx'
-import I18nRoot from '../components/I18nRoot.jsx'
+import { LOCALE_META } from '../i18n/config.js'
+import { getSiteData } from '../i18n/getSiteData.js'
 import {
   absoluteUrl,
   breadcrumbJsonLd,
@@ -26,7 +27,11 @@ const {
   breadcrumbs,
   includeWebSiteSchema = false,
   pagePath = Astro.url.pathname,
+  locale = 'en',
 } = Astro.props
+
+const site = getSiteData(locale)
+const htmlLang = LOCALE_META[locale]?.htmlLang ?? 'en'
 
 const currentPath = Astro.url.pathname
 const siteUrl = Astro.site?.href ?? Astro.url.origin
@@ -43,7 +48,7 @@ const structuredData = jsonLdGraph(schemaEntries)
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/utah-moldova-logo.png" />
@@ -64,17 +69,11 @@ const structuredData = jsonLdGraph(schemaEntries)
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={locale === 'ro' ? 'ro_RO' : locale === 'ru' ? 'ru_RU' : 'en_US'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     {description && <meta name="twitter:description" content={description} />}
     <meta name="twitter:image" content={ogImageUrl} />
-    <script is:inline>
-      ;(function () {
-        var lang = localStorage.getItem('umbp.lang')
-        if (lang && lang !== 'EN') document.documentElement.lang = lang.toLowerCase()
-      })()
-    </script>
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -133,11 +132,11 @@ const structuredData = jsonLdGraph(schemaEntries)
       })()
     </script>
     <div class="min-h-screen bg-white text-ink font-sans pt-1">
-      <Navbar client:load currentPath={currentPath} />
+      <Navbar client:load currentPath={currentPath} locale={locale} nav={site.ui.nav} />
       <main>
         <slot />
       </main>
-      <Footer client:load />
+      <Footer client:load locale={locale} ui={site.ui} orgInfo={site.orgInfo} />
     </div>
     <script is:inline>
       ;(function initFlagStrip() {
@@ -145,10 +144,14 @@ const structuredData = jsonLdGraph(schemaEntries)
         if (!strip) return
 
         const MODES = ['solo-blue', 'solo-yellow', 'solo-red']
-        const path = window.location.pathname
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+        function stripLocalePrefix(pathname) {
+          return pathname.replace(/^\/(ro|ru)(?=\/|$)/, '') || '/'
+        }
+
         function getTargetMode() {
+          const path = stripLocalePrefix(window.location.pathname)
           if (path === '/' || path === '') {
             return sessionStorage.getItem('umbp:visited') ? 'solo-blue' : 'three'
           }
@@ -246,6 +249,5 @@ const structuredData = jsonLdGraph(schemaEntries)
     </script>
     <Analytics />
     <SpeedInsights />
-    <I18nRoot client:load />
   </body>
 </html>

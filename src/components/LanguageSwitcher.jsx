@@ -1,16 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { TbChevronDown, TbCheck } from 'react-icons/tb'
-import { getLang, LANG_EVENT, setLang } from '../utils/language.js'
+import { LOCALE_META, localeFromPath, switchLocalePath } from '../i18n/config.js'
 
-const LANGUAGES = [
-  { code: 'EN', label: 'English' },
-  { code: 'RU', label: 'Русский' },
-  { code: 'RO', label: 'Română' },
-]
+const LANGUAGES = ['en', 'ro', 'ru'].map((code) => LOCALE_META[code])
 
-export default function LanguageSwitcher({ variant = 'desktop' }) {
+export default function LanguageSwitcher({ variant = 'desktop', currentPath = '/' }) {
   const [open, setOpen] = useState(false)
-  const [active, setActive] = useState(getLang)
+  const active = localeFromPath(currentPath)
   const ref = useRef(null)
 
   useEffect(() => {
@@ -20,24 +16,13 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
     function handleKey(e) {
       if (e.key === 'Escape') setOpen(false)
     }
-    function onLangChange(e) {
-      setActive(e.detail)
-    }
     document.addEventListener('mousedown', handleClick)
     document.addEventListener('keydown', handleKey)
-    window.addEventListener(LANG_EVENT, onLangChange)
     return () => {
       document.removeEventListener('mousedown', handleClick)
       document.removeEventListener('keydown', handleKey)
-      window.removeEventListener(LANG_EVENT, onLangChange)
     }
   }, [])
-
-  function selectLanguage(code) {
-    setLang(code)
-    setActive(code)
-    setOpen(false)
-  }
 
   if (variant === 'mobile') {
     return (
@@ -49,18 +34,17 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
           {LANGUAGES.map((lang, i) => {
             const isActive = active === lang.code
             return (
-              <button
+              <a
                 key={lang.code}
-                type="button"
-                onClick={() => selectLanguage(lang.code)}
+                href={switchLocalePath(currentPath, lang.code)}
                 className={[
-                  'py-3 text-[13px] uppercase tracking-widest font-medium',
+                  'py-3 text-center text-[13px] uppercase tracking-widest font-medium',
                   i !== LANGUAGES.length - 1 ? 'border-r border-border' : '',
                   isActive ? 'bg-ink text-white' : 'text-ink',
                 ].join(' ')}
               >
-                {lang.code}
-              </button>
+                {lang.switchCode}
+              </a>
             )
           })}
         </div>
@@ -77,7 +61,7 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
         onClick={() => setOpen((v) => !v)}
         className="h-14 px-3 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-widest text-ink border-b-2 border-transparent hover:text-red"
       >
-        <span>{active}</span>
+        <span>{LOCALE_META[active]?.switchCode ?? 'EN'}</span>
         <TbChevronDown size={12} className={open ? 'rotate-180' : ''} aria-hidden />
       </button>
 
@@ -90,9 +74,9 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
             const isActive = active === lang.code
             return (
               <li key={lang.code} role="option" aria-selected={isActive}>
-                <button
-                  type="button"
-                  onClick={() => selectLanguage(lang.code)}
+                <a
+                  href={switchLocalePath(currentPath, lang.code)}
+                  onClick={() => setOpen(false)}
                   className={[
                     'w-full text-left px-4 py-3 text-[11px] font-medium uppercase tracking-widest font-sans border-b border-border last:border-b-0 flex items-center justify-between',
                     isActive ? 'text-red' : 'text-ink hover:text-red',
@@ -100,14 +84,14 @@ export default function LanguageSwitcher({ variant = 'desktop' }) {
                 >
                   <span className="flex items-center gap-3">
                     <span className="w-[26px] text-[12px] tracking-widest text-muted">
-                      {lang.code}
+                      {lang.switchCode}
                     </span>
                     <span className="normal-case tracking-normal text-[14px] font-medium">
                       {lang.label}
                     </span>
                   </span>
                   {isActive && <TbCheck size={12} />}
-                </button>
+                </a>
               </li>
             )
           })}

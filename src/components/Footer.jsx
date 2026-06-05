@@ -7,7 +7,7 @@ import {
   TbMail,
   TbWorld,
 } from 'react-icons/tb'
-import { orgInfo } from '../data/siteContent.js'
+import { localePath } from '../i18n/config.js'
 
 function FLink({ href, children }) {
   const cls =
@@ -25,18 +25,21 @@ function FLink({ href, children }) {
   )
 }
 
-export default function Footer() {
+export default function Footer({ locale = 'en', ui, orgInfo }) {
+  const footer = ui?.footer ?? {}
+  const nav = ui?.nav ?? {}
+
   const columns = [
     {
-      title: 'Guide',
+      title: footer.guide ?? 'Guide',
       items: [
-        <FLink key="home" href="/">Home</FLink>,
-        <FLink key="contact" href="/contact">Contact</FLink>,
-        <FLink key="interns" href="/interns">For Interns</FLink>,
+        <FLink key="home" href={localePath(locale, '/')}>{nav.home ?? 'Home'}</FLink>,
+        <FLink key="contact" href={localePath(locale, '/contact')}>{nav.contact ?? 'Contact'}</FLink>,
+        <FLink key="interns" href={localePath(locale, '/interns')}>{nav.interns ?? 'For Interns'}</FLink>,
       ],
     },
     {
-      title: 'Follow',
+      title: footer.follow ?? 'Follow',
       items: [
         <FLink key="ig" href="https://www.instagram.com/utahmoldovabusinesspartnership/">
           <TbBrandInstagram size={16} />
@@ -57,7 +60,7 @@ export default function Footer() {
       ],
     },
     {
-      title: 'Contact',
+      title: footer.contact ?? 'Contact',
       items: [
         <FLink key="email" href={`mailto:${orgInfo.email}`}>
           <TbMail size={16} />
@@ -75,7 +78,7 @@ export default function Footer() {
     <footer className="border-t border-border bg-white">
       <div className="mx-auto max-w-[1180px] grid grid-cols-2 md:grid-cols-4">
         <div className="p-5 md:p-8 border-r border-b md:border-b-0 md:border-r border-border">
-          <a href="/" className="inline-flex items-center gap-2 mb-4">
+          <a href={localePath(locale, '/')} className="inline-flex items-center gap-2 mb-4">
             <img
               src="/utah-moldova-logo.png"
               alt="Utah Moldova Business Partnership logo"
@@ -138,9 +141,9 @@ export default function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-[1180px] px-5 md:px-8 py-3 md:py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-2 md:gap-3">
           <span className="text-[11px] md:text-[13px] text-muted font-sans leading-snug">
-            © {new Date().getFullYear()} {orgInfo.shortName} — Est. {orgInfo.founded}
+            © {new Date().getFullYear()} {orgInfo.shortName} — {footer.est ?? 'Est.'} {orgInfo.founded}
             <span className="hidden md:inline">
-              {' '}by {orgInfo.founders.join(' & ')}
+              {' '}{footer.by ?? 'by'} {orgInfo.founders.join(' & ')}
             </span>
           </span>
           <span className="flex items-center gap-[2px]">

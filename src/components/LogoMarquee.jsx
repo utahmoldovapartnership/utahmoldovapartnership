@@ -24,13 +24,13 @@ const logos = [
   },
 ]
 
-export default function LogoMarquee() {
+export default function LogoMarquee({ label = 'Past clients' }) {
   const items = [...logos, ...logos]
   return (
     <ScrollFade as="section" className="border-b border-border bg-white">
       <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-10 md:py-12">
         <div className="text-center text-[11px] uppercase tracking-[0.18em] text-muted font-sans font-medium mb-6">
-          Past clients
+          {label}
         </div>
         <div className="relative overflow-hidden marquee-pause">
           <div className="flex w-max items-center gap-16 md:gap-20 animate-marquee">

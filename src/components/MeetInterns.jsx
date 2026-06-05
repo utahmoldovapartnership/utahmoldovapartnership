@@ -4,7 +4,7 @@ import { TbX } from 'react-icons/tb'
 import ScrollFade from './ScrollFade.jsx'
 import OptimizedImage from './OptimizedImage.jsx'
 
-export default function MeetInterns({ intro, members }) {
+export default function MeetInterns({ title = 'Meet the interns', intro, members }) {
   const [selected, setSelected] = useState(null)
   const gridRef = useRef(null)
 
@@ -62,7 +62,7 @@ export default function MeetInterns({ intro, members }) {
       <ScrollFade as="section" id="meet-interns" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
-            Meet the interns
+            {title}
           </h2>
           <p className="text-[15px] text-muted leading-[1.7] max-w-none mb-9 font-sans">
             {Array.isArray(intro) ? (

@@ -1,30 +1,33 @@
 import { useState } from 'react'
 import { TbMenu2, TbX } from 'react-icons/tb'
 import LanguageSwitcher from './LanguageSwitcher.jsx'
+import { localePath } from '../i18n/config.js'
 import {
   SlidingUnderlineIndicator,
   useSlidingUnderline,
 } from './SlidingUnderline.jsx'
 
 const links = [
-  { href: '/', label: 'Home', end: true },
-  { href: '/contact', label: 'Contact' },
-  { href: '/interns', label: 'For Interns' },
+  { href: '/', labelKey: 'home' },
+  { href: '/contact', labelKey: 'contact' },
+  { href: '/interns', labelKey: 'interns' },
 ]
 
 function navActiveIndex(pathname) {
-  if (pathname === '/') return 0
-  if (pathname.startsWith('/contact')) return 1
-  if (pathname.startsWith('/interns')) return 2
+  const path = pathname.replace(/^\/(ro|ru)(?=\/|$)/, '') || '/'
+  if (path === '/') return 0
+  if (path.startsWith('/contact')) return 1
+  if (path.startsWith('/interns')) return 2
   return -1
 }
 
 function isLinkActive(pathname, href, end) {
-  if (end) return pathname === href
-  return pathname === href || pathname.startsWith(`${href}/`)
+  const path = pathname.replace(/^\/(ro|ru)(?=\/|$)/, '') || '/'
+  if (end) return path === href
+  return path === href || path.startsWith(`${href}/`)
 }
 
-export default function Navbar({ currentPath = '/' }) {
+export default function Navbar({ currentPath = '/', locale = 'en', nav = {} }) {
   const [open, setOpen] = useState(false)
   const activeIndex = navActiveIndex(currentPath)
   const { containerRef, setItemRef, indicator } = useSlidingUnderline(activeIndex)
@@ -33,7 +36,7 @@ export default function Navbar({ currentPath = '/' }) {
     <header className="sticky top-1 z-50 bg-white border-b border-border">
       <nav className="mx-auto flex items-center justify-between h-14 px-6 md:px-10 max-w-[1180px]">
         <a
-          href="/"
+          href={localePath(locale, '/')}
           className="flex items-center gap-3"
           onClick={() => setOpen(false)}
         >
@@ -51,22 +54,22 @@ export default function Navbar({ currentPath = '/' }) {
         </a>
 
         <div className="hidden md:flex items-stretch h-14">
-          <LanguageSwitcher />
+          <LanguageSwitcher currentPath={currentPath} />
           <span className="w-px h-4 bg-border self-center mx-1" aria-hidden />
           <div ref={containerRef} className="relative flex items-stretch h-14">
             {links.map((l, i) => {
-              const active = isLinkActive(currentPath, l.href, l.end)
+              const active = isLinkActive(currentPath, l.href, l.href === '/')
               return (
                 <a
                   key={l.href}
-                  href={l.href}
+                  href={localePath(locale, l.href)}
                   ref={setItemRef(i)}
                   className={[
                     'flex items-center h-14 px-3 text-[11px] font-medium uppercase tracking-widest',
                     active ? 'text-red' : 'text-muted hover:text-ink',
                   ].join(' ')}
                 >
-                  {l.label}
+                  {nav[l.labelKey]}
                 </a>
               )
             })}
@@ -86,20 +89,20 @@ export default function Navbar({ currentPath = '/' }) {
 
       {open && (
         <div className="md:hidden border-t border-border bg-white">
-          <LanguageSwitcher variant="mobile" />
+          <LanguageSwitcher variant="mobile" currentPath={currentPath} />
           {links.map((l) => {
-            const active = isLinkActive(currentPath, l.href, l.end)
+            const active = isLinkActive(currentPath, l.href, l.href === '/')
             return (
               <a
                 key={l.href}
-                href={l.href}
+                href={localePath(locale, l.href)}
                 onClick={() => setOpen(false)}
                 className={[
                   'block px-6 py-4 text-[13px] uppercase tracking-widest border-b border-border',
                   active ? 'text-red' : 'text-muted',
                 ].join(' ')}
               >
-                {l.label}
+                {nav[l.labelKey]}
               </a>
             )
           })}

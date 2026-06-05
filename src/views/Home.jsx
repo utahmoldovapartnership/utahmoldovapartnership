@@ -7,49 +7,62 @@ import SectionKicker from '../components/SectionKicker.jsx'
 import LogoMarquee from '../components/LogoMarquee.jsx'
 import MeetInterns from '../components/MeetInterns.jsx'
 import ScrollFade from '../components/ScrollFade.jsx'
-import {
-  stats,
-  services,
-  testimonial,
-  meetInterns,
-  businessSteps,
-  orgInfo,
-} from '../data/siteContent.js'
+import { getSiteData } from '../i18n/getSiteData.js'
+import { localePath } from '../i18n/config.js'
 
-export default function Home() {
+const eventPhotos = [
+  'https://static.wixstatic.com/media/a6cdd8_77d7beda2e964cc4b507a24a8a20554b~mv2.jpg/v1/crop/x_0,y_132,w_3000,h_1986/fill/w_694,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/MorningCodingStudents_edited.jpg',
+  'https://static.wixstatic.com/media/a6cdd8_c75a64ffcb984558a358b27c0c5018af~mv2.jpg/v1/crop/x_0,y_97,w_962,h_637/fill/w_694,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/interns-2017_edited.jpg',
+  'https://static.wixstatic.com/media/a6cdd8_ccaa73b418174397addda597243136db~mv2.jpg/v1/crop/x_52,y_37,w_1631,h_1077/fill/w_696,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/7A011441-216C-442C-8D25-3D18AD2FD40D_JPG.jpg',
+]
+
+const partnerLogos = [
+  { name: 'UNDP Moldova', href: 'https://www.md.undp.org', src: 'https://static.wixstatic.com/media/a6cdd8_5001911b9a8348c5bf5c7e6288809168~mv2.png/v1/fill/w_250,h_212,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/283px-UN_emblem_blue_edited.png' },
+  { name: 'Tekwill', href: 'https://tekwill.md/', src: 'https://static.wixstatic.com/media/a6cdd8_7d38921b453e41f88ff8727573eb1c67~mv2.png/v1/fill/w_250,h_212,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo_Tekwill_edited.png' },
+  { name: 'AmCham Moldova', href: 'https://www.amcham.md/', src: 'https://static.wixstatic.com/media/a6cdd8_c16248d59e8b44ffa8db42b06fc86b02~mv2.png/v1/crop/x_23,y_53,w_377,h_95/fill/w_524,h_132,al_c,lg_1,q_85,enc_avif,quality_auto/ec55e5d9-c8d0-4751-8c37-e5a46a97cb2a_edi.png' },
+  { name: 'Hinckley Institute of Politics', href: 'https://www.hinckley.utah.edu/', src: 'https://static.wixstatic.com/media/a6cdd8_b82c6fc8be01441e91ff0bfd1da23b77~mv2.png/v1/fill/w_364,h_168,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hinckley%20Institute.png' },
+  { name: 'David Eccles School of Business', href: 'https://eccles.utah.edu/', src: 'https://static.wixstatic.com/media/a6cdd8_67a503eb0b9b467caf8549f7d3a35fa1~mv2.png/v1/crop/x_756,y_0,w_414,h_250/fill/w_220,h_132,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/hs-emp-branding-image-data_edited.png' },
+  { name: 'Code to Success', href: 'https://www.ctsutah.org/', src: 'https://static.wixstatic.com/media/a6cdd8_2410ceeb2f704659b41351d694bdad52~mv2.png/v1/fill/w_186,h_186,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/code-to-success-logo_edited.png' },
+  { name: 'Startup Moldova', href: 'https://startupmoldova.digital/en/', src: 'https://static.wixstatic.com/media/a6cdd8_0d209de9e2ea4ee89c1840784482f51a~mv2.png/v1/crop/x_72,y_111,w_805,h_330/fill/w_448,h_184,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Untitled%20drawing%20(1).png' },
+]
+
+export default function Home({ locale = 'en' }) {
+  const d = getSiteData(locale)
+  const { ui, orgInfo, stats, services, testimonial, meetInterns, businessSteps } = d
+  const p = (path) => localePath(locale, path)
+
   return (
     <>
       <Hero
-        kicker="A non-profit strengthening Moldova's economy"
+        kicker={ui.home.hero.kicker}
         kickerColor="white"
         title={
           <>
-            Real consulting that
+            {ui.home.hero.titleLine1}
             <br />
-            helps your business grow.
+            {ui.home.hero.titleLine2}
           </>
         }
-        subtext="Free consulting for Moldovan businesses. Each summer a small team of American interns comes to Chișinău, finds companies that need help, and delivers work across strategy, marketing, web development, finance, and more."
-        primary={{ label: 'Get Free Consulting', href: '/contact', variant: 'red' }}
-        secondary={{ label: 'Learn More', href: '#services' }}
+        subtext={ui.home.hero.subtext}
+        primary={{ label: ui.home.hero.primary, href: p('/contact'), variant: 'red' }}
+        secondary={{ label: ui.home.hero.secondary, href: '#services' }}
         image={pageHeroImages.home}
       />
 
       <StatsBar items={stats} />
 
-      {/* Services */}
       <ScrollFade as="section" id="services" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
-          <SectionKicker color="red">What we do</SectionKicker>
+          <SectionKicker color="red">{ui.home.services.kicker}</SectionKicker>
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
-            Free services for
+            {ui.home.services.titleLine1}
             <br />
-            Moldovan businesses
+            {ui.home.services.titleLine2}
           </h2>
           <p className="text-[15px] text-muted leading-[1.7] max-w-[720px] mb-9 font-sans">
-            Our teams have worked with start-ups, small businesses, law firms, retailers, and café chains.
+            {ui.home.services.introLine1}
             <br />
-            Every engagement is free and tailored to what the business actually needs.
+            {ui.home.services.introLine2}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 border border-border">
@@ -70,9 +83,7 @@ export default function Home() {
                   <h3 className="font-serif font-medium text-[20px] text-ink leading-[1.2] mb-2 whitespace-pre-line">
                     {s.title}
                   </h3>
-                  <p className="text-[14px] text-muted leading-[1.65] font-sans">
-                    {s.text}
-                  </p>
+                  <p className="text-[14px] text-muted leading-[1.65] font-sans">{s.text}</p>
                 </div>
               </div>
             ))}
@@ -80,25 +91,24 @@ export default function Home() {
         </div>
       </ScrollFade>
 
-      <LogoMarquee />
+      <LogoMarquee label={ui.home.marquee} />
 
-      {/* How to work with us */}
       <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
             <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-4">
-              How we work
+              {ui.home.howWeWork.titleLine1}
               <br />
-              with you
+              {ui.home.howWeWork.titleLine2}
             </h2>
             <p className="text-[15px] text-muted leading-[1.7] font-sans mb-6">
-              From a single email to a finished deliverable. We keep it simple so business owners can stay focused on running their company.
+              {ui.home.howWeWork.intro}
             </p>
             <a
-              href="/contact"
+              href={p('/contact')}
               className="inline-flex items-center gap-2 bg-blue text-white px-6 py-3 font-sans font-medium text-[12px] uppercase tracking-wider"
             >
-              Start a conversation
+              {ui.home.howWeWork.cta}
               <TbArrowRight size={14} />
             </a>
           </div>
@@ -120,9 +130,7 @@ export default function Home() {
                   <div className="font-serif font-medium text-[18px] text-ink mb-1">
                     {step.title}
                   </div>
-                  <div className="text-[14px] text-muted leading-[1.65] font-sans">
-                    {step.text}
-                  </div>
+                  <div className="text-[14px] text-muted leading-[1.65] font-sans">{step.text}</div>
                 </div>
               </div>
             ))}
@@ -130,13 +138,12 @@ export default function Home() {
         </div>
       </ScrollFade>
 
-      {/* Testimonial */}
       <ScrollFade as="section" className="bg-blue">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-16 md:py-20">
           <div className="font-serif font-medium italic text-white text-[34px] sm:text-[44px] md:text-[52px] leading-[1.05] tracking-[-1px] max-w-[820px]">
-            “These meetings helped us understand where to be{' '}
-            <em className="italic font-serif font-medium text-yellow">focused</em>
-            {' '}and what it will take to reach our potential.”
+            &ldquo;{testimonial.quote.split(testimonial.emphasis)[0]}
+            <em className="italic font-serif font-medium text-yellow">{testimonial.emphasis}</em>
+            {testimonial.quote.split(testimonial.emphasis)[1]}&rdquo;
           </div>
           <div className="mt-8 pt-6 border-t border-white/20 flex items-center gap-4">
             <span className="text-[12px] uppercase tracking-[0.12em] text-yellow font-sans font-medium">
@@ -148,39 +155,26 @@ export default function Home() {
         </div>
       </ScrollFade>
 
-      <MeetInterns intro={meetInterns.intro} members={meetInterns.members} />
+      <MeetInterns
+        title={ui.home.meetInternsTitle}
+        intro={meetInterns.intro}
+        members={meetInterns.members}
+      />
 
-      {/* On the ground photos */}
       <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
-            Past Events & Activities
+            {ui.home.events.title}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                src: 'https://static.wixstatic.com/media/a6cdd8_77d7beda2e964cc4b507a24a8a20554b~mv2.jpg/v1/crop/x_0,y_132,w_3000,h_1986/fill/w_694,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/MorningCodingStudents_edited.jpg',
-                alt: 'Code to Success students in a morning class',
-                caption: 'Code to Success students in a morning session.',
-              },
-              {
-                src: 'https://static.wixstatic.com/media/a6cdd8_c75a64ffcb984558a358b27c0c5018af~mv2.jpg/v1/crop/x_0,y_97,w_962,h_637/fill/w_694,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/interns-2017_edited.jpg',
-                alt: 'UMBP intern team in 2017',
-                caption: 'UMBP intern team, 2017.',
-              },
-              {
-                src: 'https://static.wixstatic.com/media/a6cdd8_ccaa73b418174397addda597243136db~mv2.jpg/v1/crop/x_52,y_37,w_1631,h_1077/fill/w_696,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/7A011441-216C-442C-8D25-3D18AD2FD40D_JPG.jpg',
-                alt: 'UMBP team on the ground in Moldova',
-                caption: 'On the ground with a local business.',
-              },
-            ].map((photo) => (
+            {ui.home.events.photos.map((photo, i) => (
               <figure
-                key={photo.src}
+                key={eventPhotos[i]}
                 className="group border border-border bg-white transition-[filter,transform] duration-300 hover:drop-shadow-[0_6px_20px_rgba(13,13,13,0.1)]"
               >
                 <div className="overflow-hidden bg-white">
                   <OptimizedImage
-                    src={photo.src}
+                    src={eventPhotos[i]}
                     alt={photo.alt}
                     width={696}
                     height={460}
@@ -196,36 +190,27 @@ export default function Home() {
         </div>
       </ScrollFade>
 
-      {/* About / Story */}
       <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
-            <SectionKicker color="blue">About</SectionKicker>
+            <SectionKicker color="blue">{ui.home.about.kicker}</SectionKicker>
             <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-4">
-              Built around
+              {ui.home.about.titleLine1}
               <br />
-              real impact
+              {ui.home.about.titleLine2}
             </h2>
           </div>
           <div className="text-[16px] text-muted leading-[1.8] font-sans space-y-4 max-w-[520px]">
             <p>
-              The Utah Moldova Business Partnership was founded in {orgInfo.founded} by {orgInfo.founders.join(' and ')}. They saw enormous potential in the Republic of Moldova for economic development, if entrepreneurs were given the right resources, ideas, and connections.
+              {ui.home.about.paragraph1Before} {orgInfo.founded} {ui.home.about.paragraph1Mid}{' '}
+              {orgInfo.founders.join(' & ')}. {ui.home.about.paragraph1After}
             </p>
-            <p>
-              Each year we sponsor a small team of interns in Chișinău to proactively find and support Moldovan businesses ready for the next step. In 2018 the partnership expanded to include Code to Success programming courses, and the program has grown in size and impact every year since.
-            </p>
+            <p>{ui.home.about.paragraph2}</p>
             <ul className="pt-2 space-y-3">
-              {[
-                'Free consulting. No fees. No equity.',
-                'Real deliverables you keep after the engagement',
-                'Local team supported by U.S. partners',
-                'Focused on small and growing businesses',
-              ].map((item) => (
+              {ui.home.about.bullets.map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-red flex-shrink-0 mt-[7px]" aria-hidden />
-                  <span className="text-[15px] text-ink font-sans leading-[1.65]">
-                    {item}
-                  </span>
+                  <span className="text-[15px] text-ink font-sans leading-[1.65]">{item}</span>
                 </li>
               ))}
             </ul>
@@ -233,53 +218,16 @@ export default function Home() {
         </div>
       </ScrollFade>
 
-      {/* Supporters */}
       <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
-            Partners & institutions
+            {ui.home.partners.title}
           </h2>
           <p className="text-[15px] text-muted leading-[1.7] max-w-none mb-9 font-sans">
-            UMBP exists thanks to a coalition of universities, foundations, and partner organizations on both sides of the Atlantic.
+            {ui.home.partners.intro}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 border border-border">
-            {[
-              {
-                name: 'UNDP Moldova',
-                href: 'https://www.md.undp.org',
-                src: 'https://static.wixstatic.com/media/a6cdd8_5001911b9a8348c5bf5c7e6288809168~mv2.png/v1/fill/w_250,h_212,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/283px-UN_emblem_blue_edited.png',
-              },
-              {
-                name: 'Tekwill',
-                href: 'https://tekwill.md/',
-                src: 'https://static.wixstatic.com/media/a6cdd8_7d38921b453e41f88ff8727573eb1c67~mv2.png/v1/fill/w_250,h_212,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo_Tekwill_edited.png',
-              },
-              {
-                name: 'AmCham Moldova',
-                href: 'https://www.amcham.md/',
-                src: 'https://static.wixstatic.com/media/a6cdd8_c16248d59e8b44ffa8db42b06fc86b02~mv2.png/v1/crop/x_23,y_53,w_377,h_95/fill/w_524,h_132,al_c,lg_1,q_85,enc_avif,quality_auto/ec55e5d9-c8d0-4751-8c37-e5a46a97cb2a_edi.png',
-              },
-              {
-                name: 'Hinckley Institute of Politics',
-                href: 'https://www.hinckley.utah.edu/',
-                src: 'https://static.wixstatic.com/media/a6cdd8_b82c6fc8be01441e91ff0bfd1da23b77~mv2.png/v1/fill/w_364,h_168,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hinckley%20Institute.png',
-              },
-              {
-                name: 'David Eccles School of Business',
-                href: 'https://eccles.utah.edu/',
-                src: 'https://static.wixstatic.com/media/a6cdd8_67a503eb0b9b467caf8549f7d3a35fa1~mv2.png/v1/crop/x_756,y_0,w_414,h_250/fill/w_220,h_132,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/hs-emp-branding-image-data_edited.png',
-              },
-              {
-                name: 'Code to Success',
-                href: 'https://www.ctsutah.org/',
-                src: 'https://static.wixstatic.com/media/a6cdd8_2410ceeb2f704659b41351d694bdad52~mv2.png/v1/fill/w_186,h_186,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/code-to-success-logo_edited.png',
-              },
-              {
-                name: 'Startup Moldova',
-                href: 'https://startupmoldova.digital/en/',
-                src: 'https://static.wixstatic.com/media/a6cdd8_0d209de9e2ea4ee89c1840784482f51a~mv2.png/v1/crop/x_72,y_111,w_805,h_330/fill/w_448,h_184,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Untitled%20drawing%20(1).png',
-              },
-            ].map((logo, i, arr) => (
+            {partnerLogos.map((logo, i, arr) => (
               <a
                 key={logo.name}
                 href={logo.href}
@@ -305,18 +253,17 @@ export default function Home() {
         </div>
       </ScrollFade>
 
-      {/* CTA */}
       <ScrollFade as="section" className="bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <div className="border border-border">
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-border bg-red">
-                <SectionKicker color="white">Ready to talk?</SectionKicker>
+                <SectionKicker color="white">{ui.home.cta.kicker}</SectionKicker>
                 <h3 className="font-serif font-medium text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-white mb-3">
-                  Get free consulting
+                  {ui.home.cta.title}
                 </h3>
                 <p className="text-[15px] text-white/85 leading-[1.7] font-sans max-w-[420px]">
-                  Send a short message describing your business and where you feel stuck. We will reply with next steps.
+                  {ui.home.cta.text}
                 </p>
               </div>
               <div className="p-8 md:p-10 flex flex-col justify-center gap-4">
@@ -324,13 +271,13 @@ export default function Home() {
                   href={`mailto:${orgInfo.email}?subject=Free%20Consulting%20Inquiry`}
                   className="inline-flex items-center justify-center gap-2 bg-red text-white px-6 py-4 font-sans font-medium text-[12px] uppercase tracking-wider"
                 >
-                  Email Us <TbArrowRight size={14} />
+                  {ui.home.cta.email} <TbArrowRight size={14} />
                 </a>
                 <a
-                  href="/contact"
+                  href={p('/contact')}
                   className="inline-flex items-center justify-center gap-2 border border-border px-6 py-4 font-sans font-medium text-[12px] uppercase tracking-wider text-ink"
                 >
-                  Go to contact page
+                  {ui.home.cta.contactPage}
                 </a>
               </div>
             </div>
