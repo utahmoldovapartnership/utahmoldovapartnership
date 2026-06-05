@@ -10,14 +10,16 @@ export default function ScrollFade({
   className = '',
   children,
   revealOnMount = false,
+  ...rest
 }) {
   const ref = useRef(null)
-  const skipAnimations =
-    typeof window !== 'undefined' && hasSeenPage(window.location.pathname)
-  const [visible, setVisible] = useState(skipAnimations)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    if (skipAnimations) return undefined
+    if (hasSeenPage(window.location.pathname)) {
+      setVisible(true)
+      return undefined
+    }
 
     if (revealOnMount) {
       const id = requestAnimationFrame(() => {
@@ -41,7 +43,7 @@ export default function ScrollFade({
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [revealOnMount, skipAnimations])
+  }, [revealOnMount])
 
   return (
     <Tag
@@ -49,6 +51,7 @@ export default function ScrollFade({
       className={['scroll-reveal', visible && 'scroll-reveal--visible', className]
         .filter(Boolean)
         .join(' ')}
+      {...rest}
     >
       {children}
     </Tag>

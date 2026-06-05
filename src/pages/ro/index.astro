@@ -3,9 +3,11 @@ import Layout from '../../layouts/Layout.astro'
 import Home from '../../views/Home.jsx'
 import { pageHeroImages } from '../../data/heroImages.js'
 import { getPageMeta } from '../../i18n/getPageMeta.js'
+import { getSiteData } from '../../i18n/getSiteData.js'
 
 const locale = 'ro'
 const seo = getPageMeta('home', locale)
+const site = getSiteData(locale)
 ---
 
 <Layout
@@ -17,5 +19,5 @@ const seo = getPageMeta('home', locale)
   heroImage={pageHeroImages.home}
   includeWebSiteSchema={true}
 >
-  <Home client:load locale={locale} />
+  <Home client:load locale={locale} site={site} />
 </Layout>

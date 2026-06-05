@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import useIsomorphicLayoutEffect from '../utils/useIsomorphicLayoutEffect.js'
 import { TbX } from 'react-icons/tb'
 import ScrollFade from './ScrollFade.jsx'
@@ -115,53 +116,56 @@ export default function MeetInterns({ title = 'Meet the interns', intro, members
         </div>
       </ScrollFade>
 
-      {selected ? (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-ink/70"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="intern-modal-title"
-          onClick={() => setSelected(null)}
-        >
-          <div
-            className="relative w-full max-w-[520px] bg-white border border-border max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
+      {selected
+        ? createPortal(
+            <div
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-ink/70"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="intern-modal-title"
               onClick={() => setSelected(null)}
-              className="absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center bg-white border border-border text-ink hover:border-red hover:text-red"
-              aria-label={closeLabel}
             >
-              <TbX size={18} />
-            </button>
-
-            <OptimizedImage
-              src={selected.src ?? selected.image}
-              srcSet={selected.srcSet}
-              sizes={selected.modalSizes ?? selected.sizes}
-              alt={selected.name}
-              width={selected.width ?? 520}
-              height={selected.height ?? 520}
-              loading="eager"
-              className="w-full aspect-square object-cover object-center"
-            />
-
-            <div className="p-6 md:p-8">
-              <h3
-                id="intern-modal-title"
-                className="font-serif font-medium text-[28px] text-ink leading-[1.1] mb-1"
+              <div
+                className="relative w-full max-w-[520px] bg-white border border-border max-h-[90vh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
               >
-                {selected.name}
-              </h3>
-              <p className="text-[12px] uppercase tracking-[0.12em] text-blue font-sans font-medium mb-4">
-                {selected.focus}
-              </p>
-              <p className="text-[15px] text-muted leading-[1.7] font-sans">{selected.bio}</p>
-            </div>
-          </div>
-        </div>
-      ) : null}
+                <button
+                  type="button"
+                  onClick={() => setSelected(null)}
+                  className="absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center bg-white border border-border text-ink hover:border-red hover:text-red"
+                  aria-label={closeLabel}
+                >
+                  <TbX size={18} />
+                </button>
+
+                <OptimizedImage
+                  src={selected.src ?? selected.image}
+                  srcSet={selected.srcSet}
+                  sizes={selected.modalSizes ?? selected.sizes}
+                  alt={selected.name}
+                  width={selected.width ?? 520}
+                  height={selected.height ?? 520}
+                  loading="eager"
+                  className="w-full aspect-square object-cover object-center"
+                />
+
+                <div className="p-6 md:p-8">
+                  <h3
+                    id="intern-modal-title"
+                    className="font-serif font-medium text-[28px] text-ink leading-[1.1] mb-1"
+                  >
+                    {selected.name}
+                  </h3>
+                  <p className="text-[12px] uppercase tracking-[0.12em] text-blue font-sans font-medium mb-4">
+                    {selected.focus}
+                  </p>
+                  <p className="text-[15px] text-muted leading-[1.7] font-sans">{selected.bio}</p>
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </>
   )
 }

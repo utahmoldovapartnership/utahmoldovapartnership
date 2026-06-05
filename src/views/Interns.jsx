@@ -7,15 +7,14 @@ import SectionKicker from '../components/SectionKicker.jsx'
 import InternPhotoMarquee from '../components/InternPhotoMarquee.jsx'
 import ScrollFade from '../components/ScrollFade.jsx'
 import { applySummerProgramImage } from '../data/staticImages.generated.js'
-import { getSiteData } from '../i18n/getSiteData.js'
 
 const tagColorMap = {
   red: 'text-red',
   blue: 'text-blue',
 }
 
-export default function Interns({ locale = 'en' }) {
-  const d = getSiteData(locale)
+export default function Interns({ locale = 'en', site }) {
+  const d = site
   const {
     ui,
     orgInfo,

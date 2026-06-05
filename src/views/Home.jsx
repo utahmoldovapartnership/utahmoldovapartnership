@@ -7,7 +7,6 @@ import SectionKicker from '../components/SectionKicker.jsx'
 import LogoMarquee from '../components/LogoMarquee.jsx'
 import MeetInterns from '../components/MeetInterns.jsx'
 import ScrollFade from '../components/ScrollFade.jsx'
-import { getSiteData } from '../i18n/getSiteData.js'
 import { localePath } from '../i18n/config.js'
 
 const eventPhotos = [
@@ -26,8 +25,8 @@ const partnerLogos = [
   { name: 'Startup Moldova', href: 'https://startupmoldova.digital/en/', src: 'https://static.wixstatic.com/media/a6cdd8_0d209de9e2ea4ee89c1840784482f51a~mv2.png/v1/crop/x_72,y_111,w_805,h_330/fill/w_448,h_184,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Untitled%20drawing%20(1).png' },
 ]
 
-export default function Home({ locale = 'en' }) {
-  const d = getSiteData(locale)
+export default function Home({ locale = 'en', site }) {
+  const d = site
   const { ui, orgInfo, stats, services, testimonial, meetInterns, businessSteps } = d
   const p = (path) => localePath(locale, path)
 

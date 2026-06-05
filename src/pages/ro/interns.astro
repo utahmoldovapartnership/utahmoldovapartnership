@@ -3,9 +3,11 @@ import Layout from '../../layouts/Layout.astro'
 import Interns from '../../views/Interns.jsx'
 import { pageHeroImages } from '../../data/heroImages.js'
 import { getPageMeta } from '../../i18n/getPageMeta.js'
+import { getSiteData } from '../../i18n/getSiteData.js'
 
 const locale = 'ro'
 const seo = getPageMeta('interns', locale)
+const site = getSiteData(locale)
 ---
 
 <Layout
@@ -17,5 +19,5 @@ const seo = getPageMeta('interns', locale)
   heroImage={pageHeroImages.interns}
   breadcrumbs={seo.breadcrumbs}
 >
-  <Interns client:load locale={locale} />
+  <Interns client:load locale={locale} site={site} />
 </Layout>

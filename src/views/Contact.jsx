@@ -7,10 +7,8 @@ import {
   SlidingUnderlineIndicator,
   useSlidingUnderline,
 } from '../components/SlidingUnderline.jsx'
-import { getSiteData } from '../i18n/getSiteData.js'
-
-export default function Contact({ locale = 'en' }) {
-  const d = getSiteData(locale)
+export default function Contact({ locale = 'en', site }) {
+  const d = site
   const { ui, orgInfo, faqBusiness, faqInterns } = d
   const c = ui.contact
   const common = ui.common
