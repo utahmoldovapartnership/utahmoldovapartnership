@@ -80,9 +80,9 @@ export default function Footer({ locale = 'en', ui, orgInfo }) {
         <div className="p-5 md:p-8 border-r border-b md:border-b-0 md:border-r border-border">
           <a href={localePath(locale, '/')} className="inline-flex items-center gap-2 mb-4">
             <img
-              src="/utah-moldova-logo.png"
+              src="/umbp-logo-color.png"
               alt={nav.logoAlt ?? 'Utah Moldova Business Partnership logo'}
-              className="w-10 h-10 object-contain"
+              className="h-10 w-auto object-contain"
             />
           </a>
           <div className="font-sans font-medium text-[11px] md:text-[12px] uppercase tracking-[0.12em] text-ink mb-3 leading-[1.4]">

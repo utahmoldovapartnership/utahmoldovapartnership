@@ -41,9 +41,9 @@ export default function Navbar({ currentPath = '/', locale = 'en', nav = {}, org
           onClick={() => setOpen(false)}
         >
           <img
-            src="/utah-moldova-logo.png"
+            src="/umbp-logo-color.png"
             alt={nav.logoAlt ?? 'Utah Moldova Business Partnership logo'}
-            className="w-[38px] h-[38px] object-contain"
+            className="h-8 w-auto object-contain"
           />
           <span className="hidden sm:block font-sans font-bold text-[12px] uppercase text-ink tracking-[0.08em]">
             {orgInfo?.name ?? 'Utah Moldova Business Partnership'}
