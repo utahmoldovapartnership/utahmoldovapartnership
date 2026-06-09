@@ -1,16 +1,21 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { flushSync } from 'react-dom'
 import useIsomorphicLayoutEffect from '../utils/useIsomorphicLayoutEffect.js'
 
-export function SlidingUnderlineIndicator({ left, width, visible = true }) {
+export function SlidingUnderlineIndicator({ indicatorRef, left, width, animate = false }) {
   return (
     <span
+      ref={indicatorRef}
       aria-hidden
-      className="absolute bottom-0 h-0.5 bg-red pointer-events-none ease-out"
+      className="absolute bottom-0 left-0 h-0.5 bg-red pointer-events-none"
       style={{
-        left,
         width,
-        opacity: visible ? 1 : 0,
-        transition: 'left 0.3s ease, width 0.3s ease',
+        transform: `translateX(${left}px)`,
+        opacity: width > 0 ? 1 : 0,
+        transition: animate
+          ? 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1)'
+          : 'none',
+        willChange: animate ? 'transform, width' : 'auto',
       }}
     />
   )
@@ -18,48 +23,100 @@ export function SlidingUnderlineIndicator({ left, width, visible = true }) {
 
 export function useSlidingUnderline(activeIndex) {
   const containerRef = useRef(null)
+  const indicatorRef = useRef(null)
   const itemRefs = useRef([])
-  const [indicator, setIndicator] = useState({ left: 0, width: 0, visible: false })
+  const prevIndexRef = useRef(activeIndex)
+  const readyRef = useRef(false)
+  const [indicator, setIndicator] = useState({ left: 0, width: 0, animate: false })
 
-  const setItemRef = useCallback(
-    (index) => (el) => {
-      itemRefs.current[index] = el
-    },
-    [],
-  )
-
-  const update = useCallback(() => {
+  const measure = useCallback((index) => {
     const container = containerRef.current
-    const el = itemRefs.current[activeIndex]
-    if (!container || !el || activeIndex < 0) return
+    const el = itemRefs.current[index]
+    if (!container || !el || index < 0) return null
 
     const containerRect = container.getBoundingClientRect()
     const rect = el.getBoundingClientRect()
-    setIndicator({
+    return {
       left: rect.left - containerRect.left,
       width: rect.width,
-      visible: true,
-    })
-  }, [activeIndex])
+    }
+  }, [])
+
+  const setPosition = useCallback((metrics, animate) => {
+    if (!metrics) return
+    setIndicator({ ...metrics, animate })
+  }, [])
+
+  const runSlide = useCallback(
+    (fromIndex, toIndex) => {
+      const from = measure(fromIndex)
+      const to = measure(toIndex)
+      if (!to) return
+
+      if (!from || fromIndex === toIndex) {
+        setPosition(to, false)
+        return
+      }
+
+      flushSync(() => {
+        setPosition(from, false)
+      })
+      void indicatorRef.current?.offsetWidth
+
+      requestAnimationFrame(() => {
+        setPosition(to, true)
+      })
+    },
+    [measure, setPosition],
+  )
 
   useIsomorphicLayoutEffect(() => {
-    update()
+    if (!readyRef.current) {
+      readyRef.current = true
+      const metrics = measure(activeIndex)
+      if (metrics) setPosition(metrics, false)
+      prevIndexRef.current = activeIndex
+    }
 
     const container = containerRef.current
     if (!container) return undefined
 
-    const observer = new ResizeObserver(update)
+    const onResize = () => {
+      const metrics = measure(activeIndex)
+      if (metrics) setPosition(metrics, false)
+    }
+
+    const observer = new ResizeObserver(onResize)
     observer.observe(container)
     itemRefs.current.forEach((el) => {
       if (el) observer.observe(el)
     })
 
-    window.addEventListener('resize', update)
+    window.addEventListener('resize', onResize)
     return () => {
       observer.disconnect()
-      window.removeEventListener('resize', update)
+      window.removeEventListener('resize', onResize)
     }
-  }, [update])
+  }, [activeIndex, measure, setPosition])
 
-  return { containerRef, setItemRef, indicator, update }
+  useEffect(() => {
+    if (!readyRef.current) return
+    if (prevIndexRef.current === activeIndex) return
+
+    runSlide(prevIndexRef.current, activeIndex)
+    prevIndexRef.current = activeIndex
+  }, [activeIndex, runSlide])
+
+  return {
+    containerRef,
+    indicatorRef,
+    setItemRef: useCallback((index) => (el) => {
+      itemRefs.current[index] = el
+    }, []),
+    indicator,
+    update: () => {
+      const metrics = measure(activeIndex)
+      if (metrics) setPosition(metrics, false)
+    },
+  }
 }
