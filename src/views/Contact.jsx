@@ -70,8 +70,8 @@ export default function Contact({ locale = 'en', site }) {
       />
 
       <ScrollFade as="section" className="border-b border-border bg-white">
-        <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
-          <div className="md:col-span-2 p-7 md:p-10 border-b md:border-b-0 md:border-r border-border">
+        <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0">
+          <div className="md:col-span-2 md:pr-10">
             <h3 className="font-serif font-medium text-[28px] md:text-[36px] leading-[1.0] tracking-[-0.5px] text-ink mb-3">
               {c.form.title}
             </h3>
@@ -175,7 +175,7 @@ export default function Contact({ locale = 'en', site }) {
             </form>
           </div>
 
-          <aside className="p-7 md:p-10">
+          <aside className="md:border-l md:border-border md:pl-10">
             <h3 className="font-serif font-medium text-[22px] md:text-[26px] leading-[1.0] tracking-[-0.5px] text-ink mb-4">
               {c.sidebar.title}
             </h3>

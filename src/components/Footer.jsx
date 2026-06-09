@@ -61,6 +61,7 @@ export default function Footer({ locale = 'en', ui, orgInfo }) {
     },
     {
       title: footer.contact ?? 'Contact',
+      wide: true,
       items: [
         <FLink key="email" href={`mailto:${orgInfo.email}`}>
           <TbMail size={16} />
@@ -76,7 +77,7 @@ export default function Footer({ locale = 'en', ui, orgInfo }) {
 
   return (
     <footer className="border-t border-border bg-white">
-      <div className="mx-auto max-w-[1180px] grid grid-cols-2 md:grid-cols-4">
+      <div className="mx-auto max-w-[1180px] grid grid-cols-2 md:grid-cols-[1.1fr_0.85fr_0.85fr_1.35fr]">
         <div className="p-5 md:p-8 border-r border-b md:border-b-0 md:border-r border-border">
           <a href={localePath(locale, '/')} className="inline-flex items-center gap-2 mb-4">
             <img
@@ -128,7 +129,8 @@ export default function Footer({ locale = 'en', ui, orgInfo }) {
             <div
               key={col.title}
               className={[
-                'p-5 md:p-8 border-border',
+                'border-border',
+                col.wide ? 'p-5 md:px-10 md:py-8' : 'p-5 md:p-8',
                 isEvenPos ? 'border-r' : '',
                 isTopRowMobile ? 'border-b md:border-b-0' : '',
                 !isLast ? 'md:border-r' : '',
@@ -146,7 +148,7 @@ export default function Footer({ locale = 'en', ui, orgInfo }) {
       </div>
 
       <div className="border-t border-border">
-        <div className="mx-auto max-w-[1180px] px-5 md:px-8 py-3 md:py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-2 md:gap-3">
+        <div className="mx-auto max-w-[1180px] px-5 md:px-8 py-3 md:py-4 flex flex-row justify-between items-center gap-3">
           <span className="text-[11px] md:text-[13px] text-muted font-sans leading-snug">
             © {new Date().getFullYear()} {orgInfo.shortName} — {footer.est ?? 'Est.'} {orgInfo.founded}
             <span className="hidden md:inline">
