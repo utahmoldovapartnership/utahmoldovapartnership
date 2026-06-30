@@ -1,4 +1,4 @@
-import { TbArrowRight, TbCheck } from 'react-icons/tb'
+import { TbArrowRight } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
 import OptimizedImage from '../components/OptimizedImage.jsx'
 import { pageHeroImages } from '../data/heroImages.js'
@@ -101,13 +101,11 @@ export default function Interns({ locale = 'en', site }) {
                 {p}
               </p>
             ))}
-            <ul className="mt-2 space-y-2">
+            <ul className="mt-2 space-y-3">
               {internWhoFor.bullets.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-[15px] text-ink font-sans">
-                  <span className="w-4 h-4 bg-blue flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <TbCheck size={10} color="#fff" />
-                  </span>
-                  {item}
+                <li key={item} className="flex items-start gap-3">
+                  <span className="w-2 h-2 bg-red flex-shrink-0 mt-[7px]" aria-hidden />
+                  <span className="text-[15px] text-ink font-sans leading-[1.65]">{item}</span>
                 </li>
               ))}
             </ul>
@@ -122,13 +120,11 @@ export default function Interns({ locale = 'en', site }) {
             <p className="text-[15px] text-muted leading-[1.7] font-sans mb-5">
               {internSkillsSection.intro}
             </p>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {internSkillsSection.items.map((skill) => (
-                <li key={skill} className="flex items-start gap-3 text-[15px] text-ink font-sans">
-                  <span className="w-4 h-4 bg-red flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <TbCheck size={10} color="#fff" />
-                  </span>
-                  {skill}
+                <li key={skill} className="flex items-start gap-3">
+                  <span className="w-2 h-2 bg-blue flex-shrink-0 mt-[7px]" aria-hidden />
+                  <span className="text-[15px] text-ink font-sans leading-[1.65]">{skill}</span>
                 </li>
               ))}
             </ul>

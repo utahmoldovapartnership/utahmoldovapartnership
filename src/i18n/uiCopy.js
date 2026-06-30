@@ -189,12 +189,12 @@ export const uiCopy = {
     apply: {
       title: 'Apply for the summer program',
       intro:
-        'Ready to spend a summer in Chișinău? Send us an email with your materials and we will get back to you with next steps.',
+        'Ready to spend a summer in Chișinău? Send us an email with your resume and we will get back to you with next steps.',
       cta: 'Send application by email',
       imageAlt: 'UMBP intern cohort on the steps in Chișinău',
       mailSubject: 'Intern Program Application',
       mailBody:
-        'Hi UMBP team,\n\nI would like to apply for the summer intern program.\n\n[Attach your resume and cover letter]\n\n',
+        'Hi UMBP team,\n\nI would like to apply for the summer intern program.\n\n[Attach your resume]\n\n',
     },
   },
 }

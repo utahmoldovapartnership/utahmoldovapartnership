@@ -266,9 +266,9 @@ export const internSkillsSection = {
 }
 
 export const internApplySteps = [
-  'Prepare your resume and a short cover letter.',
-  'Tell us why you want the program and what you would bring to the team.',
-  'Send both as attachments by email. We review applications on a rolling basis.',
+  'Prepare your resume.',
+  'Tell us why you are interested in the internship and what you would bring to the team.',
+  'Send your resume by email. We review applications on a rolling basis.',
 ]
 
 export const faqBusiness = [
