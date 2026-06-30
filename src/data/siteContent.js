@@ -25,12 +25,12 @@ export const orgInfo = {
 }
 
 export const stats = [
-  { num: '16', label: 'Current Companies' },
-  { num: '73+', label: 'Total Companies' },
+  { num: '18', label: 'Current Companies' },
+  { num: '80+', label: 'Total Companies' },
   { num: '10+', label: 'Years Operating' },
-  { num: '50+', label: 'Total Interns' },
+  { num: '60+', label: 'Total Interns' },
   { num: '50', label: 'Diplomas' },
-  { num: '10', label: 'Seminars' },
+  { num: '13', label: 'Seminars' },
 ]
 
 export const internStats = [
@@ -99,57 +99,21 @@ export const testimonial = {
 
 export const meetInterns = {
   intro: [
-    'Each summer a small team of students spends the season in Chișinău finding companies,',
-    'learning what they need, and delivering real consulting work.',
+    'This summer, two students are spending the season in Chișinău finding companies,',
+    'ready to help with free consulting and offer their skills in data, marketing, and more to support Moldovan businesses.',
   ],
   members: [
     withInternPhoto({
-      id: 'braxton',
-      name: 'Braxton',
-      focus: 'Languages & public relations',
-      bio: 'Works across languages and helps businesses communicate clearly with partners, press, and the community.',
-    }),
-    withInternPhoto({
-      id: 'libby',
-      name: 'Libby',
-      focus: 'Marketing & branding',
-      bio: 'Strong with branding, messaging, and marketing that helps businesses connect with customers.',
-    }),
-    withInternPhoto({
-      id: 'henry',
-      name: 'Henry',
-      focus: 'Supply chain & management',
-      bio: 'Focuses on how work moves through a business, from suppliers and inventory to the teams keeping day-to-day operations running.',
-    }),
-    withInternPhoto({
-      id: 'katya',
-      name: 'Katya',
-      focus: 'Marketing & communications',
-      bio: 'Helps companies sharpen their message, materials, and outreach so customers understand what they offer.',
-    }),
-    withInternPhoto({
-      id: 'ethan',
-      name: 'Ethan',
-      focus: 'Director',
-      bio: 'Leads the intern team day to day, coordinates schedules and deliverables, and keeps client work moving through the summer.',
-    }),
-    withInternPhoto({
-      id: 'meg',
-      name: 'Meg',
+      id: 'jackson',
+      name: 'Jackson',
       focus: 'Data analytics',
-      bio: 'Turns business data into clear analysis—trends, comparisons, and recommendations owners can trust.',
+      bio: 'BYU statistics student and data analyst who builds predictive models and pipelines in Python and R, turning complex data into clear recommendations businesses can use.',
     }),
     withInternPhoto({
-      id: 'halle',
-      name: 'Halle',
+      id: 'krista',
+      name: 'Krista',
       focus: 'Marketing & social media',
-      bio: 'Builds social presence and content that helps local businesses connect with customers online.',
-    }),
-    withInternPhoto({
-      id: 'weston',
-      name: 'Weston',
-      focus: 'Web development',
-      bio: 'Builds websites and digital tools that help businesses strengthen their online presence.',
+      bio: 'Founder of Embrace Media. Helps brands grow through content creation, social strategy, and authentic storytelling across Instagram, TikTok, and other platforms.',
     }),
   ],
 }

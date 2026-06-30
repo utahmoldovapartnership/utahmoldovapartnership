@@ -50,12 +50,24 @@ export const uiCopy = {
       title: 'Past Events & Activities',
       photos: [
         {
+          alt: 'Participants in an AI website creation workshop',
+          caption: 'Build with AI workshop, 2026.',
+        },
+        {
           alt: 'Code to Success students in a morning class',
           caption: 'Code to Success students in a morning session.',
         },
         {
+          alt: 'Social Media Workshop at the Ivory Center',
+          caption: 'Social Media 101 workshop, 2026.',
+        },
+        {
           alt: 'UMBP intern team in 2017',
           caption: 'UMBP intern team, 2017.',
+        },
+        {
+          alt: 'Commencement dinner in Chișinău',
+          caption: 'Commencement dinner, 2026.',
         },
         {
           alt: 'UMBP team on the ground in Moldova',
@@ -94,6 +106,17 @@ export const uiCopy = {
       contactPage: 'Go to contact page',
     },
     meetInternsTitle: 'Meet the interns',
+    ivoryCenter: {
+      kicker: 'Local partner',
+      titleLine1: 'The Ivory Center',
+      titleLine2: 'in Chișinău',
+      imageAlt: 'UMBP intern team at the Ivory Center in Chișinău',
+      paragraph1:
+        'Ivory Center is an educational initiative in Chișinău, supported by the Clark & Christine Ivory Foundation and the University of Utah. It offers practical training in English, career development, and entrepreneurship for Moldovans who want to build a stronger future at home.',
+      paragraph2:
+        'UMBP and Ivory Center share the same roots. Both grew from Clark Ivory’s commitment to Moldova’s economic development. Each summer, our intern team works from the Ivory Center, connecting American students with local businesses while the center supports education and opportunity in the community.',
+      cta: 'Visit Ivory Center',
+    },
   },
   contact: {
     hero: {

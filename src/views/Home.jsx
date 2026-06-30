@@ -2,6 +2,7 @@ import { TbArrowRight } from 'react-icons/tb'
 import Hero from '../components/Hero.jsx'
 import OptimizedImage from '../components/OptimizedImage.jsx'
 import { pageHeroImages } from '../data/heroImages.js'
+import { ivoryCenterImage, pastEventPhotos } from '../data/staticImages.generated.js'
 import StatsBar from '../components/StatsBar.jsx'
 import SectionKicker from '../components/SectionKicker.jsx'
 import LogoMarquee from '../components/LogoMarquee.jsx'
@@ -9,11 +10,7 @@ import MeetInterns from '../components/MeetInterns.jsx'
 import ScrollFade from '../components/ScrollFade.jsx'
 import { localePath } from '../i18n/config.js'
 
-const eventPhotos = [
-  'https://static.wixstatic.com/media/a6cdd8_77d7beda2e964cc4b507a24a8a20554b~mv2.jpg/v1/crop/x_0,y_132,w_3000,h_1986/fill/w_694,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/MorningCodingStudents_edited.jpg',
-  'https://static.wixstatic.com/media/a6cdd8_c75a64ffcb984558a358b27c0c5018af~mv2.jpg/v1/crop/x_0,y_97,w_962,h_637/fill/w_694,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/interns-2017_edited.jpg',
-  'https://static.wixstatic.com/media/a6cdd8_ccaa73b418174397addda597243136db~mv2.jpg/v1/crop/x_52,y_37,w_1631,h_1077/fill/w_696,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/7A011441-216C-442C-8D25-3D18AD2FD40D_JPG.jpg',
-]
+const eventPhotos = pastEventPhotos
 
 const partnerLogos = [
   { name: 'UNDP Moldova', href: 'https://www.md.undp.org', src: 'https://static.wixstatic.com/media/a6cdd8_5001911b9a8348c5bf5c7e6288809168~mv2.png/v1/fill/w_250,h_212,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/283px-UN_emblem_blue_edited.png' },
@@ -137,6 +134,13 @@ export default function Home({ locale = 'en', site }) {
         </div>
       </ScrollFade>
 
+      <MeetInterns
+        title={ui.home.meetInternsTitle}
+        intro={meetInterns.intro}
+        members={meetInterns.members}
+        closeLabel={ui.common.close}
+      />
+
       <ScrollFade as="section" className="bg-blue">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-16 md:py-20">
           <div className="font-serif font-medium italic text-white text-[34px] sm:text-[44px] md:text-[52px] leading-[1.05] tracking-[-1px] max-w-[820px]">
@@ -154,30 +158,68 @@ export default function Home({ locale = 'en', site }) {
         </div>
       </ScrollFade>
 
-      <MeetInterns
-        title={ui.home.meetInternsTitle}
-        intro={meetInterns.intro}
-        members={meetInterns.members}
-        closeLabel={ui.common.close}
-      />
+      <ScrollFade as="section" className="border-b border-border bg-blue-light">
+        <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
+          <SectionKicker color="blue">{ui.home.ivoryCenter.kicker}</SectionKicker>
+          <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-8 max-w-[640px]">
+            {ui.home.ivoryCenter.titleLine1}
+            <br />
+            {ui.home.ivoryCenter.titleLine2}
+          </h2>
+
+          <div className="border border-border bg-white grid grid-cols-1 md:grid-cols-[minmax(0,44%)_minmax(0,1fr)]">
+            <div className="relative aspect-[5/4] md:aspect-auto md:min-h-[380px] overflow-hidden border-b md:border-b-0 md:border-r border-border">
+              <OptimizedImage
+                src={ivoryCenterImage.src}
+                srcSet={ivoryCenterImage.srcSet}
+                sizes={ivoryCenterImage.sizes}
+                alt={ui.home.ivoryCenter.imageAlt}
+                width={ivoryCenterImage.width}
+                height={ivoryCenterImage.height}
+                className="absolute inset-0 w-full h-full object-cover object-[center_35%]"
+              />
+            </div>
+
+            <div className="flex flex-col justify-center border-t-4 border-yellow md:border-t-0 md:border-l-4 md:border-l-yellow p-7 md:p-9">
+              <p className="text-[16px] text-ink leading-[1.75] font-sans">
+                {ui.home.ivoryCenter.paragraph1}
+              </p>
+              <p className="text-[15px] text-muted leading-[1.75] font-sans mt-4">
+                {ui.home.ivoryCenter.paragraph2}
+              </p>
+              <a
+                href={`https://${orgInfo.partnerSite}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 self-start mt-7 bg-blue text-white px-6 py-3 font-sans font-medium text-[12px] uppercase tracking-wider hover:bg-blue/90 transition-colors"
+              >
+                {ui.home.ivoryCenter.cta}
+                <TbArrowRight size={14} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </ScrollFade>
 
       <ScrollFade as="section" className="border-b border-border bg-white">
         <div className="mx-auto max-w-[1180px] px-6 md:px-10 py-14 md:py-16">
           <h2 className="font-serif font-medium text-[34px] md:text-[44px] leading-[1.0] tracking-[-0.5px] text-ink mb-9">
             {ui.home.events.title}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {ui.home.events.photos.map((photo, i) => (
               <figure
-                key={eventPhotos[i]}
+                key={eventPhotos[i].id}
                 className="group border border-border bg-white transition-[filter,transform] duration-300 hover:drop-shadow-[0_6px_20px_rgba(13,13,13,0.1)]"
               >
                 <div className="overflow-hidden bg-white">
                   <OptimizedImage
-                    src={eventPhotos[i]}
+                    src={eventPhotos[i].src}
+                    srcSet={eventPhotos[i].srcSet}
+                    sizes={eventPhotos[i].sizes}
                     alt={photo.alt}
-                    width={696}
-                    height={460}
+                    width={eventPhotos[i].width}
+                    height={eventPhotos[i].height}
                     className="block w-full h-56 object-cover object-center transition-transform duration-300 group-hover:scale-[1.03]"
                   />
                 </div>
@@ -235,7 +277,7 @@ export default function Home({ locale = 'en', site }) {
                 rel="noopener noreferrer"
                 aria-label={logo.name}
                 className={[
-                  'flex items-center justify-center p-5 h-24 md:h-28 border-border opacity-70 hover:opacity-100 transition-opacity',
+                  'group flex items-center justify-center p-5 h-24 md:h-28 border-border',
                   i % 2 === 0 ? 'border-r sm:border-r' : '',
                   i !== arr.length - 1 ? 'lg:border-r' : '',
                   i < arr.length - 1 ? 'border-b lg:border-b-0' : '',
@@ -245,7 +287,7 @@ export default function Home({ locale = 'en', site }) {
                   src={logo.src}
                   alt={logo.name}
                   loading="lazy"
-                  className="max-h-12 md:max-h-14 w-auto object-contain"
+                  className="max-h-12 md:max-h-14 w-auto object-contain brightness-0 opacity-100 transition-opacity duration-300 group-hover:opacity-45"
                 />
               </a>
             ))}

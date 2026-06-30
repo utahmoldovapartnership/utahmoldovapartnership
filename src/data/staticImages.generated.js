@@ -7,3 +7,56 @@ export const applySummerProgramImage = {
   "width": 1024,
   "height": 739
 }
+
+export const ivoryCenterImage = {
+  "src": "/ivory-center-1024w.webp",
+  "srcSet": "/ivory-center-480w.webp 480w, /ivory-center-720w.webp 720w, /ivory-center-1024w.webp 1024w",
+  "sizes": "(min-width: 768px) 520px, 100vw",
+  "width": 1024,
+  "height": 681
+}
+
+export const pastEventPhotos = [
+  {
+    "id": "build-with-ai-workshop",
+    "src": "/events/build-with-ai-workshop-1024w.webp",
+    "srcSet": "/events/build-with-ai-workshop-400w.webp 400w, /events/build-with-ai-workshop-696w.webp 696w, /events/build-with-ai-workshop-1024w.webp 1024w",
+    "sizes": "(min-width: 768px) 33vw, 100vw",
+    "width": 1024
+  },
+  {
+    "id": "code-to-success-morning",
+    "src": "/events/code-to-success-morning-694w.webp",
+    "srcSet": "/events/code-to-success-morning-400w.webp 400w, /events/code-to-success-morning-694w.webp 694w",
+    "sizes": "(min-width: 768px) 33vw, 100vw",
+    "width": 694
+  },
+  {
+    "id": "social-media-101-workshop",
+    "src": "/events/social-media-101-workshop-1024w.webp",
+    "srcSet": "/events/social-media-101-workshop-400w.webp 400w, /events/social-media-101-workshop-696w.webp 696w, /events/social-media-101-workshop-1024w.webp 1024w",
+    "sizes": "(min-width: 768px) 33vw, 100vw",
+    "width": 1024
+  },
+  {
+    "id": "umbp-interns-2017",
+    "src": "/events/umbp-interns-2017-694w.webp",
+    "srcSet": "/events/umbp-interns-2017-400w.webp 400w, /events/umbp-interns-2017-694w.webp 694w",
+    "sizes": "(min-width: 768px) 33vw, 100vw",
+    "width": 694
+  },
+  {
+    "id": "commencement-dinner",
+    "src": "/events/commencement-dinner-1024w.webp",
+    "srcSet": "/events/commencement-dinner-400w.webp 400w, /events/commencement-dinner-696w.webp 696w, /events/commencement-dinner-1024w.webp 1024w",
+    "sizes": "(min-width: 768px) 33vw, 100vw",
+    "width": 1024
+  },
+  {
+    "id": "on-the-ground-moldova",
+    "src": "/events/on-the-ground-moldova-696w.webp",
+    "srcSet": "/events/on-the-ground-moldova-400w.webp 400w, /events/on-the-ground-moldova-696w.webp 696w",
+    "sizes": "(min-width: 768px) 33vw, 100vw",
+    "width": 696
+  }
+]
