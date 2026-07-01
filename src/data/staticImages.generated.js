@@ -26,10 +26,10 @@ export const pastEventPhotos = [
   },
   {
     "id": "code-to-success-morning",
-    "src": "/events/code-to-success-morning-694w.webp",
-    "srcSet": "/events/code-to-success-morning-400w.webp 400w, /events/code-to-success-morning-694w.webp 694w",
+    "src": "/events/code-to-success-morning-1024w.webp",
+    "srcSet": "/events/code-to-success-morning-400w.webp 400w, /events/code-to-success-morning-694w.webp 694w, /events/code-to-success-morning-696w.webp 696w, /events/code-to-success-morning-1024w.webp 1024w",
     "sizes": "(min-width: 768px) 33vw, 100vw",
-    "width": 694
+    "width": 1024
   },
   {
     "id": "social-media-101-workshop",
@@ -40,10 +40,10 @@ export const pastEventPhotos = [
   },
   {
     "id": "umbp-interns-2017",
-    "src": "/events/umbp-interns-2017-694w.webp",
-    "srcSet": "/events/umbp-interns-2017-400w.webp 400w, /events/umbp-interns-2017-694w.webp 694w",
+    "src": "/events/umbp-interns-2017-962w.webp",
+    "srcSet": "/events/umbp-interns-2017-400w.webp 400w, /events/umbp-interns-2017-694w.webp 694w, /events/umbp-interns-2017-696w.webp 696w, /events/umbp-interns-2017-962w.webp 962w",
     "sizes": "(min-width: 768px) 33vw, 100vw",
-    "width": 694
+    "width": 962
   },
   {
     "id": "commencement-dinner",
@@ -54,9 +54,9 @@ export const pastEventPhotos = [
   },
   {
     "id": "on-the-ground-moldova",
-    "src": "/events/on-the-ground-moldova-696w.webp",
-    "srcSet": "/events/on-the-ground-moldova-400w.webp 400w, /events/on-the-ground-moldova-696w.webp 696w",
+    "src": "/events/on-the-ground-moldova-1024w.webp",
+    "srcSet": "/events/on-the-ground-moldova-400w.webp 400w, /events/on-the-ground-moldova-696w.webp 696w, /events/on-the-ground-moldova-1024w.webp 1024w",
     "sizes": "(min-width: 768px) 33vw, 100vw",
-    "width": 696
+    "width": 1024
   }
 ]

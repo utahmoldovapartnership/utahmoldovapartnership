@@ -70,8 +70,8 @@ export const uiCopy = {
           caption: 'Commencement dinner, 2026.',
         },
         {
-          alt: 'UMBP team on the ground in Moldova',
-          caption: 'On the ground with a local business.',
+          alt: 'Panel at the Professions of the Future Forum in Chișinău',
+          caption: 'Professions of the Future Forum, Chișinău.',
         },
       ],
     },
