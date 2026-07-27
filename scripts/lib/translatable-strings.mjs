@@ -33,7 +33,7 @@ export const KEEP_AS_IS = new Set([
   'Salt Lake City, Utah',
   'Chișinău, Moldova',
   'utahmoldovapartnership@gmail.com',
-  '+1 (801) 687-6222',
+  '+1 (801) 258-1590',
   'utahmoldovabusiness.com',
   'ivorycenter.md',
 ])

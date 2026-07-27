@@ -41,7 +41,7 @@ const SKIP_VALUES = new Set([
   'Clark Ivory',
   'Walter Plumb III',
   'utahmoldovapartnership@gmail.com',
-  '+1 (801) 687-6222',
+  '+1 (801) 258-1590',
 ])
 
 function translateString(value, dict) {
