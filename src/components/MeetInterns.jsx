@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import useIsomorphicLayoutEffect from '../utils/useIsomorphicLayoutEffect.js'
-import { TbX } from 'react-icons/tb'
+import { TbBrandLinkedin, TbX } from 'react-icons/tb'
 import ScrollFade from './ScrollFade.jsx'
 import OptimizedImage from './OptimizedImage.jsx'
 
@@ -49,6 +49,17 @@ function InternModal({ intern, closeLabel, onClose }) {
             {intern.focus}
           </p>
           <p className="text-[15px] text-muted leading-[1.7] font-sans">{intern.bio}</p>
+          {intern.linkedin ? (
+            <a
+              href={intern.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 text-[13px] font-sans font-medium text-ink hover:text-red transition-colors"
+            >
+              <TbBrandLinkedin size={18} />
+              LinkedIn
+            </a>
+          ) : null}
         </div>
       </div>
     </div>,

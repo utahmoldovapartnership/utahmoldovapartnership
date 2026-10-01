@@ -28,8 +28,8 @@ export const KEEP_AS_IS = new Set([
   'Walter Plumb III',
   'Est.',
   '©',
-  'Jackson',
-  'Krista',
+  'Letícia Salera Hodel',
+  'Joseph Ramirez',
   'Salt Lake City, Utah',
   'Chișinău, Moldova',
   'utahmoldovapartnership@gmail.com',
@@ -39,8 +39,8 @@ export const KEEP_AS_IS = new Set([
 ])
 
 const SKIP_LITERALS = new Set([
-  'jackson',
-  'krista',
+  'leticia',
+  'joseph',
   'red',
   'blue',
   'ink',
@@ -53,6 +53,7 @@ const SKIP_KEYS = new Set([
   'src',
   'srcSet',
   'href',
+  'linkedin',
   'image',
   'ogImage',
   'preconnect',

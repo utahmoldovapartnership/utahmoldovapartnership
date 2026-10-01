@@ -104,16 +104,18 @@ export const meetInterns = {
   ],
   members: [
     withInternPhoto({
-      id: 'jackson',
-      name: 'Jackson',
-      focus: 'Data analytics',
-      bio: 'BYU statistics student and data analyst who builds predictive models and pipelines in Python and R, turning complex data into clear recommendations businesses can use.',
+      id: 'leticia',
+      name: 'Letícia Salera Hodel',
+      focus: 'Social Media & Content Specialist',
+      bio: 'With a background in teaching, mentoring, SEO, copywriting, and social media, Letícia combines communication, creativity, and strategy to create content that connects with people and drives action.',
+      linkedin: 'https://www.linkedin.com/in/let%C3%ADciasalera/',
     }),
     withInternPhoto({
-      id: 'krista',
-      name: 'Krista',
-      focus: 'Marketing & social media',
-      bio: 'Founder of Embrace Media. Helps brands grow through content creation, social strategy, and authentic storytelling across Instagram, TikTok, and other platforms.',
+      id: 'joseph',
+      name: 'Joseph Ramirez',
+      focus: 'Amazon PPC Specialist & E-commerce Expert',
+      bio: 'Joseph brings experience in Amazon advertising, product research, competitor analysis, and data-driven marketing, helping businesses improve visibility, increase sales, and make smarter decisions.',
+      linkedin: 'https://www.linkedin.com/in/joseph-ramirez-ecommerce/',
     }),
   ],
 }
